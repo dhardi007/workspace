@@ -66,6 +66,6 @@ temp/
 *.temp
 
 # Proyectos específicos (ajustar según necesites)
-GLAZE-WM-make-windows-pretty-main-dizzi/node_modules/
-Just-coding/__pycache__/
-"Portafolio - Mimo Dizzi"/dist/
+# GLAZE-WM-make-windows-pretty-main-dizzi/
+# Just-coding//
+Portafolio - Mimo Dizzi/

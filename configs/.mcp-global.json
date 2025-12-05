@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "workspaceRoot": "C:/Users/Diego/workspace",
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem",
+        "C:/Users/Diego/workspace/projects"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "{{GITHUB_TOKEN}}"
+      }
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-sqlite",
+        "C:/Users/Diego/workspace/data/dev.db"
+      ]
+    }
+  },
+  "projectConfigs": {
+    "web": {
+      "mcpServers": ["filesystem", "github", "browser"],
+      "prompts": ["web-dev-context"]
+    },
+    "python": {
+      "mcpServers": ["filesystem", "sqlite", "python-env"],
+      "prompts": ["data-science-context"]
+    }
+  },
+  "ideIntegrations": {
+    "vscode": {
+      "configPath": "configs/vscode-settings.json"
+    },
+    "cursor": {
+      "configPath": "configs/cursor-rules.json"
+    }
+  }
+}
