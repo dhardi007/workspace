@@ -16,3 +16,6 @@
 [submodule "REACT-Diego-Dizzi-Dashboard"]
 	path = REACT-Diego-Dizzi-Dashboard
 	url = https://github.com/dhardi007/REACT-Diego-Dizzi-Dashboard
+[submodule "portfolio-terminal-dhardi"]
+	path = portfolio-terminal-dhardi
+	url = https://github.com/dizzi1222/portfolio-terminal-dhardi.git
