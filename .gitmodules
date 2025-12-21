@@ -19,3 +19,6 @@
 [submodule "portfolio-terminal-dhardi"]
 	path = portfolio-terminal-dhardi
 	url = https://github.com/dizzi1222/portfolio-terminal-dhardi.git
+[submodule "dizzi1222"]
+	path = dizzi1222
+	url = https://github.com/dizzi1222/dizzi1222

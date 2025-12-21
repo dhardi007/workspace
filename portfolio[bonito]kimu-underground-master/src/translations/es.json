@@ -1,0 +1,59 @@
+{
+    "page": {
+        "sidebar": {
+            "home": "Inicio",
+            "about": "Sobre mi",
+            "music": "Música",
+            "games": "Jueguitos",
+            "proyects": "Proyectos",
+            "contact": "Contacto"
+        },
+        "home": {
+            "greeting": [
+                "¡Bienvenidx a mi casita! =w=",
+                "¡Mis lenguajes favoritos son C y Go!",
+                "Parezco un NPC con estos mensajes...",
+                "Nop no uso Wordpress, odio PHP.",
+                "Mi primer programa fue un bot de Discord en Python... Desde mi teléfono."
+            ],
+            "links": {
+                "about": "Sobre Mi",
+                "projects": "Proyectos",
+                "contact": "Contacto",
+                "donate": "Donar :3",
+                "my-server": "Discord",
+                "youtube": "Youtube"
+            }
+        },
+        "about": {
+            "title": "Sobre mi",
+            "stats": {
+                "nick": "PseudoN",
+                "level": "Nivel",
+                "hp": "HP",
+                "mana": "Maná",
+                "rank": "Rango"
+            },
+            "presentation": "¡Owa! Soy Kimu, una ingeniera de software de 19 años a la que le gusta cacharrear con tecnología.<br><br>Trastear con absolutamente todo siempre ha sido lo mio, abrir el portátil familiar, cambiar los leds de mi mando, o soldar otro jack a mi mp3.<br><br>Soy muy introvertida, pero me gusta hablar con gente de vez en cuando.",
+            "workspace": {
+                "model": "Modelo",
+                "chip": "Chipset",
+                "system": "Sistema"
+            },
+            "story-01": "Mi Historia Programando"
+        },
+        "music": {
+            "page-title": "Musicwa favorita",
+            "title": "Musica que adoro"
+        },
+        "games": {
+            "title": "Videojueguitos"
+        },
+        "projects": {
+            "title": "Proyectos"
+        },
+        "contact": {
+            "title": "Contacto"
+        }
+    }
+}
