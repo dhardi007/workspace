@@ -22,3 +22,9 @@
 [submodule "dizzi1222"]
 	path = dizzi1222
 	url = https://github.com/dizzi1222/dizzi1222
+[submodule "kimu-underground"]
+	path = kimu-underground
+	url = https://github.com/notKimu/kimu-underground.git
+[submodule "retro-portfolio"]
+	path = retro-portfolio
+	url = https://github.com/notKimu/retro-portfolio.git
