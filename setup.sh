@@ -16,11 +16,12 @@ echo ""
 echo "${AZUL}Paso 1: Clonando repositorios...${RESET}"
 # Verificar submodules
 git submodule update --init --recursive
-rm -rf Librezam retro-portfolio kimu-underground portfolio-terminal-dhardi
+rm -rf Librezam retro-portfolio kimu-underground portfolio-terminal-dhardi GLAZE-WM-make-windows-pretty-main-dizzi
 
 # Recuperar cada submódulo
 git submodule update --init --recursive Librezam
 git submodule update --init --recursive retro-portfolio
+git submodule update --init --recursive GLAZE-WM-make-windows-pretty-main-dizzi
 git submodule update --init --recursive kimu-underground
 git submodule update --init --recursive portfolio-terminal-dhardi
 
