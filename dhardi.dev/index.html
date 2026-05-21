@@ -828,42 +828,32 @@
         <span class="gradient-text">/</span> <span data-i18n="setup.heading">My Setup</span>
       </h2>
       <div class="w-16 h-1 bg-[#e94560] mx-auto mb-4 rounded-full"></div>
-      <p class="text-subtle text-center mb-12" data-i18n="setup.subtitle">Arch Linux · Hyprland · Neovim · Dotfiles</p>
+      <p class="text-subtle text-center mb-12" data-i18n="setup.subtitle">Scripts · Blueprints · Automation</p>
 
       <div class="grid md:grid-cols-2 gap-6">
-        <div onclick="openNeovimModal()" class="stagger-child card-bg rounded-xl overflow-hidden border border-custom hover:border-[#00d9ff]/40 transition-all group cursor-pointer">
-          <div class="h-44 bg-gradient-to-br from-blue-900/30 to-purple-900/30 flex items-center justify-center overflow-hidden">
-            <img src="https://github.com/user-attachments/assets/8adb6f60-bb35-4704-b4ab-12bd587f3992" alt="Neovim Desktop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+        <div class="stagger-child card-bg rounded-xl p-5 border border-custom hover:border-[#00d9ff]/40 transition-all">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-lg">⚙️</span>
+            <h3 class="font-display font-bold text-primary text-sm" data-i18n="setup.scriptsCardTitle">System Control</h3>
           </div>
-          <div class="p-5">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-lg">💤</span>
-              <h3 class="font-display font-bold text-primary text-base">Neovim · LazyVim</h3>
-            </div>
-            <p class="text-xs text-muted leading-relaxed" data-i18n="setup.nvimDesc">Configuración multiplataforma con LazyVim, LSP para TS/JS/CSS, Telescope, y 200+ plugins optimizados. Click para ver el setup completo.</p>
-            <div class="flex flex-wrap gap-1.5 mt-3">
-              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Lua</span>
-              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">LazyVim</span>
-              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">LSP</span>
-            </div>
+          <p class="text-xs text-muted leading-relaxed mb-3" data-i18n="setup.scriptsCardDesc">Menú Rofi con 30+ herramientas: gestión de red, bluetooth, audio, power management, screen capture, modo juego, night mode, fixes de XDG Portal y más. Todo desde un solo launcher con íconos Nerd Font y búsqueda fuzzy.</p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Bash</span>
+            <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Rofi</span>
+            <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Zenity</span>
           </div>
         </div>
 
-        <div onclick="openNeovimModal()" class="stagger-child card-bg rounded-xl overflow-hidden border border-custom hover:border-[#e94560]/40 transition-all group cursor-pointer">
-          <div class="h-44 bg-gradient-to-br from-gray-900/30 to-amber-900/30 flex items-center justify-center overflow-hidden">
-            <img src="https://github.com/user-attachments/assets/b9d75c3d-29af-4d33-8333-84e9e9a61659" alt="EWW Waybar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+        <div class="stagger-child card-bg rounded-xl p-5 border border-custom hover:border-[#e94560]/40 transition-all">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-lg">🎨</span>
+            <h3 class="font-display font-bold text-primary text-sm" data-i18n="setup.blueprintTitle">Blueprints & Tokens</h3>
           </div>
-          <div class="p-5">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-lg">🖥️</span>
-              <h3 class="font-display font-bold text-primary text-base">Hyprland · Dotfiles</h3>
-            </div>
-            <p class="text-xs text-muted leading-relaxed" data-i18n="setup.dotfilesDesc">Arch Linux con Hyprland, EWW widgets, Waybar, Rofi, Wofi, y scripts personalizados. Un ecosistema completo desde cero. Click para detalles.</p>
-            <div class="flex flex-wrap gap-1.5 mt-3">
-              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Hyprland</span>
-              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">EWW</span>
-              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Rofi</span>
-            </div>
+          <p class="text-xs text-muted leading-relaxed mb-3" data-i18n="setup.blueprintDesc">Extractor de design tokens desde imágenes: paletas de colores, CSS custom properties, prompts para IA. Workflow completo para pasar de una referencia visual a código listo para producción.</p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Bash</span>
+            <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">CSS</span>
+            <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">AI</span>
           </div>
         </div>
 
@@ -872,7 +862,7 @@
             <span class="text-lg">⚡</span>
             <h3 class="font-display font-bold text-primary text-sm" data-i18n="setup.scriptsTitle">Scripts & Automation</h3>
           </div>
-          <p class="text-xs text-muted leading-relaxed mb-3" data-i18n="setup.scriptsDesc">Utilidades propias para Arch: LimpiarCache, Gitaliases, Omarchy Package Install, System Control con Rofi, Power Menu y más.</p>
+          <p class="text-xs text-muted leading-relaxed mb-3" data-i18n="setup.scriptsDesc">50+ scripts propios: save-point system para rollback de config, scrcpy connect, widget launcher, power modes, Omarchy Package Install, LimpiarCache, Gitaliases y más. Automatización total del ecosistema Arch.</p>
           <div class="flex flex-wrap gap-1.5">
             <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Bash</span>
             <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Python</span>
@@ -1010,11 +1000,13 @@
           s8: { title: 'DevOps', desc: 'Docker, CI/CD con GitHub Actions, despliegues automatizados y entornos reproducibles.' },
         },
         setup: {
-          heading: 'My Setup', subtitle: 'Arch Linux · Hyprland · Neovim · Dotfiles',
-          nvimDesc: 'Configuración multiplataforma con LazyVim, LSP para TS/JS/CSS, Telescope, y 200+ plugins optimizados. Click para ver el setup completo.',
-          dotfilesDesc: 'Arch Linux con Hyprland, EWW widgets, Waybar, Rofi, Wofi, y scripts personalizados. Un ecosistema completo desde cero. Click para detalles.',
+          heading: 'My Setup', subtitle: 'Scripts · Blueprints · Automation',
+          scriptsCardTitle: 'System Control',
+          scriptsCardDesc: 'Menú Rofi con 30+ herramientas: gestión de red (impala), bluetooth (bluetui), audio (pavucontrol), power management, screen capture (gyazo), modo juego, night mode, fixes de XDG Portal y más. Todo desde un solo launcher con íconos Nerd Font y búsqueda fuzzy.',
+          blueprintTitle: 'Blueprints & Tokens',
+          blueprintDesc: 'Extractor de design tokens desde imágenes: paletas de colores, CSS custom properties, prompts para IA. Workflow completo para pasar de una referencia visual a código listo para producción.',
           scriptsTitle: 'Scripts & Automation',
-          scriptsDesc: 'Utilidades propias para Arch: LimpiarCache, Gitaliases, Omarchy Package Install, System Control con Rofi, Power Menu y más.',
+          scriptsDesc: '50+ scripts propios: save-point system, scrcpy connect, widget launcher, power modes, Omarchy Package Install, LimpiarCache, Gitaliases y más.',
           galleryTitle: 'Galería del Setup',
           galleryDesc: 'Screenshots del desktop: Waybar con widgets EWW, Rofi System Control, Wofi Clipboard, Fastfetch, y el ecosistema visual completo.',
           galleryCta: 'Ver repositorio de dotfiles →'
@@ -1083,11 +1075,13 @@
           s8: { title: 'DevOps', desc: 'Docker, CI/CD with GitHub Actions, automated deployments and reproducible environments.' },
         },
         setup: {
-          heading: 'My Setup', subtitle: 'Arch Linux · Hyprland · Neovim · Dotfiles',
-          nvimDesc: 'Cross-platform configuration with LazyVim, LSP for TS/JS/CSS, Telescope, and 200+ optimized plugins. Click to see the full setup.',
-          dotfilesDesc: 'Arch Linux with Hyprland, EWW widgets, Waybar, Rofi, Wofi, and custom scripts. A complete ecosystem from scratch. Click for details.',
+          heading: 'My Setup', subtitle: 'Scripts · Blueprints · Automation',
+          scriptsCardTitle: 'System Control',
+          scriptsCardDesc: 'Rofi menu with 30+ tools: network management (impala), bluetooth (bluetui), audio (pavucontrol), power management, screen capture (gyazo), game mode, night mode, XDG Portal fixes and more. All from a single launcher with Nerd Font icons and fuzzy search.',
+          blueprintTitle: 'Blueprints & Tokens',
+          blueprintDesc: 'Design token extractor from images: color palettes, CSS custom properties, AI prompts. Full workflow from visual reference to production-ready code.',
           scriptsTitle: 'Scripts & Automation',
-          scriptsDesc: 'Custom Arch utilities: LimpiarCache, Gitaliases, Omarchy Package Install, Rofi System Control, Power Menu and more.',
+          scriptsDesc: '50+ custom scripts: save-point system, scrcpy connect, widget launcher, power modes, Omarchy Package Install, LimpiarCache, Gitaliases and more.',
           galleryTitle: 'Setup Gallery',
           galleryDesc: 'Desktop screenshots: Waybar with EWW widgets, Rofi System Control, Wofi Clipboard, Fastfetch, and the full visual ecosystem.',
           galleryCta: 'View dotfiles repository →'
@@ -1156,11 +1150,13 @@
           s8: { title: 'DevOps', desc: 'Docker, CI/CD mit GitHub Actions, automatisierte Deployments und reproduzierbare Umgebungen.' },
         },
         setup: {
-          heading: 'My Setup', subtitle: 'Arch Linux · Hyprland · Neovim · Dotfiles',
-          nvimDesc: 'Plattformübergreifende Konfiguration mit LazyVim, LSP für TS/JS/CSS, Telescope und 200+ optimierten Plugins. Klicke für das vollständige Setup.',
-          dotfilesDesc: 'Arch Linux mit Hyprland, EWW-Widgets, Waybar, Rofi, Wofi und benutzerdefinierten Skripten. Ein komplettes Ökosystem von Grund auf. Klicke für Details.',
+          heading: 'My Setup', subtitle: 'Scripts · Blueprints · Automation',
+          scriptsCardTitle: 'System Control',
+          scriptsCardDesc: 'Rofi-Menü mit 30+ Tools: Netzwerkverwaltung (impala), Bluetooth (bluetui), Audio (pavucontrol), Power Management, Bildschirmaufnahme (gyazo), Spielmodus, Nachtmodus, XDG Portal-Fixes und mehr. Alles aus einem einzigen Launcher mit Nerd Font Icons und Fuzzy-Suche.',
+          blueprintTitle: 'Blueprints & Tokens',
+          blueprintDesc: 'Design-Token-Extraktion aus Bildern: Farbpaletten, CSS Custom Properties, KI-Prompts. Kompletter Workflow von visueller Referenz zu produktionsreifem Code.',
           scriptsTitle: 'Skripte & Automatisierung',
-          scriptsDesc: 'Eigene Arch-Dienstprogramme: LimpiarCache, Gitaliases, Omarchy Package Install, Rofi System Control, Power Menu und mehr.',
+          scriptsDesc: '50+ eigene Skripte: Save-Point-System, Scrcpy Connect, Widget-Launcher, Power-Modi, Omarchy Package Install, LimpiarCache, Gitaliases und mehr.',
           galleryTitle: 'Setup-Galerie',
           galleryDesc: 'Desktop-Screenshots: Waybar mit EWW-Widgets, Rofi System Control, Wofi Clipboard, Fastfetch und das gesamte visuelle Ökosystem.',
           galleryCta: 'Dotfiles-Repository anzeigen →'
@@ -1233,6 +1229,7 @@
           item.style.fontWeight = '';
         }
       });
+      closeLangDropdown();
     }
 
     function toggleLangDropdown() {
@@ -1487,31 +1484,6 @@
       document.body.style.overflow = 'hidden';
     }
 
-    function openNeovimModal() {
-      const lang = localStorage.getItem('dhardi-lang') || 'es';
-      const t = i18n[lang];
-      modalTitle.textContent = '💤 Neovim · LazyVim · Dotfiles';
-      modalImage.innerHTML = `
-        <div style="width:100%;border-radius:0.75rem;overflow:hidden;background:var(--bg-card)">
-          <img src="https://github.com/user-attachments/assets/8adb6f60-bb35-4704-b4ab-12bd587f3992" alt="Nvim Desktop" style="width:100%;display:block" />
-        </div>
-        <div class="grid grid-cols-2 gap-2 mt-2" style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.5rem">
-          <div style="border-radius:0.5rem;overflow:hidden;background:var(--bg-card)">
-            <img src="https://github.com/user-attachments/assets/b9d75c3d-29af-4d33-8333-84e9e9a61659" alt="EWW Waybar" style="width:100%;display:block" />
-          </div>
-          <div style="border-radius:0.5rem;overflow:hidden;background:var(--bg-card)">
-            <img src="https://github.com/user-attachments/assets/536344b3-bfae-4b2d-9321-94961d4e4e33" alt="Fastfetch" style="width:100%;display:block" />
-          </div>
-        </div>
-      `;
-      modalDesc.textContent = 'Neovim (LazyVim) como editor principal con LSP para TypeScript, JavaScript, Lua y CSS. Arch Linux con Hyprland, EWW widgets, Waybar personalizado, Rofi, Wofi, y más de 50 scripts propios. Todo gestionado con dotfiles via GNU Stow y Git bare repo.';
-      modalFooter.innerHTML = `
-        <a href="https://github.com/dizzi1222/dotfiles-dizzi" target="_blank" class="px-5 py-2 border border-custom text-muted text-sm font-semibold rounded-lg hover:border-[#00d9ff] hover:text-[#00d9ff] transition-all">${t.modal.viewCode} · Dotfiles</a>
-        <a href="https://github.com/dizzi1222/nvim" target="_blank" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all">${t.modal.viewCode} · Nvim</a>
-      `;
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
@@ -1547,7 +1519,6 @@
               link.classList.add('text-primary');
             }
       });
-      closeLangDropdown();
     }
       });
     }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
@@ -1568,14 +1539,8 @@
 
     document.querySelectorAll('#tech-grid > div').forEach(el => {
       const label = el.querySelector('span:last-child')?.textContent.trim();
-      const isNeovim = label === 'Neovim';
       el.addEventListener('click', () => {
         const techInfo = getTechInfo();
-        if (isNeovim) {
-          openNeovimModal();
-          techPopup.classList.remove('show');
-          return;
-        }
         if (!techInfo[label]) return;
 
         // Update description text below grid
