@@ -1440,7 +1440,7 @@
       const lang = localStorage.getItem('dhardi-lang') || 'es';
     const t = i18n[lang];
     modalTitle.textContent = t.modal.cvTitle;
-    modalImage.innerHTML = `<div style="width:100%;padding:3rem 0;text-align:center;color:var(--text-subtle);font-size:0.875rem;">📄 ${t.modal.cvPlaceholder}</div>`;
+    modalImage.innerHTML = `<img src="assets/modal-placeholder-cv.png" alt="CV preview" style="width:100%;border-radius:8px;border:1px solid #333" />`;
     modalDesc.textContent = t.modal.cvDesc;
     modalFooter.innerHTML = `<a href="assets/cv.pdf" target="_blank" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all">${t.modal.downloadCv}</a>`;
     modal.classList.add('active');

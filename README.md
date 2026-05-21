@@ -16,6 +16,8 @@ Workspace con todos los proyectos clonados como submódulos.
 | 8 | `REACT-Diego-Dizzi-Dashboard` | Dashboard en React |
 | 9 | `Proyecto-App-MCSD` | App MCSD v2.0 |
 | 10 | `dhardi.dev` | Landing page comercial |
+| 11 | `PCE-Agencia` | App de finanzas y viajes |
+| 12 | `Just-coding` | Proyectos de práctica y algoritmos |
 
 ## 🔧 Restaurar todos los proyectos
 
