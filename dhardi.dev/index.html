@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#e94560" />
 
-  <!-- SEO -->
   <title>Diego Härdi | DevOps & Software Engineer · Dominican · Swiss</title>
   <meta name="description" content="Diego Härdi — DevOps & Software Engineer. Dominican-born with Swiss heritage. Building full-stack from Jarabacoa, DR." />
   <meta property="og:title" content="Diego Härdi | DevOps & Software Engineer" />
@@ -13,12 +12,11 @@
   <meta property="og:image" content="assets/avatar.jpg" />
   <meta property="og:type" content="website" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Outfit, sans-serif' font-size='26' font-weight='bold'%3E%3Ctspan fill='%23e94560'%3Ed%3C/tspan%3E%3Ctspan fill='%2300d9ff'%3Eh%3C/tspan%3E%3Ctspan fill='%23e94560'%3E.%3C/tspan%3E%3C/text%3E%3C/svg%3E" />
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -35,6 +33,74 @@
   </script>
 
   <style>
+    :root, [data-theme="dark"] {
+      --hover-subtle: rgba(255,255,255,0.05);
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111;
+      --bg-card: #0d0d1a;
+      --bg-surface: #0d0d0d;
+      --nav-bg: rgba(10,10,10,0.7);
+      --text-primary: #eaeaea;
+      --text-secondary: #ccc;
+      --text-tertiary: #aaa;
+      --text-muted: #888;
+      --text-subtle: #555;
+      --text-faint: #666;
+      --border-color: #222;
+      --border-light: #333;
+      --badge-bg: #222;
+      --nav-border: rgba(255,255,255,0.05);
+      --modal-bg: #111;
+      --modal-border: #333;
+      --section-glow-1: #0f0a1a;
+      --section-glow-2: #0a0a1a;
+      --section-glow-3: #0f0a0a;
+    }
+    [data-theme="light"] {
+      --hover-subtle: rgba(0,0,0,0.05);
+      --bg-primary: #ffffff;
+      --bg-secondary: #f5f5f5;
+      --bg-card: #f0f0fa;
+      --bg-surface: #fafafa;
+      --nav-bg: rgba(255,255,255,0.8);
+      --text-primary: #1a1a1a;
+      --text-secondary: #333;
+      --text-tertiary: #555;
+      --text-muted: #777;
+      --text-subtle: #999;
+      --text-faint: #aaa;
+      --border-color: #e0e0e0;
+      --border-light: #ddd;
+      --badge-bg: #eee;
+      --nav-border: rgba(0,0,0,0.08);
+      --modal-bg: #f5f5f5;
+      --modal-border: #ddd;
+      --section-glow-1: #f5edff;
+      --section-glow-2: #edf3ff;
+      --section-glow-3: #fff0ed;
+    }
+
+    .bg-primary { background: var(--bg-primary); }
+    .bg-secondary { background: var(--bg-secondary); }
+    .hover-subtle:hover { background: var(--hover-subtle); }
+    .bg-card { background: var(--bg-card); }
+    .bg-surface { background: var(--bg-surface); }
+    .bg-badge { background: var(--badge-bg); }
+    .nav-bg { background: var(--nav-bg); }
+    .text-primary { color: var(--text-primary); }
+    .text-secondary { color: var(--text-secondary); }
+    .text-tertiary { color: var(--text-tertiary); }
+    .text-muted { color: var(--text-muted); }
+    .text-subtle { color: var(--text-subtle); }
+    .text-faint { color: var(--text-faint); }
+    .border-custom { border-color: var(--border-color); }
+    .border-light { border-color: var(--border-light); }
+
+    .card-bg { background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card)); }
+    .section-bg-1 { background: linear-gradient(to bottom, var(--bg-primary), var(--section-glow-1), var(--bg-primary)); }
+    .section-bg-2 { background: linear-gradient(to bottom, var(--bg-primary), var(--section-glow-2), var(--bg-primary)); }
+    .section-bg-3 { background: linear-gradient(to bottom, var(--bg-primary), var(--section-glow-3), var(--bg-primary)); }
+
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; }
 
@@ -46,28 +112,72 @@
     .glow { box-shadow: 0 0 30px rgba(233, 69, 96, 0.3); }
     .glow-cyan { box-shadow: 0 0 30px rgba(0, 217, 255, 0.2); }
     .hover-glow:hover { box-shadow: 0 0 25px rgba(233, 69, 96, 0.5); transform: translateY(-2px); }
-    .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .nav-blur { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+
+    .bg-slideshow { cursor: grab; user-select: none; }
+    .bg-slideshow:active { cursor: grabbing; }
+
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 999; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.active { display: flex; }
+    .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+    .modal-container { position: relative; background: var(--modal-bg); border: 1px solid var(--modal-border); border-radius: 1rem; max-width: 42rem; width: 100%; max-height: 90vh; overflow-y: auto; padding: 1.5rem; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .modal-close { width: 2rem; height: 2rem; border-radius: 9999px; border: none; background: var(--badge-bg); color: var(--text-muted); font-size: 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .modal-close:hover { background: #e94560; color: #fff; }
+    .modal-image { width: 100%; border-radius: 0.75rem; background: linear-gradient(135deg, var(--bg-card), var(--modal-bg)); min-height: 200px; display: flex; align-items: center; justify-content: center; color: var(--text-subtle); font-size: 0.875rem; }
+    .modal-footer { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+    .tech-tip {
+      position: absolute; left: 50%; bottom: -10px; transform: translate(-50%,100%);
+      background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 0.75rem;
+      padding: 0.75rem 1rem; font-size: 0.75rem; color: var(--text-tertiary); line-height: 1.4;
+      white-space: nowrap; max-width: 280px; white-space: normal;
+      opacity: 0; pointer-events: none; transition: all 0.2s ease; z-index: 20;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .tech-tip::before {
+      content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%) rotate(45deg);
+      width: 10px; height: 10px; background: var(--bg-secondary); border-left: 1px solid var(--border-light); border-top: 1px solid var(--border-light);
+    }
+    .tech-tip.show { opacity: 1; }
+
+    .tech-popup {
+      position: fixed; z-index: 100;
+      padding: 0.75rem 1rem; border-radius: 0.75rem;
+      background: var(--bg-secondary); border: 1px solid var(--border-light);
+      font-size: 0.8rem; color: var(--text-tertiary); line-height: 1.5;
+      max-width: 300px; pointer-events: none;
+      opacity: 0; transition: all 0.25s ease;
+      transform: translateY(8px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .tech-popup.show { opacity: 1; transform: translateY(0); }
+    .tech-popup .tp-label { color: #00d9ff; font-weight: 600; }
 
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeInScale { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     @keyframes kenburns { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
     @keyframes pulse-soft { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes modalBackdrop { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal-overlay.active .modal-container { animation: modalIn 0.25s ease forwards; }
+    .modal-overlay.active .modal-backdrop { animation: modalBackdrop 0.25s ease forwards; }
 
     .animate-fade-in-up { animation: fadeInUp 0.8s ease forwards; }
-    .animate-fade-in-scale { animation: fadeInScale 0.8s ease forwards; }
     .animate-float { animation: float 4s ease-in-out infinite; }
-    .animate-kenburns { animation: kenburns 12s ease forwards; }
+    .animate-kenburns { animation: kenburns 10s ease forwards; }
     .animate-delay-1 { animation-delay: 0.2s; }
     .animate-delay-2 { animation-delay: 0.4s; }
     .animate-delay-3 { animation-delay: 0.6s; }
+    .animate-delay-4 { animation-delay: 0.8s; }
 
     .icon-tech { width: 40px; height: 40px; filter: grayscale(100%) brightness(1.5); transition: all 0.3s ease; }
     .icon-tech:hover { filter: grayscale(0%) brightness(1); transform: scale(1.2) rotate(5deg); }
     .project-card { transition: all 0.3s ease; border: 1px solid transparent; }
     .project-card:hover { border-color: #e94560; transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
 
-    /* Background slideshow */
     .bg-slideshow { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
     .bg-slide {
       position: absolute; inset: 0;
@@ -76,8 +186,8 @@
     }
     .bg-slide.active { opacity: 1; }
     .bg-slide.kenburns { animation: kenburns 10s ease forwards; }
+    .bg-slide { pointer-events: none; }
 
-    /* Slideshow nav arrows */
     .slide-nav {
       position: absolute; top: 50%; z-index: 5; transform: translateY(-50%);
       width: 48px; height: 48px; border-radius: 50%;
@@ -90,25 +200,17 @@
     .slide-nav.next { right: 16px; }
     @media (max-width: 640px) { .slide-nav { display: none; } }
 
-    /* Vibe indicator */
-    .vibe-dot { transition: all 0.4s ease; }
-    .vibe-label { transition: all 0.4s ease; }
-
-    /* Section transitions */
     .section-in {
       opacity: 0; transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
     .section-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* Stagger children */
     .stagger-child {
       opacity: 0; transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .section-in.visible .stagger-child {
-      opacity: 1; transform: translateY(0);
-    }
+    .section-in.visible .stagger-child { opacity: 1; transform: translateY(0); }
     .section-in.visible .stagger-child:nth-child(1) { transition-delay: 0s; }
     .section-in.visible .stagger-child:nth-child(2) { transition-delay: 0.1s; }
     .section-in.visible .stagger-child:nth-child(3) { transition-delay: 0.2s; }
@@ -117,30 +219,76 @@
     .section-in.visible .stagger-child:nth-child(6) { transition-delay: 0.5s; }
     .section-in.visible .stagger-child:nth-child(7) { transition-delay: 0.6s; }
     .section-in.visible .stagger-child:nth-child(8) { transition-delay: 0.7s; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 9999px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+    }
+    .timeline-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 3px solid #e94560; background: var(--bg-primary);
+      flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .timeline-line {
+      position: absolute; top: 20px; left: 6px;
+      width: 2px; height: calc(100% + 24px);
+      background: linear-gradient(to bottom, #e94560, #00d9ff);
+    }
+    .exp-card {
+      transition: all 0.3s ease;
+    }
+    .exp-card:hover {
+      transform: translateX(8px);
+    }
   </style>
 </head>
-<body class="bg-[#0a0a0a] text-[#eaeaea] font-body">
+<body class="bg-primary text-primary font-body">
 
   <!-- ===== NAVBAR ===== -->
-  <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#0a0a0a]/80 border-b border-[#e94560]/20">
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-blur nav-bg border-b" style="border-color:var(--nav-border)">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="#" class="font-display font-bold text-xl">
-        <span class="text-[#e94560]">d</span><span class="text-[#00d9ff]">h</span><span class="text-[#e94560]">.</span>
+      <a href="#" class="font-display font-bold text-xl tracking-tight flex items-center gap-2">
+        <span><span class="text-[#e94560]">d</span><span class="text-[#00d9ff]">h</span><span class="text-[#e94560]">.</span></span>
+        <span class="text-primary">Dhardi</span>
       </a>
-      <div class="hidden sm:flex items-center gap-8 text-sm text-[#888]">
-        <a href="#about" class="hover:text-[#00d9ff] transition-colors">About</a>
-        <a href="#stack" class="hover:text-[#00d9ff] transition-colors">Stack</a>
-        <a href="#projects" class="hover:text-[#00d9ff] transition-colors">Projects</a>
-        <a href="#blog" class="hover:text-[#00d9ff] transition-colors">Blog</a>
-        <a href="#contact" class="hover:text-[#00d9ff] transition-colors">Contact</a>
+      <div class="hidden md:flex items-center gap-1">
+        <a href="#experience" class="px-4 py-2 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.experience">Experience</a>
+        <a href="#projects" class="px-4 py-2 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.projects">Projects</a>
+        <a href="#servicios" class="px-4 py-2 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.servicios">Services</a>
+        <a href="#setup" class="px-4 py-2 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.setup">Setup</a>
+        <a href="#about" class="px-4 py-2 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.about">About</a>
+        <a href="#contact" class="px-4 py-2 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.contact">Contact</a>
       </div>
-      <a href="assets/cv.pdf" target="_blank" class="hidden sm:inline-block px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded hover:bg-[#d91a3a] transition-all hover-glow">Resume</a>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Theme Toggle -->
+        <div class="flex items-center gap-0.5 bg-badge rounded-lg p-0.5">
+          <button onclick="switchTheme('dark')" id="theme-dark-btn" class="px-1.5 py-1 text-xs rounded-md transition-all cursor-pointer" style="background:var(--bg-secondary);color:var(--text-primary)">🌙</button>
+          <button onclick="switchTheme('light')" id="theme-light-btn" class="px-1.5 py-1 text-xs rounded-md transition-all cursor-pointer" style="color:var(--text-muted)">☀️</button>
+        </div>
+        <!-- Language Dropdown -->
+        <div class="relative" id="lang-dropdown">
+          <button onclick="toggleLangDropdown()" id="lang-current-btn" class="flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-badge hover:bg-secondary transition-all cursor-pointer" style="color:var(--text-primary)">
+            <span id="current-lang-label">ES</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="lang-dropdown-menu" class="absolute right-0 mt-1 bg-secondary border border-custom rounded-lg py-1 shadow-lg hidden" style="min-width:56px;z-index:100">
+            <button onclick="switchLanguage('es')" class="lang-dropdown-item block w-full text-left px-3 py-1.5 text-xs hover:bg-badge transition-colors cursor-pointer" style="color:var(--text-muted)">ES</button>
+            <button onclick="switchLanguage('en')" class="lang-dropdown-item block w-full text-left px-3 py-1.5 text-xs hover:bg-badge transition-colors cursor-pointer" style="color:var(--text-muted)">EN</button>
+            <button onclick="switchLanguage('de')" class="lang-dropdown-item block w-full text-left px-3 py-1.5 text-xs hover:bg-badge transition-colors cursor-pointer" style="color:var(--text-muted)">DE</button>
+          </div>
+        </div>
+        <span class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-medium">
+          <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+          <span data-i18n="nav.available">Disponible</span>
+        </span>
+        <button onclick="openCVModal()" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all hover-glow cursor-pointer"><span data-i18n="nav.resume">Resume</span></button>
+      </div>
     </div>
   </nav>
 
   <!-- ===== HERO ===== -->
   <section id="hero" class="relative min-h-screen flex items-center justify-center pt-16 px-4 overflow-hidden">
-    <!-- Background slideshow -->
     <div class="bg-slideshow">
       <div class="bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=1920&q=80')"></div>
       <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=1920&q=80')"></div>
@@ -152,10 +300,8 @@
       <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80')"></div>
     </div>
 
-    <!-- Gradient overlay (switches tone) — darker for readability -->
-    <div id="hero-overlay" class="absolute inset-0 z-[1] transition-all duration-1000" style="background: linear-gradient(135deg, rgba(5,5,25,0.85) 0%, rgba(5,5,5,0.75) 50%, rgba(25,10,5,0.85) 100%);"></div>
+    <div id="hero-overlay" class="absolute inset-0 z-[1] transition-all duration-1000" style="background: linear-gradient(135deg, rgba(5,5,25,0.88) 0%, rgba(5,5,5,0.8) 50%, rgba(25,10,5,0.85) 100%);"></div>
 
-    <!-- Slideshow nav arrows -->
     <button onclick="prevSlide()" class="slide-nav prev" aria-label="Previous slide">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
@@ -163,111 +309,457 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
     </button>
 
-    <!-- Content -->
     <div class="max-w-6xl mx-auto text-center relative z-10">
-      <!-- Vibe indicator -->
       <div id="vibe-indicator" class="mb-6 inline-flex items-center gap-3 px-4 py-2 bg-black/50 backdrop-blur-md rounded-full border border-white/10 text-xs font-semibold tracking-wider uppercase animate-fade-in-up">
         <span id="vibe-icon" class="text-lg">❄️</span>
-        <span id="vibe-label" class="text-[#888]">Swiss Alps</span>
-        <span class="text-[#555]">·</span>
-        <span id="vibe-counter" class="text-[#555]">1/8</span>
+        <span id="vibe-label" class="text-muted">Swiss Alps</span>
+        <span class="text-subtle">·</span>
+        <span id="vibe-counter" class="text-subtle">1/8</span>
       </div>
 
-      <div class="animate-float inline-block mb-8">
+      <div class="animate-float inline-block mb-6">
         <div class="w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full border-4 border-[#e94560] overflow-hidden glow">
           <img src="assets/avatar.jpg" alt="Diego Härdi" class="w-full h-full object-cover" />
         </div>
       </div>
 
-      <h1 class="font-display text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-4 animate-fade-in-up">
+      <div class="flex justify-center mb-4 animate-fade-in-up">
+        <span class="flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-medium">
+          <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+          <span data-i18n="hero.available">Disponible</span>
+        </span>
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-3 animate-fade-in-up">
         Diego <span class="gradient-text">Härdi</span>
       </h1>
 
-      <p class="text-lg sm:text-xl text-[#ccc] mb-3 animate-fade-in-up animate-delay-1">
+      <p class="text-lg sm:text-xl text-secondary mb-2 animate-fade-in-up animate-delay-1" data-i18n="hero.title">
         DevOps &amp; Software Engineer
       </p>
 
-      <p class="text-sm sm:text-base text-[#ccc] mb-8 animate-fade-in-up animate-delay-1 font-medium">
-        <span class="text-[#00d9ff]">🇩🇴 Born in San Pedro de Macorís</span>
-        <span class="text-[#555] mx-2">·</span>
-        <span class="text-[#e94560]">🇨🇭 Swiss passport</span>
-        <span class="text-[#555] mx-2">·</span>
-        <span class="text-[#00d9ff]">🏔️ Lives in Jarabacoa</span>
+      <p class="text-sm sm:text-base text-secondary mb-6 animate-fade-in-up animate-delay-1 font-medium">
+        <span class="text-[#00d9ff]" data-i18n="hero.born">🇩🇴 Born in San Pedro de Macorís</span>
+        <span class="text-subtle mx-2">·</span>
+        <span class="text-[#e94560]" data-i18n="hero.passport">🇨🇭 Swiss passport</span>
+        <span class="text-subtle mx-2">·</span>
+        <span class="text-[#00d9ff]" data-i18n="hero.lives">🏔️ Lives in Jarabacoa</span>
       </p>
-      <p class="text-xs sm:text-sm text-[#aaa] mb-6 animate-fade-in-up animate-delay-1">
+      <p class="text-xs sm:text-sm text-tertiary mb-6 animate-fade-in-up animate-delay-1" data-i18n="hero.tagline">
         Building full-stack · Arch Linux · Neovim
       </p>
 
       <div class="flex flex-wrap justify-center gap-4 animate-fade-in-up animate-delay-2">
-        <a href="#contact" class="px-8 py-3 bg-[#e94560] text-white font-semibold rounded hover:bg-[#d91a3a] transition-all hover-glow">Get in touch</a>
-        <a href="assets/cv.pdf" target="_blank" class="px-8 py-3 border border-[#e94560] text-[#e94560] font-semibold rounded hover:bg-[#e94560] hover:text-white transition-all">Download CV</a>
+        <a href="#contact" class="px-8 py-3 bg-[#e94560] text-white font-semibold rounded-lg hover:bg-[#d91a3a] transition-all hover-glow" data-i18n="hero.getInTouch">Get in touch</a>
+        <button onclick="openCVModal()" class="px-8 py-3 border border-[#e94560] text-[#e94560] font-semibold rounded-lg hover:bg-[#e94560] hover:text-white transition-all cursor-pointer" data-i18n="hero.previewCv">Preview CV</button>
       </div>
 
       <div class="mt-8 flex justify-center gap-5 animate-fade-in-up animate-delay-3">
-        <a href="https://github.com/dizzi1222" target="_blank" class="hover:scale-110 transition-transform"><svg width="22" height="22" viewBox="0 0 24 24" fill="#888888" class="hover:fill-[#e94560] transition-colors"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-        <a href="https://www.linkedin.com/in/dizzi-%C5%8Dkami-0b77093a1/" target="_blank" class="hover:scale-110 transition-transform"><svg width="22" height="22" viewBox="0 0 24 24" fill="#888888" class="hover:fill-[#e94560] transition-colors"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-        <a href="https://x.com/dizzi_ds" target="_blank" class="hover:scale-110 transition-transform"><svg width="22" height="22" viewBox="0 0 24 24" fill="#888888" class="hover:fill-[#e94560] transition-colors"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a href="https://dev.to/dizzi1222" target="_blank" class="hover:scale-110 transition-transform"><svg width="22" height="22" viewBox="0 0 24 24" fill="#888888" class="hover:fill-[#e94560] transition-colors"><path d="M7.371 8.724c-.384-.098-.764-.147-1.141-.147h-2.05v6.846h2.05c.384 0 .764-.049 1.141-.147.472-.098.887-.287 1.245-.567.358-.279.64-.637.846-1.074.206-.437.309-.943.309-1.517v-1.8c0-.587-.103-1.096-.309-1.529-.206-.432-.488-.787-.846-1.064a2.526 2.526 0 00-1.245-.56v-.001zm-.692 5.362c-.206.216-.488.324-.846.324h-.348v-4.87h.348c.358 0 .64.108.846.324a1.2 1.2 0 01.324.879v1.8c0 .206-.037.384-.113.534a.628.628 0 01-.211.383v.626zm4.506-5.819c-.543.177-.993.442-1.349.795v-.633h-2.281v6.846h2.281v-3.775c.281-.324.654-.486 1.119-.486.465 0 .735.162.809.486.074.324.111.777.111 1.359v2.416h2.281v-2.619c0-.543-.055-1.018-.166-1.426-.111-.408-.297-.753-.557-1.034a2.408 2.408 0 00-.967-.646 3.762 3.762 0 00-1.281-.283z"/></svg></a>
+        <a href="https://github.com/dizzi1222" target="_blank" class="hover:scale-110 transition-transform" aria-label="GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-muted hover:fill-[#e94560] transition-colors"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/dizzi-%C5%8Dkami-0b77093a1/" target="_blank" class="hover:scale-110 transition-transform" aria-label="LinkedIn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-muted hover:fill-[#e94560] transition-colors"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/dizzi_ds" target="_blank" class="hover:scale-110 transition-transform" aria-label="X">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-muted hover:fill-[#e94560] transition-colors"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://dev.to/dizzi1222" target="_blank" class="hover:scale-110 transition-transform" aria-label="Dev.to">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-muted hover:fill-[#e94560] transition-colors"><path d="M7.5 2C4.462 2 2 4.462 2 7.5v9C2 19.538 4.462 22 7.5 22h9c3.038 0 5.5-2.462 5.5-5.5v-9C22 4.462 19.538 2 16.5 2h-9zM6 8h1.5v5.25c0 .713.287 1 .938 1h.562v1.312h-.75c-1.275 0-1.988-.525-1.988-1.688V8h1.738zm5.25 0h1.5v1.5h-1.5V8zm0 2.25h1.5v5.25h-1.5v-5.25zM15 8h1.875c1.313 0 2.063.75 2.063 2.063 0 1.237-.525 1.874-1.5 1.874.975 0 1.5.638 1.5 1.875 0 1.312-.75 2.063-2.063 2.063H15V8zm1.5 1.5v1.125h.375c.338 0 .563-.187.563-.563 0-.337-.225-.562-.563-.562H16.5zm0 2.625v1.5h.563c.337 0 .562-.225.562-.563 0-.337-.225-.562-.563-.562H16.5z"/></svg>
+        </a>
       </div>
     </div>
 
-    <!-- Scroll hint -->
-    <div onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-pulse-soft cursor-pointer hover:opacity-70 transition-opacity">
+    <div onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-pulse-soft cursor-pointer hover:opacity-70 transition-opacity">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
     </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="py-24 px-4">
-    <div class="max-w-4xl mx-auto section-in">
-      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4 text-center">
-        <span class="gradient-text">/</span> De San Pedro al Mundo
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience" class="py-24 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 section-bg-1 opacity-60"></div>
+    <div class="absolute top-20 right-10 w-96 h-96 bg-[#e94560]/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-10 w-80 h-80 bg-[#00d9ff]/5 rounded-full blur-3xl"></div>
+    <div class="max-w-4xl mx-auto relative z-10 section-in">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2 text-center">
+        <span class="gradient-text">/</span> <span data-i18n="exp.heading">Experience</span>
       </h2>
-      <div class="w-16 h-1 bg-[#e94560] mx-auto mb-12 rounded-full"></div>
+      <div class="w-16 h-1 bg-[#e94560] mx-auto mb-4 rounded-full"></div>
+      <p class="text-subtle text-center mb-12" data-i18n="exp.subtitle">Mi trayectoria profesional</p>
 
-      <!-- Swiss / Caribbean contrast cards -->
-      <div class="grid md:grid-cols-2 gap-6 mb-12">
-        <div class="bg-gradient-to-br from-blue-900/40 to-blue-950/40 border border-blue-500/20 rounded-xl p-6 text-center">
-          <span class="text-4xl">🇨🇭</span>
-          <h3 class="font-display font-bold text-lg mt-2 text-blue-300">Raíces Suizas</h3>
-          <p class="text-[#aaa] text-sm mt-2">Pasaporte suizo. La precisión, el orden y la calidad están en mi sangre. From the Alps to the Caribbean — llevo Suiza conmigo.</p>
+      <div class="relative pl-8 space-y-10">
+        <div class="relative timeline-line"></div>
+
+        <!-- Job 1: La Sirena -->
+        <div class="exp-card stagger-child relative">
+          <div class="timeline-dot absolute -left-[30px] top-1"></div>
+          <div class="card-bg border border-custom hover:border-[#e94560]/30 rounded-xl p-6">
+            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+              <div>
+                <span class="badge bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-2" data-i18n="exp.job1.badge">Retail</span>
+                <h3 class="font-display text-xl font-bold text-primary" data-i18n="exp.job1.title">Asistente / Cajero</h3>
+                <p class="text-[#00d9ff] text-sm font-medium" data-i18n="exp.job1.company">La Sirena · República Dominicana</p>
+              </div>
+              <span class="text-xs text-subtle whitespace-nowrap px-3 py-1 bg-badge rounded-full" data-i18n="exp.job1.period">2025 — 2026</span>
+            </div>
+            <p class="text-muted text-sm leading-relaxed" data-i18n="exp.job1.desc">
+              Mi primer contacto con el mundo laboral formal. Trabajar en uno de los supermercados más grandes del país me enseñó cómo funciona realmente un negocio desde adentro: logística, inventario, atención al cliente bajo presión. Pero también vi de cerca lo peor del trabajo físico sin futuro — el agotamiento, la falta de oportunidades reales, el nepotismo. Esa experiencia fue el combustible que encendió mi decisión de salir de ahí y construir una carrera en tecnología.
+            </p>
+          </div>
         </div>
-        <div class="bg-gradient-to-br from-orange-900/40 to-amber-950/40 border border-orange-500/20 rounded-xl p-6 text-center">
+
+        <!-- Job 2: Cincinnatus -->
+        <div class="exp-card stagger-child relative">
+          <div class="timeline-dot absolute -left-[30px] top-1"></div>
+          <div class="card-bg border border-custom hover:border-[#00d9ff]/30 rounded-xl p-6">
+            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+              <div>
+                <span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-2" data-i18n="exp.job2.badge">Education</span>
+                <h3 class="font-display text-xl font-bold text-primary" data-i18n="exp.job2.title">Bootcamp Full-Stack</h3>
+                <p class="text-[#00d9ff] text-sm font-medium" data-i18n="exp.job2.company">Cincinnatus · República Dominicana</p>
+              </div>
+              <span class="text-xs text-subtle whitespace-nowrap px-3 py-1 bg-badge rounded-full" data-i18n="exp.job2.period">2024 — 2026</span>
+            </div>
+            <p class="text-muted text-sm leading-relaxed" data-i18n="exp.job2.desc">
+              El motor de arranque de mi carrera como programador. Cincinnatus fue el punto de inflexión donde pasé de ser un curioso autodidacta a un desarrollador en formación. Aprendí los fundamentos del desarrollo web full-stack, trabajé en proyectos reales en equipo, y descubrí que la programación no era solo un trabajo — era mi vocación. Aquí construí las bases que me permiten hoy trabajar con MERN, DevOps y Linux.
+            </p>
+          </div>
+        </div>
+
+        <!-- Job 3: Current -->
+        <div class="exp-card stagger-child relative">
+          <div class="timeline-dot absolute -left-[30px] top-1"></div>
+          <div class="card-bg border border-[#e94560]/20 hover:border-[#e94560]/50 rounded-xl p-6 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#e94560]/10 rounded-full blur-2xl"></div>
+            <div class="flex flex-wrap items-start justify-between gap-2 mb-3 relative">
+              <div>
+                <span class="badge bg-[#e94560]/10 text-[#e94560] border border-[#e94560]/20 mb-2" data-i18n="exp.job3.badge">Current</span>
+                <h3 class="font-display text-xl font-bold text-primary" data-i18n="exp.job3.title">MERN Stack Developer · DevOps</h3>
+                <p class="text-[#00d9ff] text-sm font-medium" data-i18n="exp.job3.company">Freelance / Proyectos Propios · Arch Linux · Neovim</p>
+              </div>
+              <span class="text-xs text-[#e94560] whitespace-nowrap px-3 py-1 bg-[#e94560]/10 border border-[#e94560]/20 rounded-full" data-i18n="exp.job3.period">2024 — Presente</span>
+            </div>
+            <p class="text-muted text-sm leading-relaxed relative" data-i18n="exp.job3.desc">
+              Desarrollo full-stack con el stack MERN (MongoDB, Express, React, Node.js). Arquitecturas limpias, APIs RESTful, despliegues con Docker y automatización de flujos. Mi entorno: Arch Linux con Hyprland, Neovim (LazyVim) como editor principal. También configuro dotfiles, gestiono servidores y construyo herramientas que optimizan mi propio workflow. Cada proyecto es una oportunidad para escribir código mantenible y sistemas bien diseñados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICIOS ===== -->
+  <section id="servicios" class="py-24 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 section-bg-1 opacity-60"></div>
+    <div class="absolute top-40 right-20 w-80 h-80 bg-[#00d9ff]/5 rounded-full blur-3xl"></div>
+    <div class="max-w-5xl mx-auto relative z-10 section-in">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2 text-center">
+        <span class="gradient-text">/</span> <span data-i18n="servicios.heading">Servicios</span>
+      </h2>
+      <div class="w-16 h-1 bg-[#e94560] mx-auto mb-4 rounded-full"></div>
+      <p class="text-subtle text-center mb-12" data-i18n="servicios.subtitle">Lo que puedo hacer por ti</p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="stagger-child bg-secondary border border-custom rounded-xl p-5 hover:border-[#00d9ff]/30 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-[#e94560]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5 text-[#e94560]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-sm text-primary mb-1" data-i18n="servicios.s1.title">Full-Stack MVP</h3>
+          <p class="text-xs text-muted leading-relaxed" data-i18n="servicios.s1.desc">Construyo MVPs completos con MERN: desde la base de datos hasta el frontend, listos para producción.</p>
+        </div>
+        <div class="stagger-child bg-secondary border border-custom rounded-xl p-5 hover:border-[#00d9ff]/30 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-[#00d9ff]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5 text-[#00d9ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 8a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zm12 0a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-sm text-primary mb-1" data-i18n="servicios.s2.title">Design Systems</h3>
+          <p class="text-xs text-muted leading-relaxed" data-i18n="servicios.s2.desc">Componentes reutilizables con Tailwind, Storybook y principios de diseño atómico. Consistencia visual garantizada.</p>
+        </div>
+        <div class="stagger-child bg-secondary border border-custom rounded-xl p-5 hover:border-[#00d9ff]/30 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-[#e94560]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5 text-[#e94560]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-sm text-primary mb-1" data-i18n="servicios.s3.title">Auth & Security</h3>
+          <p class="text-xs text-muted leading-relaxed" data-i18n="servicios.s3.desc">JWT, OAuth2, RBAC, protección de rutas y autenticación segura desde el backend hasta el frontend.</p>
+        </div>
+        <div class="stagger-child bg-secondary border border-custom rounded-xl p-5 hover:border-[#00d9ff]/30 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-[#00d9ff]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5 text-[#00d9ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-sm text-primary mb-1" data-i18n="servicios.s4.title">Real-time Features</h3>
+          <p class="text-xs text-muted leading-relaxed" data-i18n="servicios.s4.desc">WebSockets, SSE, notificaciones en vivo y actualizaciones en tiempo real para apps interactivas.</p>
+        </div>
+        <div class="stagger-child bg-secondary border border-custom rounded-xl p-5 hover:border-[#00d9ff]/30 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-[#e94560]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5 text-[#e94560]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-sm text-primary mb-1" data-i18n="servicios.s5.title">Database Design</h3>
+          <p class="text-xs text-muted leading-relaxed" data-i18n="servicios.s5.desc">Modelado de datos con MongoDB/Mongoose, esquemas eficientes, índices y consultas optimizadas.</p>
+        </div>
+        <div class="stagger-child bg-secondary border border-custom rounded-xl p-5 hover:border-[#00d9ff]/30 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-[#00d9ff]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5 text-[#00d9ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-sm text-primary mb-1" data-i18n="servicios.s6.title">Admin Panels</h3>
+          <p class="text-xs text-muted leading-relaxed" data-i18n="servicios.s6.desc">Paneles de administración con dashboards, auditoría, logs y gestión completa de usuarios y roles.</p>
+        </div>
+        <div class="stagger-child bg-secondary border border-custom rounded-xl p-5 hover:border-[#00d9ff]/30 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-[#e94560]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5 text-[#e94560]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-sm text-primary mb-1" data-i18n="servicios.s7.title">API Design</h3>
+          <p class="text-xs text-muted leading-relaxed" data-i18n="servicios.s7.desc">APIs RESTful con Express, documentación con Swagger, validación y middleware modular.</p>
+        </div>
+        <div class="stagger-child bg-secondary border border-custom rounded-xl p-5 hover:border-[#00d9ff]/30 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-[#00d9ff]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5 text-[#00d9ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-sm text-primary mb-1" data-i18n="servicios.s8.title">DevOps</h3>
+          <p class="text-xs text-muted leading-relaxed" data-i18n="servicios.s8.desc">Docker, CI/CD con GitHub Actions, despliegues automatizados y entornos reproducibles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="py-24 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 section-bg-2 opacity-40"></div>
+    <div class="max-w-6xl mx-auto relative z-10 section-in">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2 text-center">
+        <span class="gradient-text">/</span> <span data-i18n="projects.heading">Projects</span>
+      </h2>
+      <div class="w-16 h-1 bg-[#e94560] mx-auto mb-4 rounded-full"></div>
+      <p class="text-subtle text-center mb-12" data-i18n="projects.subtitle">Cosas que he construido</p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Dashboard React -->
+        <div onclick="openProjectModal(0)" class="project-card card-bg rounded-xl p-6 glow-cyan stagger-child" style="cursor:pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-[#e94560]/10 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#e94560]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div class="flex gap-1">
+              <span class="px-2 py-0.5 text-[10px] bg-yellow-500/10 text-yellow-400 rounded font-mono">★ 1</span>
+            </div>
+          </div>
+          <h3 class="font-display text-lg font-bold mb-2 text-[#00d9ff]" data-i18n="projects.dashboard.title">Dashboard React</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed" data-i18n="projects.dashboard.desc">Panel de administración con gráficos, calculadora, contador y TO-DO list. Todo en un solo proyecto con React y react-router-dom.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">React</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">CSS</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">JS</span>
+          </div>
+          <div class="flex gap-3 pt-3 border-t border-custom">
+            <a href="https://github.com/dizzi1222/REACT-Diego-Dizzi-Dashboard" target="_blank" onclick="event.stopPropagation()" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <span data-i18n="projects.code">Code</span>
+            </a>
+            <button type="button" onclick="event.stopPropagation();openProjectModal(0)" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <span data-i18n="projects.preview">Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Terminal Portfolio -->
+        <div onclick="openProjectModal(1)" class="project-card card-bg rounded-xl p-6 glow-cyan stagger-child" style="cursor:pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-[#00d9ff]/10 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#00d9ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <div class="flex gap-1">
+              <span class="px-2 py-0.5 text-[10px] bg-yellow-500/10 text-yellow-400 rounded font-mono">★ 2</span>
+            </div>
+          </div>
+          <h3 class="font-display text-lg font-bold mb-2 text-[#00d9ff]" data-i18n="projects.terminal.title">Terminal Portfolio</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed" data-i18n="projects.terminal.desc">Portfolio interactivo con estética de terminal Linux. Comandos CLI, efectos CRT, navegación estilo Vim. Diseñado para developers.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">HTML</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">CSS</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">JS</span>
+          </div>
+          <div class="flex gap-3 pt-3 border-t border-custom">
+            <a href="https://github.com/dizzi1222/portfolio-terminal-dhardi" target="_blank" onclick="event.stopPropagation()" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <span data-i18n="projects.code">Code</span>
+            </a>
+            <button type="button" onclick="event.stopPropagation();openProjectModal(1)" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <span data-i18n="projects.preview">Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dotfiles -->
+        <div onclick="openProjectModal(2)" class="project-card card-bg rounded-xl p-6 glow-cyan stagger-child" style="cursor:pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-[#e94560]/10 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#e94560]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <div class="flex gap-1">
+              <span class="px-2 py-0.5 text-[10px] bg-yellow-500/10 text-yellow-400 rounded font-mono">★ 3</span>
+            </div>
+          </div>
+          <h3 class="font-display text-lg font-bold mb-2 text-[#00d9ff]" data-i18n="projects.dotfiles.title">Dotfiles</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed" data-i18n="projects.dotfiles.desc">Configuración completa de Arch Linux con Hyprland, Neovim (LazyVim), Kitty, Zsh, Waybar, EWW widgets y Rofi.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">Shell</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">Python</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">CSS</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">Lua</span>
+          </div>
+          <div class="flex gap-3 pt-3 border-t border-custom">
+            <a href="https://github.com/dizzi1222/dotfiles-dizzi" target="_blank" onclick="event.stopPropagation()" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <span data-i18n="projects.code">Code</span>
+            </a>
+            <button type="button" onclick="event.stopPropagation();openProjectModal(2)" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <span data-i18n="projects.preview">Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- PTD-Talento (Privado) -->
+        <div onclick="openProjectModal(4)" class="project-card card-bg rounded-xl p-6 glow-cyan stagger-child" style="cursor:pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-[#e94560]/10 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#e94560]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div class="flex gap-1">
+              <span class="px-2 py-0.5 text-[10px] bg-yellow-500/10 text-yellow-400 rounded font-mono">★ 4</span>
+              <span class="px-2 py-0.5 text-[10px] bg-red-500/10 text-red-400 rounded font-mono border border-red-500/20">🔒 Privado</span>
+            </div>
+          </div>
+          <h3 class="font-display text-lg font-bold mb-2 text-[#00d9ff]" data-i18n="projects.ptd.title">PTD‑Talento</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed" data-i18n="projects.ptd.desc">Plataforma full-stack del bootcamp Cincinnatus: auth, perfiles, catálogo de cursos, watchlist, notificaciones y panel admin.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">MERN</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">JWT</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">WebSocket</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">Admin</span>
+          </div>
+          <div class="flex gap-3 pt-3 border-t border-custom">
+            <button type="button" onclick="event.stopPropagation();openProjectModal(4)" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <span data-i18n="projects.preview">Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- PCE-Agencia -->
+        <div onclick="openProjectModal(3)" class="project-card card-bg rounded-xl p-6 glow-cyan stagger-child" style="cursor:pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-[#00d9ff]/10 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#00d9ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+          </div>
+          <h3 class="font-display text-lg font-bold mb-2 text-[#00d9ff]" data-i18n="projects.mcsd.title">PCE-Agencia</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed" data-i18n="projects.mcsd.desc">App de finanzas y viajes — gestión de presupuestos, planificación de itinerarios y seguimiento de gastos.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">JavaScript</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">HTML</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">CSS</span>
+          </div>
+          <div class="flex gap-3 pt-3 border-t border-custom">
+            <a href="https://github.com/dhardi007/PCE-Agencia" target="_blank" onclick="event.stopPropagation()" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <span data-i18n="projects.code">Code</span>
+            </a>
+            <button type="button" onclick="event.stopPropagation();openProjectModal(3)" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <span data-i18n="projects.preview">Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Nvim Config -->
+        <div onclick="openProjectModal(5)" class="project-card card-bg rounded-xl p-6 glow-cyan stagger-child" style="cursor:pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 bg-[#00d9ff]/10 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#00d9ff]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L1.75 6v12L12 24l10.25-6V6zm0 3.34l6.77 3.91v7.5L12 18.66l-6.77-3.91v-7.5z"/></svg>
+            </div>
+            <div class="flex gap-1">
+              <span class="px-2 py-0.5 text-[10px] bg-yellow-500/10 text-yellow-400 rounded font-mono">★ 5</span>
+            </div>
+          </div>
+          <h3 class="font-display text-lg font-bold mb-2 text-[#00d9ff]" data-i18n="projects.nvim.title">Nvim Config</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed" data-i18n="projects.nvim.desc">Configuración universal de Neovim con LazyVim, LSP para TS/JS/Lua, snippets y sincronización multiplataforma.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">Lua</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">LazyVim</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">Neovim</span>
+            <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">LSP</span>
+          </div>
+          <div class="flex gap-3 pt-3 border-t border-custom">
+            <a href="https://github.com/dizzi1222/nvim" target="_blank" onclick="event.stopPropagation()" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              <span data-i18n="projects.code">Code</span>
+            </a>
+            <button type="button" onclick="event.stopPropagation();openProjectModal(5)" class="flex items-center gap-1.5 text-xs text-subtle hover:text-[#00d9ff] transition-colors cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <span data-i18n="projects.preview">Preview</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="py-24 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 section-bg-3 opacity-60"></div>
+    <div class="absolute top-40 left-20 w-72 h-72 bg-[#00d9ff]/5 rounded-full blur-3xl"></div>
+    <div class="max-w-4xl mx-auto relative z-10 section-in">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2 text-center">
+        <span class="gradient-text">/</span> <span data-i18n="about.heading">Sobre mí</span>
+      </h2>
+      <div class="w-16 h-1 bg-[#e94560] mx-auto mb-4 rounded-full"></div>
+      <p class="text-subtle text-center mb-12" data-i18n="about.subtitle">De San Pedro al Mundo</p>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <div class="bg-gradient-to-br from-blue-900/40 to-blue-950/40 border border-blue-500/20 rounded-xl p-6 text-center hover:border-blue-500/40 transition-all">
+          <span class="text-4xl">🇨🇭</span>
+          <h3 class="font-display font-bold text-lg mt-2 text-blue-300" data-i18n="about.card1.title">Raíces Suizas</h3>
+          <p class="text-tertiary text-sm mt-2" data-i18n="about.card1.desc">Pasaporte suizo. La precisión, el orden y la calidad están en mi sangre. From the Alps to the Caribbean — llevo Suiza conmigo.</p>
+        </div>
+        <div class="bg-gradient-to-br from-orange-900/40 to-amber-950/40 border border-orange-500/20 rounded-xl p-6 text-center hover:border-orange-500/40 transition-all">
           <span class="text-4xl">🇩🇴</span>
-          <h3 class="font-display font-bold text-lg mt-2 text-orange-300">Corazón Dominicano</h3>
-          <p class="text-[#aaa] text-sm mt-2">Nací en San Pedro de Macorís, crecí en el calor del Caribe. Hoy vivo en Jarabacoa, donde el clima fresco se encuentra con la montaña.</p>
+          <h3 class="font-display font-bold text-lg mt-2 text-orange-300" data-i18n="about.card2.title">Corazón Dominicano</h3>
+          <p class="text-tertiary text-sm mt-2" data-i18n="about.card2.desc">Nací en San Pedro de Macorís, crecí en el calor del Caribe. Hoy vivo en Jarabacoa, donde el clima fresco se encuentra con la montaña.</p>
         </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="text-[#aaa] leading-relaxed mb-4">
+          <p class="text-tertiary leading-relaxed mb-4" data-i18n="about.desc1">
             Nací en <span class="text-[#00d9ff]">San Pedro de Macorís</span>, República Dominicana — tierra de estrellas del béisbol y brisa caribeña. Pero llevo el pasaporte suizo en el bolsillo y los Alpes en la mente.
           </p>
-          <p class="text-[#aaa] leading-relaxed mb-4">
+          <p class="text-tertiary leading-relaxed mb-4" data-i18n="about.desc2">
             Hoy vivo en <span class="text-[#00d9ff]">Jarabacoa</span>, la "ciudad de la eterna primavera", rodeado de montañas y ríos. Un punto medio perfecto entre el trópico y el frescor que heredé.
           </p>
-          <p class="text-[#aaa] leading-relaxed">
+          <p class="text-tertiary leading-relaxed" data-i18n="about.desc3">
             Por el día construyo apps full-stack con el stack MERN. Por la noche estoy sumergido en configuraciones de Neovim, optimizando mi Arch Linux Hyprland o automatizando flujos que no deberían existir. Hablo <span class="text-[#00d9ff]">TypeScript</span>, <span class="text-[#00d9ff]">JavaScript</span>, <span class="text-[#00d9ff]">Lua</span>, y el idioma de los sistemas limpios y mantenibles.
           </p>
         </div>
-        <div class="bg-[#111] border border-[#222] rounded-xl p-6">
+        <div class="bg-secondary border border-custom rounded-xl p-6">
           <div class="space-y-3 text-sm">
-            <div class="flex justify-between"><span class="text-[#555]">Name</span><span class="text-[#eaeaea]">Diego Samuel Härdi Santana</span></div>
-            <div class="h-px bg-[#222]"></div>
-            <div class="flex justify-between"><span class="text-[#555]">Born in</span><span class="text-[#eaeaea]">San Pedro de Macorís 🇩🇴</span></div>
-            <div class="h-px bg-[#222]"></div>
-            <div class="flex justify-between"><span class="text-[#555]">Lives in</span><span class="text-[#eaeaea]">Jarabacoa 🏔️</span></div>
-            <div class="h-px bg-[#222]"></div>
-            <div class="flex justify-between"><span class="text-[#555]">Passport</span><span class="text-[#eaeaea]">Swiss 🇨🇭</span></div>
-            <div class="h-px bg-[#222]"></div>
-            <div class="flex justify-between"><span class="text-[#555]">Role</span><span class="text-[#00d9ff]">DevOps &amp; Software Engineer</span></div>
-            <div class="h-px bg-[#222]"></div>
-            <div class="flex justify-between"><span class="text-[#555]">OS</span><span class="text-[#eaeaea]">Arch Linux / Hyprland</span></div>
-            <div class="h-px bg-[#222]"></div>
-            <div class="flex justify-between"><span class="text-[#555]">Editor</span><span class="text-[#eaeaea]">Neovim (LazyVim)</span></div>
-            <div class="h-px bg-[#222]"></div>
-            <div class="flex justify-between"><span class="text-[#555]">Languages</span><span class="text-[#eaeaea]">TypeScript, JS, Lua</span></div>
+            <div class="flex justify-between"><span class="text-subtle" data-i18n="about.label.name">Name</span><span class="text-primary">Diego Samuel Härdi Santana</span></div>
+            <div class="h-px bg-badge"></div>
+            <div class="flex justify-between"><span class="text-subtle" data-i18n="about.label.born">Born in</span><span class="text-primary">San Pedro de Macorís 🇩🇴</span></div>
+            <div class="h-px bg-badge"></div>
+            <div class="flex justify-between"><span class="text-subtle" data-i18n="about.label.lives">Lives in</span><span class="text-primary">Jarabacoa 🏔️</span></div>
+            <div class="h-px bg-badge"></div>
+            <div class="flex justify-between"><span class="text-subtle" data-i18n="about.label.passport">Passport</span><span class="text-primary">Swiss 🇨🇭</span></div>
+            <div class="h-px bg-badge"></div>
+            <div class="flex justify-between"><span class="text-subtle" data-i18n="about.label.role">Role</span><span class="text-[#00d9ff]">DevOps &amp; Software Engineer</span></div>
+            <div class="h-px bg-badge"></div>
+            <div class="flex justify-between"><span class="text-subtle" data-i18n="about.label.os">OS</span><span class="text-primary">Arch Linux / Hyprland</span></div>
+            <div class="h-px bg-badge"></div>
+            <div class="flex justify-between"><span class="text-subtle" data-i18n="about.label.editor">Editor</span><span class="text-primary">Neovim (LazyVim)</span></div>
+            <div class="h-px bg-badge"></div>
+            <div class="flex justify-between"><span class="text-subtle" data-i18n="about.label.languages">Languages</span><span class="text-primary">TypeScript, JS, Lua</span></div>
           </div>
         </div>
       </div>
@@ -275,180 +767,517 @@
   </section>
 
   <!-- ===== TECH STACK ===== -->
-  <section id="stack" class="py-24 px-4 bg-[#0d0d0d]">
-    <div class="max-w-4xl mx-auto text-center section-in">
-      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4">
-        <span class="gradient-text">/</span> Tech Stack
+  <section id="stack" class="py-24 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 section-bg-2 opacity-60"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10 section-in">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">
+        <span class="gradient-text">/</span> <span data-i18n="stack.heading">Tech Stack</span>
       </h2>
       <div class="w-16 h-1 bg-[#e94560] mx-auto mb-4 rounded-full"></div>
-      <p class="text-[#555] mb-12">Tools of the trade</p>
-      <div class="flex flex-wrap justify-center gap-8">
+      <p class="text-subtle mb-12" data-i18n="stack.subtitle">Tools of the trade</p>
+      <div id="tech-grid" class="flex flex-wrap justify-center gap-8">
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
-          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="#eaeaea"><path d="M12 21.985c-.275 0-.532-.074-.772-.202l-2.439-1.448c-.365-.203-.182-.277-.072-.314.496-.165.588-.201 1.101-.493.056-.037.129-.02.185.017l1.87 1.12c.074.036.166.036.221 0l7.319-4.237c.074-.036.11-.11.11-.202V7.768c0-.091-.036-.165-.11-.201l-7.319-4.219c-.073-.037-.165-.037-.221 0L4.552 7.566c-.073.036-.11.129-.11.201v8.457c0 .073.037.166.11.202l2 1.157c1.082.548 1.762-.095 1.762-.735V8.502c0-.11.091-.221.22-.221h.936c.108 0 .22.092.22.221v8.347c0 1.449-.788 2.294-2.164 2.294-.422 0-.752 0-1.688-.46l-1.925-1.099a1.55 1.55 0 0 1-.771-1.34V7.786c0-.55.293-1.064.771-1.339l7.316-4.237a1.637 1.637 0 0 1 1.544 0l7.317 4.237c.479.274.771.789.771 1.339v8.458c0 .549-.293 1.063-.771 1.34l-7.317 4.236c-.241.11-.516.165-.773.165zm2.256-5.816c-3.21 0-3.87-1.468-3.87-2.714 0-.11.092-.221.22-.221h.954c.11 0 .201.073.201.184.147.971.568 1.449 2.514 1.449 1.54 0 2.202-.35 2.202-1.175 0-.477-.184-.825-2.587-1.063-1.999-.2-3.246-.643-3.246-2.238 0-1.485 1.247-2.366 3.339-2.366 2.347 0 3.503.809 3.649 2.568a.297.297 0 0 1-.056.165c-.037.036-.091.073-.146.073h-.953a.212.212 0 0 1-.202-.164c-.221-1.012-.789-1.34-2.292-1.34-1.689 0-1.891.587-1.891 1.027 0 .531.238.696 2.514.99 2.256.293 3.32.715 3.32 2.294-.019 1.615-1.339 2.531-3.67 2.531z"/></svg>
-          <span class="text-xs text-[#555] group-hover:text-[#00d9ff] transition-colors">Node.js</span>
+          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.985c-.275 0-.532-.074-.772-.202l-2.439-1.448c-.365-.203-.182-.277-.072-.314.496-.165.588-.201 1.101-.493.056-.037.129-.02.185.017l1.87 1.12c.074.036.166.036.221 0l7.319-4.237c.074-.036.11-.11.11-.202V7.768c0-.091-.036-.165-.11-.201l-7.319-4.219c-.073-.037-.165-.037-.221 0L4.552 7.566c-.073.036-.11.129-.11.201v8.457c0 .073.037.166.11.202l2 1.157c1.082.548 1.762-.095 1.762-.735V8.502c0-.11.091-.221.22-.221h.936c.108 0 .22.092.22.221v8.347c0 1.449-.788 2.294-2.164 2.294-.422 0-.752 0-1.688-.46l-1.925-1.099a1.55 1.55 0 0 1-.771-1.34V7.786c0-.55.293-1.064.771-1.339l7.316-4.237a1.637 1.637 0 0 1 1.544 0l7.317 4.237c.479.274.771.789.771 1.339v8.458c0 .549-.293 1.063-.771 1.34l-7.317 4.236c-.241.11-.516.165-.773.165zm2.256-5.816c-3.21 0-3.87-1.468-3.87-2.714 0-.11.092-.221.22-.221h.954c.11 0 .201.073.201.184.147.971.568 1.449 2.514 1.449 1.54 0 2.202-.35 2.202-1.175 0-.477-.184-.825-2.587-1.063-1.999-.2-3.246-.643-3.246-2.238 0-1.485 1.247-2.366 3.339-2.366 2.347 0 3.503.809 3.649 2.568a.297.297 0 0 1-.056.165c-.037.036-.091.073-.146.073h-.953a.212.212 0 0 1-.202-.164c-.221-1.012-.789-1.34-2.292-1.34-1.689 0-1.891.587-1.891 1.027 0 .531.238.696 2.514.99 2.256.293 3.32.715 3.32 2.294-.019 1.615-1.339 2.531-3.67 2.531z"/></svg>
+          <span class="text-xs text-subtle group-hover:text-[#00d9ff] transition-colors">Node.js</span>
         </div>
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
-          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="#eaeaea"><path d="M11.998 24c-.321 0-.641-.084-.922-.247L8.14 21.75c-.438-.245-.224-.332-.08-.382.585-.203.703-.251 1.328-.605.065-.037.151-.022.218.015l2.256 1.339c.082.042.198.042.272 0l8.795-5.076c.082-.047.134-.141.134-.238V6.921c0-.099-.053-.193-.137-.242l-8.791-5.072c-.081-.047-.189-.047-.271 0L3.075 6.68c-.084.049-.137.145-.137.241v10.143c0 .095.053.189.134.236l2.409 1.392c1.307.653 2.108-.116 2.108-.89V7.787c0-.142.114-.253.256-.253h1.115c.139 0 .255.111.255.253v10.021c0 1.745-.95 2.745-2.604 2.745-.508 0-.909 0-2.026-.551L2.28 18.675c-.57-.329-.922-.943-.922-1.604V6.928c0-.66.352-1.273.922-1.602L11.076.244c.558-.317 1.303-.317 1.86 0l8.794 5.082c.57.329.924.943.924 1.602v10.143c0 .66-.354 1.274-.924 1.604l-8.794 5.078c-.28.163-.6.247-.938.247zM19.19 13.75c0-1.931-1.305-2.445-4.047-2.806-2.776-.366-3.061-.556-3.061-1.203 0-.535.238-1.249 2.287-1.249 1.83 0 2.506.395 2.786 1.63.026.115.127.199.245.199h1.141c.071 0 .138-.028.188-.083.05-.056.073-.129.064-.205-.179-2.126-1.588-3.116-4.424-3.116-2.528 0-4.036 1.067-4.036 2.858 0 1.942 1.502 2.479 3.925 2.717 2.9.283 3.186.706 3.186 1.272 0 .986-.791 1.406-2.649 1.406-2.337 0-2.851-.587-3.022-1.749-.02-.121-.122-.211-.246-.211h-1.139c-.141 0-.254.112-.254.253 0 1.482.804 3.248 4.661 3.248 2.792 0 4.395-1.098 4.395-3.017z"/></svg>
-          <span class="text-xs text-[#555] group-hover:text-[#00d9ff] transition-colors">Express</span>
+          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M11.998 24c-.321 0-.641-.084-.922-.247L8.14 21.75c-.438-.245-.224-.332-.08-.382.585-.203.703-.251 1.328-.605.065-.037.151-.022.218.015l2.256 1.339c.082.042.198.042.272 0l8.795-5.076c.082-.047.134-.141.134-.238V6.921c0-.099-.053-.193-.137-.242l-8.791-5.072c-.081-.047-.189-.047-.271 0L3.075 6.68c-.084.049-.137.145-.137.241v10.143c0 .095.053.189.134.236l2.409 1.392c1.307.653 2.108-.116 2.108-.89V7.787c0-.142.114-.253.256-.253h1.115c.139 0 .255.111.255.253v10.021c0 1.745-.95 2.745-2.604 2.745-.508 0-.909 0-2.026-.551L2.28 18.675c-.57-.329-.922-.943-.922-1.604V6.928c0-.66.352-1.273.922-1.602L11.076.244c.558-.317 1.303-.317 1.86 0l8.794 5.082c.57.329.924.943.924 1.602v10.143c0 .66-.354 1.274-.924 1.604l-8.794 5.078c-.28.163-.6.247-.938.247zM19.19 13.75c0-1.931-1.305-2.445-4.047-2.806-2.776-.366-3.061-.556-3.061-1.203 0-.535.238-1.249 2.287-1.249 1.83 0 2.506.395 2.786 1.63.026.115.127.199.245.199h1.141c.071 0 .138-.028.188-.083.05-.056.073-.129.064-.205-.179-2.126-1.588-3.116-4.424-3.116-2.528 0-4.036 1.067-4.036 2.858 0 1.942 1.502 2.479 3.925 2.717 2.9.283 3.186.706 3.186 1.272 0 .986-.791 1.406-2.649 1.406-2.337 0-2.851-.587-3.022-1.749-.02-.121-.122-.211-.246-.211h-1.139c-.141 0-.254.112-.254.253 0 1.482.804 3.248 4.661 3.248 2.792 0 4.395-1.098 4.395-3.017z"/></svg>
+          <span class="text-xs text-subtle group-hover:text-[#00d9ff] transition-colors">Express</span>
         </div>
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
-          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="#eaeaea"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.96... (line truncated to 2000 chars)"/></svg>
-          <span class="text-xs text-[#555] group-hover:text-[#00d9ff] transition-colors">React</span>
+          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.708.17-.435.315-.972.398-1.623.007-.055.028-.113.045-.168.032-.105.067-.214.092-.33z"/></svg>
+          <span class="text-xs text-subtle group-hover:text-[#00d9ff] transition-colors">React</span>
         </div>
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
-          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="#eaeaea"><path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.103-1.662-.197-2.218zm-5.336 8.195s0-8.291.275-8.29c.213 0 .49 10.695.49 10.695-.381-.045-.765-1.76-.765-2.405z"/></svg>
-          <span class="text-xs text-[#555] group-hover:text-[#00d9ff] transition-colors">MongoDB</span>
+          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.103-1.662-.197-2.218zm-5.336 8.195s0-8.291.275-8.29c.213 0 .49 10.695.49 10.695-.381-.045-.765-1.76-.765-2.405z"/></svg>
+          <span class="text-xs text-subtle group-hover:text-[#00d9ff] transition-colors">MongoDB</span>
         </div>
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
-          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="#eaeaea"><path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"/></svg>
-          <span class="text-xs text-[#555] group-hover:text-[#00d9ff] transition-colors">Git</span>
+          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"/></svg>
+          <span class="text-xs text-subtle group-hover:text-[#00d9ff] transition-colors">Git</span>
         </div>
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
-          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="#eaeaea"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2z"/></svg>
-          <span class="text-xs text-[#555] group-hover:text-[#00d9ff] transition-colors">Arch</span>
+          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2z"/></svg>
+          <span class="text-xs text-subtle group-hover:text-[#00d9ff] transition-colors">Arch</span>
         </div>
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
-          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="#eaeaea"><path d="M12 0L1.75 6v12L12 24l10.25-6V6zm0 3.34l6.77 3.91v7.5L12 18.66l-6.77-3.91v-7.5z"/></svg>
-          <span class="text-xs text-[#555] group-hover:text-[#00d9ff] transition-colors">Neovim</span>
+          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L1.75 6v12L12 24l10.25-6V6zm0 3.34l6.77 3.91v7.5L12 18.66l-6.77-3.91v-7.5z"/></svg>
+          <span class="text-xs text-subtle group-hover:text-[#00d9ff] transition-colors">Neovim</span>
         </div>
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
-          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="#eaeaea"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm9.915 12.106v2.481h-3.2v7.841H7.318c-.262 0-.473-.209-.473-.468v-7.373H3.641v-2.481c0-.262.21-.475.473-.475h6.453c.261 0 .473.213.473.475zm.787-1.332c0-.256.21-.464.473-.464h5.8c.26 0 .472.208.472.464v1.072c0 .256-.211.464-.472.464h-5.8c-.262 0-.473-.208-.473-.464zm5.954 11.682c-2.355 0-4.182-1.188-4.891-2.476-.072-.132-.038-.299.077-.381l1.457-1.065c.137-.1.324-.076.431.055.599.74 1.388 1.237 2.44 1.237 1.06 0 1.721-.43 1.721-1.297 0-.688-.486-1.128-1.895-1.587-1.951-.642-3.452-1.798-3.452-3.895 0-2.464 1.985-4.225 4.965-4.225 2.078 0 3.738.875 4.696 2.212.074.105.05.252-.05.341l-1.327 1.122c-.108.092-.274.078-.368-.016-.412-.444-1.054-.988-2.206-.988-1.134 0-1.707.52-1.707 1.197 0 .719.555 1.051 2.446 1.653 2.128.675 3.666 1.755 3.666 3.944 0 2.344-1.799 4.229-5.169 4.229z"/></svg>
-          <span class="text-xs text-[#555] group-hover:text-[#00d9ff] transition-colors">TypeScript</span>
+          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zm17.363 9.75c.612 0 1.154.037 1.627.111.21.037.47.092.745.16.248.052.528.13.84.202.131.035.283.078.446.135.177.065.288.108.332.135v2.365c-.076-.054-.202-.115-.378-.184a2.56 2.56 0 00-.32-.12 8.672 8.672 0 00-.566-.13c-.44-.095-.944-.143-1.51-.143-.486 0-.89.081-1.215.243-.326.162-.485.424-.485.786 0 .23.074.428.226.594.152.166.362.309.625.429.263.12.565.24.902.362.576.204 1.065.414 1.46.63.394.216.708.466.943.75.235.283.421.602.556.955.135.354.203.775.203 1.266 0 .643-.12 1.215-.36 1.715-.24.5-.561.92-.964 1.259-.403.34-.877.6-1.415.78-.537.18-1.103.27-1.694.27-.582 0-1.146-.078-1.69-.233-.545-.156-1.033-.37-1.455-.642v-2.488c.467.401.992.714 1.577.94.295.114.585.195.87.243.284.048.56.072.828.072.49 0 .904-.077 1.242-.233.338-.155.507-.394.507-.715 0-.268-.092-.495-.276-.68-.184-.186-.446-.352-.785-.498-.34-.146-.734-.306-1.18-.48a6.99 6.99 0 01-.94-.518 3.85 3.85 0 01-.703-.675 2.892 2.892 0 01-.44-.893c-.12-.355-.18-.795-.18-1.32 0-.623.125-1.18.376-1.69.25-.511.584-.938 1.003-1.279.419-.34.906-.598 1.462-.776.555-.178 1.137-.267 1.759-.267z"/></svg>
+          <span class="text-xs text-subtle group-hover:text-[#00d9ff] transition-colors">TypeScript</span>
         </div>
         <div class="flex flex-col items-center gap-2 group cursor-pointer">
-          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="#eaeaea"><path d="M13.983 11.078h-2.116v-2.09h2.116v2.09zm0-4.134h-2.116v2.09h2.116V6.944zm-3.076 3.078H8.79v-2.09h2.116v2.09zm0-3.078H8.79v2.09h2.116V6.944zm-3.077 3.078H5.713v-2.09h2.116v2.09zm0-3.078H5.713v2.09h2.116V6.944zm-3.077 3.078H2.636v-2.09h2.116v2.09zm0-3.078H2.636v2.09h2.116V6.944zM23.76 10.602c-.378-.483-1.128-.792-1.128-.792s-.533.28-1.141.67c-.292-.902-1.092-1.462-1.092-1.462s-4.204 2.54-4.204 6.313c0 .822.136 1.594.408 2.272h13.164c.34-2.082-.272-4.674-3.437-5.588a5.063 5.063 0 00-1.977-.496c.28-1.079.272-1.971-.207-2.663l-.388-.56s-.696.475-.945 1.37c-.178.64-.2 1.26-.134 1.801a3.5 3.5 0 00-1.038.586c-.175-.635-.545-1.283-1.096-1.854l-.502-.506s-.562.587-.618 1.383c-.036.495.078.98.218 1.388a3.658 3.658 0 00-.717.44z"/></svg>
-          <span class="text-xs text-[#555] group-hover:text-[#00d9ff] transition-colors">Docker</span>
+          <svg class="icon-tech" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M23.644 9.535c-1.648 0-3.16.492-4.42 1.336-.214-1.68-.96-3.096-2.016-4.2l-.6-.6-.396.6c-.78 1.176-1.308 2.64-1.5 4.068-.264 1.656-.12 3.108.432 4.296-.144.072-.312.144-.468.216-1.152.492-2.88.804-5.148.804H1.237c-.576 0-1.08.432-1.152 1.008-.132 1.176-.06 2.652.42 4.272.54 1.824 1.584 3.312 3.108 4.44 1.536 1.128 3.396 1.716 5.484 1.716 2.7 0 5.088-.9 7.02-2.652 1.56-1.416 2.796-3.36 3.648-5.724.9.348 1.872.528 2.928.528 1.02 0 1.968-.204 2.784-.624.384-.204.72-.456 1.008-.744l.312-.312-.18-.42c-.312-.732-.876-1.26-1.632-1.536.204-.18.396-.372.564-.576.468-.564.78-1.248.78-2.04-.12-.348-.42-.6-.78-.6zM5.113 14.14c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H3.625c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408H5.113zm1.98 0c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H5.605c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408h1.488zm1.98 0c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H7.585c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408h1.488zm-3.96-1.98c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H3.625c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408H5.113zm1.98 0c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H5.605c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408h1.488zm1.98 0c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H7.585c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408h1.488zm1.98 0c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H9.565c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408h1.488zm-3.96-2.016c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H5.605c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408h1.488zm1.98 0c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H7.585c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408h1.488zm1.98 0c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408H9.565c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408h1.488zm2.016-1.908c.228 0 .408.18.408.408v1.488c0 .228-.18.408-.408.408h-1.488c-.228 0-.408-.18-.408-.408v-1.488c0-.228.18-.408.408-.408h1.488z"/></svg>
+          <span class="text-xs text-subtle group-hover:text-[#00d9ff] transition-colors">Docker</span>
         </div>
       </div>
+      <div id="tech-desc" class="mt-10 min-h-[3rem] text-center text-sm text-faint leading-relaxed" data-i18n="stack.hint">
+        Click on any tool above to learn more
+      </div>
+      <div id="tech-popup" class="tech-popup"></div>
     </div>
   </section>
 
-  <!-- ===== PROJECTS ===== -->
-  <section id="projects" class="py-24 px-4">
-    <div class="max-w-6xl mx-auto section-in">
-      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4 text-center">
-        <span class="gradient-text">/</span> Projects
-      </h2>
-      <div class="w-16 h-1 bg-[#e94560] mx-auto mb-12 rounded-full"></div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Dashboard React -->
-        <div class="project-card bg-[#111] rounded-xl p-6 glow-cyan stagger-child">
-          <div class="w-12 h-12 bg-[#e94560]/10 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-[#e94560]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-          </div>
-          <h3 class="font-display text-xl font-bold mb-2 text-[#00d9ff]">Dashboard React</h3>
-          <p class="text-[#888] text-sm mb-4">Panel de administración con gráficos interactivos, gestión de datos y autenticación. Full-stack con Node.js y MongoDB.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">React</span>
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">Node.js</span>
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">MongoDB</span>
-          </div>
-          <a href="https://github.com/dizzi1222/REACT-Diego-Dizzi-Dashboard" target="_blank" class="text-sm text-[#555] hover:text-[#00d9ff] transition-colors">View on GitHub →</a>
-        </div>
-        <!-- Terminal Portfolio -->
-        <div class="project-card bg-[#111] rounded-xl p-6 glow-cyan stagger-child">
-          <div class="w-12 h-12 bg-[#00d9ff]/10 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-[#00d9ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          </div>
-          <h3 class="font-display text-xl font-bold mb-2 text-[#00d9ff]">Terminal Portfolio</h3>
-          <p class="text-[#888] text-sm mb-4">Portfolio con estética de terminal Linux, efectos CRT y navegación estilo Vim.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">HTML</span>
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">CSS</span>
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">JS</span>
-          </div>
-          <a href="https://github.com/dizzi1222/portfolio-terminal-dhardi" target="_blank" class="text-sm text-[#555] hover:text-[#00d9ff] transition-colors">View on GitHub →</a>
-        </div>
-        <!-- Dotfiles -->
-        <div class="project-card bg-[#111] rounded-xl p-6 glow-cyan stagger-child">
-          <div class="w-12 h-12 bg-[#e94560]/10 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-[#e94560]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-          </div>
-          <h3 class="font-display text-xl font-bold mb-2 text-[#00d9ff]">Dotfiles</h3>
-          <p class="text-[#888] text-sm mb-4">Configuración completa de Arch Linux con Hyprland, Neovim (LazyVim), Kitty, Zsh y Waybar.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">Lua</span>
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">Shell</span>
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">YAML</span>
-          </div>
-          <a href="https://github.com/dizzi1222/dotfiles-dizzi" target="_blank" class="text-sm text-[#555] hover:text-[#00d9ff] transition-colors">View on GitHub →</a>
-        </div>
-        <!-- MCSD App -->
-        <div class="project-card bg-[#111] rounded-xl p-6 glow-cyan stagger-child">
-          <div class="w-12 h-12 bg-[#00d9ff]/10 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-[#00d9ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          </div>
-          <h3 class="font-display text-xl font-bold mb-2 text-[#00d9ff]">MCSD App</h3>
-          <p class="text-[#888] text-sm mb-4">Aplicación educativa sobre conducción segura en República Dominicana. Modernizada con Tailwind CSS y Vite.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">Vite</span>
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">Tailwind</span>
-            <span class="px-2 py-1 text-xs bg-[#222] text-[#e94560] rounded">HTML</span>
-          </div>
-          <a href="https://github.com/dizzi1222/Proyecto-App-MCSD" target="_blank" class="text-sm text-[#555] hover:text-[#00d9ff] transition-colors">View on GitHub →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BLOG ===== -->
-  <section id="blog" class="py-24 px-4 bg-[#0d0d0d]">
-    <div class="max-w-4xl mx-auto text-center section-in">
-      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4">
-        <span class="gradient-text">/</span> Blog
+  <!-- ===== SETUP / DOTFILES SHOWCASE ===== -->
+  <section id="setup" class="py-24 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 section-bg-1 opacity-60"></div>
+    <div class="max-w-5xl mx-auto relative z-10 section-in">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2 text-center">
+        <span class="gradient-text">/</span> <span data-i18n="setup.heading">My Setup</span>
       </h2>
       <div class="w-16 h-1 bg-[#e94560] mx-auto mb-4 rounded-full"></div>
-      <p class="text-[#555] mb-8">Thoughts on dev, ops, and Linux</p>
-      <div id="devto-articles" class="text-[#888] text-sm">Loading articles from Dev.to...</div>
-      <a href="https://dev.to/dizzi1222" target="_blank" class="inline-block mt-6 px-6 py-3 border border-[#00d9ff] text-[#00d9ff] font-semibold rounded hover:bg-[#00d9ff] hover:text-[#0a0a0a] transition-all">View all on Dev.to →</a>
+      <p class="text-subtle text-center mb-12" data-i18n="setup.subtitle">Arch Linux · Hyprland · Neovim · Dotfiles</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div onclick="openNeovimModal()" class="stagger-child card-bg rounded-xl overflow-hidden border border-custom hover:border-[#00d9ff]/40 transition-all group cursor-pointer">
+          <div class="h-44 bg-gradient-to-br from-blue-900/30 to-purple-900/30 flex items-center justify-center overflow-hidden">
+            <img src="https://github.com/user-attachments/assets/8adb6f60-bb35-4704-b4ab-12bd587f3992" alt="Neovim Desktop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">💤</span>
+              <h3 class="font-display font-bold text-primary text-base">Neovim · LazyVim</h3>
+            </div>
+            <p class="text-xs text-muted leading-relaxed" data-i18n="setup.nvimDesc">Configuración multiplataforma con LazyVim, LSP para TS/JS/CSS, Telescope, y 200+ plugins optimizados. Click para ver el setup completo.</p>
+            <div class="flex flex-wrap gap-1.5 mt-3">
+              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Lua</span>
+              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">LazyVim</span>
+              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">LSP</span>
+            </div>
+          </div>
+        </div>
+
+        <div onclick="openNeovimModal()" class="stagger-child card-bg rounded-xl overflow-hidden border border-custom hover:border-[#e94560]/40 transition-all group cursor-pointer">
+          <div class="h-44 bg-gradient-to-br from-gray-900/30 to-amber-900/30 flex items-center justify-center overflow-hidden">
+            <img src="https://github.com/user-attachments/assets/b9d75c3d-29af-4d33-8333-84e9e9a61659" alt="EWW Waybar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">🖥️</span>
+              <h3 class="font-display font-bold text-primary text-base">Hyprland · Dotfiles</h3>
+            </div>
+            <p class="text-xs text-muted leading-relaxed" data-i18n="setup.dotfilesDesc">Arch Linux con Hyprland, EWW widgets, Waybar, Rofi, Wofi, y scripts personalizados. Un ecosistema completo desde cero. Click para detalles.</p>
+            <div class="flex flex-wrap gap-1.5 mt-3">
+              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Hyprland</span>
+              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">EWW</span>
+              <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Rofi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stagger-child card-bg rounded-xl p-5 border border-custom">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-lg">⚡</span>
+            <h3 class="font-display font-bold text-primary text-sm" data-i18n="setup.scriptsTitle">Scripts & Automation</h3>
+          </div>
+          <p class="text-xs text-muted leading-relaxed mb-3" data-i18n="setup.scriptsDesc">Utilidades propias para Arch: LimpiarCache, Gitaliases, Omarchy Package Install, System Control con Rofi, Power Menu y más.</p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Bash</span>
+            <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Python</span>
+            <span class="px-2 py-0.5 text-[10px] bg-badge text-[#e94560] rounded font-mono">Zsh</span>
+          </div>
+        </div>
+
+        <div class="stagger-child card-bg rounded-xl p-5 border border-custom">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-lg">🎨</span>
+            <h3 class="font-display font-bold text-primary text-sm" data-i18n="setup.galleryTitle">Galería del Setup</h3>
+          </div>
+          <p class="text-xs text-muted leading-relaxed mb-3" data-i18n="setup.galleryDesc">Screenshots del desktop: Waybar con widgets EWW, Rofi System Control, Wofi Clipboard, Fastfetch, y el ecosistema visual completo.</p>
+          <a href="https://github.com/dizzi1222/dotfiles-dizzi" target="_blank" class="inline-flex items-center gap-1.5 text-xs text-[#00d9ff] hover:underline">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <span data-i18n="setup.galleryCta">Ver repositorio de dotfiles →</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ===== CONTACT ===== -->
-  <section id="contact" class="py-24 px-4">
-    <div class="max-w-4xl mx-auto text-center section-in">
-      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4">
-        <span class="gradient-text">/</span> Contact
+  <section id="contact" class="py-24 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 section-bg-2 opacity-60"></div>
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#e94560]/5 rounded-full blur-3xl"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10 section-in">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">
+        <span class="gradient-text">/</span> <span data-i18n="contact.heading">Contact</span>
       </h2>
       <div class="w-16 h-1 bg-[#e94560] mx-auto mb-4 rounded-full"></div>
-      <p class="text-[#555] mb-8">Let's build something together</p>
-      <div class="flex flex-wrap justify-center gap-6 mb-12">
-        <a href="mailto:diegosamuel042@gmail.com" class="flex items-center gap-3 px-6 py-4 bg-[#111] border border-[#222] rounded-xl hover:border-[#e94560] transition-all group">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#888888" class="group-hover:fill-[#e94560] transition-colors"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          <span class="text-sm text-[#888] group-hover:text-[#eaeaea] transition-colors">diegosamuel042@gmail.com</span>
+      <p class="text-subtle mb-8" data-i18n="contact.subtitle">Let's build something together</p>
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <a href="mailto:diegosamuel042@gmail.com" class="flex items-center gap-3 px-5 py-4 bg-secondary border border-custom rounded-xl hover:border-[#e94560] transition-all group">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-muted group-hover:fill-[#e94560] transition-colors"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span class="text-sm text-muted group-hover:text-primary transition-colors">diegosamuel042@gmail.com</span>
         </a>
-        <a href="https://github.com/dizzi1222" target="_blank" class="flex items-center gap-3 px-6 py-4 bg-[#111] border border-[#222] rounded-xl hover:border-[#e94560] transition-all group">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#888888" class="group-hover:fill-[#e94560] transition-colors"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          <span class="text-sm text-[#888] group-hover:text-[#eaeaea] transition-colors">dizzi1222</span>
+        <a href="https://github.com/dizzi1222" target="_blank" class="flex items-center gap-3 px-5 py-4 bg-secondary border border-custom rounded-xl hover:border-[#e94560] transition-all group">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-muted group-hover:fill-[#e94560] transition-colors"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          <span class="text-sm text-muted group-hover:text-primary transition-colors">dizzi1222</span>
         </a>
-        <a href="https://www.linkedin.com/in/dizzi-%C5%8Dkami-0b77093a1/" target="_blank" class="flex items-center gap-3 px-6 py-4 bg-[#111] border border-[#222] rounded-xl hover:border-[#e94560] transition-all group">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#888888" class="group-hover:fill-[#e94560] transition-colors"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          <span class="text-sm text-[#888] group-hover:text-[#eaeaea] transition-colors">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/dizzi-%C5%8Dkami-0b77093a1/" target="_blank" class="flex items-center gap-3 px-5 py-4 bg-secondary border border-custom rounded-xl hover:border-[#e94560] transition-all group">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-muted group-hover:fill-[#e94560] transition-colors"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <span class="text-sm text-muted group-hover:text-primary transition-colors">LinkedIn</span>
         </a>
-        <a href="https://x.com/dizzi_ds" target="_blank" class="flex items-center gap-3 px-6 py-4 bg-[#111] border border-[#222] rounded-xl hover:border-[#e94560] transition-all group">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#888888" class="group-hover:fill-[#e94560] transition-colors"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          <span class="text-sm text-[#888] group-hover:text-[#eaeaea] transition-colors">@dizzi_ds</span>
+        <a href="https://x.com/dizzi_ds" target="_blank" class="flex items-center gap-3 px-5 py-4 bg-secondary border border-custom rounded-xl hover:border-[#e94560] transition-all group">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-muted group-hover:fill-[#e94560] transition-colors"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span class="text-sm text-muted group-hover:text-primary transition-colors">@dizzi_ds</span>
         </a>
       </div>
-      <a href="assets/cv.pdf" target="_blank" class="inline-block px-8 py-3 bg-[#e94560] text-white font-semibold rounded hover:bg-[#d91a3a] transition-all hover-glow">Download Resume (PDF)</a>
+      <a href="assets/cv.pdf" target="_blank" class="inline-block px-8 py-3 bg-[#e94560] text-white font-semibold rounded-lg hover:bg-[#d91a3a] transition-all hover-glow" data-i18n="contact.downloadResume">Download Resume (PDF)</a>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="py-8 px-4 border-t border-[#222]">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-      <p class="text-[#555] text-sm">© 2026 <span class="text-[#e94560]">Diego Härdi</span></p>
-      <div class="flex items-center gap-4 text-sm">
-        <span class="text-[#555] text-sm">🇩🇴 San Pedro de Macorís → Jarabacoa · 🇨🇭 Swiss</span>
-        <span class="text-[#333]">·</span>
-        <a href="https://dizzi1222.github.io/portfolio-terminal-dhardi" target="_blank" class="text-[#555] hover:text-[#00d9ff] transition-colors">🖥️ Versión Terminal</a>
-        <span class="text-[#333]">·</span>
-        <a href="#" class="text-[#555] hover:text-[#00d9ff] transition-colors">Back to top ↑</a>
+  <footer class="py-10 px-4 border-t border-custom">
+    <div class="max-w-6xl mx-auto flex flex-col items-center gap-6">
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/dizzi1222" target="_blank" class="text-subtle hover:text-[#e94560] transition-colors" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/dizzi-%C5%8Dkami-0b77093a1/" target="_blank" class="text-subtle hover:text-[#e94560] transition-colors" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/dizzi_ds" target="_blank" class="text-subtle hover:text-[#e94560] transition-colors" aria-label="X">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://dev.to/dizzi1222" target="_blank" class="text-subtle hover:text-[#e94560] transition-colors" aria-label="Dev.to">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 2C4.462 2 2 4.462 2 7.5v9C2 19.538 4.462 22 7.5 22h9c3.038 0 5.5-2.462 5.5-5.5v-9C22 4.462 19.538 2 16.5 2h-9zM6 8h1.5v5.25c0 .713.287 1 .938 1h.562v1.312h-.75c-1.275 0-1.988-.525-1.988-1.688V8h1.738zm5.25 0h1.5v1.5h-1.5V8zm0 2.25h1.5v5.25h-1.5v-5.25zM15 8h1.875c1.313 0 2.063.75 2.063 2.063 0 1.237-.525 1.874-1.5 1.874.975 0 1.5.638 1.5 1.875 0 1.312-.75 2.063-2.063 2.063H15V8zm1.5 1.5v1.125h.375c.338 0 .563-.187.563-.563 0-.337-.225-.562-.563-.562H16.5zm0 2.625v1.5h.563c.337 0 .562-.225.562-.563 0-.337-.225-.562-.563-.562H16.5z"/></svg>
+        </a>
+        <a href="mailto:diegosamuel042@gmail.com" class="text-subtle hover:text-[#e94560] transition-colors" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
       </div>
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-subtle">
+        <a href="https://dizzi1222.github.io/portfolio-terminal-dhardi" target="_blank" class="hover:text-[#00d9ff] transition-colors" data-i18n="footer.terminal">🖥️ Versión Terminal</a>
+        <span>·</span>
+        <span>© 2026 <span class="text-[#e94560]">Diego Härdi</span></span>
+        <span>·</span>
+        <a href="#" class="hover:text-[#00d9ff] transition-colors" data-i18n="footer.backToTop">Back to top ↑</a>
+      </div>
+      <p class="text-xs text-faint" data-i18n="footer.subtitle">🇩🇴 San Pedro de Macorís → Jarabacoa · 🇨🇭 Swiss</p>
     </div>
   </footer>
 
+  <!-- ===== MODAL ===== -->
+  <div id="modal" class="modal-overlay">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modal-title" class="font-display text-xl font-bold text-primary"></h3>
+        <button onclick="closeModal()" class="modal-close">&times;</button>
+      </div>
+      <div id="modal-body">
+        <div id="modal-image" class="modal-image"></div>
+        <p id="modal-description" class="text-muted text-sm mt-4 leading-relaxed"></p>
+      </div>
+      <div id="modal-footer" class="modal-footer"></div>
+    </div>
+  </div>
+
   <!-- ===== SCRIPTS ===== -->
+
+  <!-- i18n + Theme System -->
+  <script>
+    const i18n = {
+      es: {
+        nav: { experience: 'Experiencia', projects: 'Proyectos', servicios: 'Servicios', setup: 'Setup', about: 'Sobre mí', contact: 'Contacto', available: 'Disponible', resume: 'Currículum' },
+        hero: { available: 'Disponible', title: 'DevOps & Software Engineer', born: '🇩🇴 Nací en San Pedro de Macorís', passport: '🇨🇭 Pasaporte suizo', lives: '🏔️ Vivo en Jarabacoa', tagline: 'Building full-stack · Arch Linux · Neovim', getInTouch: 'Contáctame', previewCv: 'Vista previa CV' },
+        exp: {
+          heading: 'Experiencia', subtitle: 'Mi trayectoria profesional',
+          job1: { badge: 'Retail', title: 'Asistente / Cajero', company: 'La Sirena · República Dominicana', period: '2025 — 2026', desc: 'Mi primer contacto con el mundo laboral formal. Trabajar en uno de los supermercados más grandes del país me enseñó cómo funciona realmente un negocio desde adentro: logística, inventario, atención al cliente bajo presión. Pero también vi de cerca lo peor del trabajo físico sin futuro — el agotamiento, la falta de oportunidades reales, el nepotismo. Esa experiencia fue el combustible que encendió mi decisión de salir de ahí y construir una carrera en tecnología.' },
+          job2: { badge: 'Educación', title: 'Bootcamp Full-Stack', company: 'Cincinnatus · República Dominicana', period: '2024 — 2026', desc: 'El motor de arranque de mi carrera como programador. Cincinnatus fue el punto de inflexión donde pasé de ser un curioso autodidacta a un desarrollador en formación. Aprendí los fundamentos del desarrollo web full-stack, trabajé en proyectos reales en equipo, y descubrí que la programación no era solo un trabajo — era mi vocación. Aquí construí las bases que me permiten hoy trabajar con MERN, DevOps y Linux.' },
+          job3: { badge: 'Actual', title: 'MERN Stack Developer · DevOps', company: 'Freelance / Proyectos Propios · Arch Linux · Neovim', period: '2024 — Presente', desc: 'Desarrollo full-stack con el stack MERN (MongoDB, Express, React, Node.js). Arquitecturas limpias, APIs RESTful, despliegues con Docker y automatización de flujos. Mi entorno: Arch Linux con Hyprland, Neovim (LazyVim) como editor principal. También configuro dotfiles, gestiono servidores y construyo herramientas que optimizan mi propio workflow. Cada proyecto es una oportunidad para escribir código mantenible y sistemas bien diseñados.' }
+        },
+        projects: {
+          heading: 'Proyectos', subtitle: 'Cosas que he construido',
+          dashboard: { title: 'Dashboard React', desc: 'Panel de administración con gráficos, calculadora, contador y TO-DO list. Todo en un solo proyecto con React y react-router-dom.' },
+          terminal: { title: 'Terminal Portfolio', desc: 'Portfolio interactivo con estética de terminal Linux. Comandos CLI, efectos CRT, navegación estilo Vim. Diseñado para developers.' },
+          dotfiles: { title: 'Dotfiles', desc: 'Configuración completa de Arch Linux con Hyprland, Neovim (LazyVim), Kitty, Zsh, Waybar, EWW widgets y Rofi.' },
+           mcsd: { title: 'PCE-Agencia', desc: 'App de finanzas y viajes — gestión de presupuestos, planificación de itinerarios y seguimiento de gastos. Construida con JavaScript moderno.' },
+          code: 'Código', preview: 'Vista previa',
+          ptd: { title: 'PTD‑Talento', desc: 'Marketplace de talento del bootcamp Cincinnatus: auth, perfiles, catálogo, watchlist, notificaciones y panel admin.' },
+          nvim: { title: 'Nvim Config', desc: 'Configuración universal de Neovim con LazyVim, LSP para TS/JS/Lua, snippets y sincronización multiplataforma.' }
+        },
+        servicios: {
+          heading: 'Servicios', subtitle: 'Lo que puedo hacer por ti',
+          s1: { title: 'Full-Stack MVP', desc: 'Construyo MVPs completos con MERN: desde la base de datos hasta el frontend, listos para producción.' },
+          s2: { title: 'Design Systems', desc: 'Componentes reutilizables con Tailwind, Storybook y principios de diseño atómico. Consistencia visual garantizada.' },
+          s3: { title: 'Auth & Security', desc: 'JWT, OAuth2, RBAC, protección de rutas y autenticación segura desde el backend hasta el frontend.' },
+          s4: { title: 'Real-time Features', desc: 'WebSockets, SSE, notificaciones en vivo y actualizaciones en tiempo real para apps interactivas.' },
+          s5: { title: 'Database Design', desc: 'Modelado de datos con MongoDB/Mongoose, esquemas eficientes, índices y consultas optimizadas.' },
+          s6: { title: 'Admin Panels', desc: 'Paneles de administración con dashboards, auditoría, logs y gestión completa de usuarios y roles.' },
+          s7: { title: 'API Design', desc: 'APIs RESTful con Express, documentación con Swagger, validación y middleware modular.' },
+          s8: { title: 'DevOps', desc: 'Docker, CI/CD con GitHub Actions, despliegues automatizados y entornos reproducibles.' },
+        },
+        setup: {
+          heading: 'My Setup', subtitle: 'Arch Linux · Hyprland · Neovim · Dotfiles',
+          nvimDesc: 'Configuración multiplataforma con LazyVim, LSP para TS/JS/CSS, Telescope, y 200+ plugins optimizados. Click para ver el setup completo.',
+          dotfilesDesc: 'Arch Linux con Hyprland, EWW widgets, Waybar, Rofi, Wofi, y scripts personalizados. Un ecosistema completo desde cero. Click para detalles.',
+          scriptsTitle: 'Scripts & Automation',
+          scriptsDesc: 'Utilidades propias para Arch: LimpiarCache, Gitaliases, Omarchy Package Install, System Control con Rofi, Power Menu y más.',
+          galleryTitle: 'Galería del Setup',
+          galleryDesc: 'Screenshots del desktop: Waybar con widgets EWW, Rofi System Control, Wofi Clipboard, Fastfetch, y el ecosistema visual completo.',
+          galleryCta: 'Ver repositorio de dotfiles →'
+        },
+        about: {
+          heading: 'Sobre mí', subtitle: 'De San Pedro al Mundo',
+          card1: { title: 'Raíces Suizas', desc: 'Pasaporte suizo. La precisión, el orden y la calidad están en mi sangre. From the Alps to the Caribbean — llevo Suiza conmigo.' },
+          card2: { title: 'Corazón Dominicano', desc: 'Nací en San Pedro de Macorís, crecí en el calor del Caribe. Hoy vivo en Jarabacoa, donde el clima fresco se encuentra con la montaña.' },
+          desc1: 'Nací en San Pedro de Macorís, República Dominicana — tierra de estrellas del béisbol y brisa caribeña. Pero llevo el pasaporte suizo en el bolsillo y los Alpes en la mente.',
+          desc2: 'Hoy vivo en Jarabacoa, la "ciudad de la eterna primavera", rodeado de montañas y ríos. Un punto medio perfecto entre el trópico y el frescor que heredé.',
+          desc3: 'Por el día construyo apps full-stack con el stack MERN. Por la noche estoy sumergido en configuraciones de Neovim, optimizando mi Arch Linux Hyprland o automatizando flujos que no deberían existir. Hablo TypeScript, JavaScript, Lua, y el idioma de los sistemas limpios y mantenibles.',
+          label: { name: 'Nombre', born: 'Nacido en', lives: 'Vive en', passport: 'Pasaporte', role: 'Rol', os: 'SO', editor: 'Editor', languages: 'Idiomas' }
+        },
+        stack: { heading: 'Tech Stack', subtitle: 'Herramientas del oficio', hint: 'Haz clic en cualquier herramienta para saber más' },
+        contact: { heading: 'Contacto', subtitle: 'Construyamos algo juntos', downloadResume: 'Descargar CV (PDF)' },
+        footer: { terminal: '🖥️ Versión Terminal', backToTop: 'Volver arriba ↑', subtitle: '🇩🇴 San Pedro de Macorís → Jarabacoa · 🇨🇭 Suizo' },
+        modal: {
+          cvTitle: 'Diego Härdi · CV', cvPlaceholder: 'Placeholder — Captura del CV', cvDesc: 'Descarga mi currículum para ver mi experiencia completa, educación y habilidades técnicas.',
+          downloadCv: 'Descargar CV (PDF)', viewCode: 'Ver Código', livePreview: 'Vista Previa', screenshotPrefix: '🖼️ Captura —', private: 'Privado'
+        },
+        vibe: [
+          'Matterhorn · Suiza ❄️', 'Punta Cana · República Dominicana ☀️', 'Alpes Suizos ⛰️',
+          'Pico Duarte · Jarabacoa 🏔️', 'Zúrich · Suiza 🏙️', 'Atardecer Tropical · Caribe 🌅',
+          'Pueblo Alpino Suizo 🏡', 'Costa Dominicana 🌊'
+        ],
+        tech: {
+          'Node.js': 'Runtime JS del lado del servidor. Lo uso para construir APIs RESTful y backends escalables con Express.',
+          'Express': 'Framework minimalista para Node.js. Mi elección para crear servidores, middlewares y APIs limpias.',
+          'React': 'Biblioteca de UI declarativa. Construyo interfaces interactivas con componentes y hooks reutilizables.',
+          'MongoDB': 'Base de datos NoSQL. La uso como principal almacenamiento en mis proyectos MERN con Mongoose.',
+          'Git': 'Control de versiones esencial. Flujo con feature branches, rebase interactivo y commits semánticos.',
+          'Arch': 'Mi daily driver. Arch Linux + Hyprland, todo configurado desde cero con dotfiles propios.',
+          'Neovim': 'Editor principal con LazyVim. Plugins personalizados, LSP para TS/JS, y flujo 100% teclado.',
+          'TypeScript': 'Tipado estático para JS. Lo uso en backend y frontend para código más robusto y mantenible.',
+          'Docker': 'Contenedores para desarrollo y producción. Entornos reproducibles y despliegues consistentes.'
+        }
+      },
+      en: {
+        nav: { experience: 'Experience', projects: 'Projects', servicios: 'Services', setup: 'Setup', about: 'About', contact: 'Contact', available: 'Available for work', resume: 'Resume' },
+        hero: { available: 'Available for work', title: 'DevOps & Software Engineer', born: '🇩🇴 Born in San Pedro de Macorís', passport: '🇨🇭 Swiss passport', lives: '🏔️ Lives in Jarabacoa', tagline: 'Building full-stack · Arch Linux · Neovim', getInTouch: 'Get in touch', previewCv: 'Preview CV' },
+        exp: {
+          heading: 'Experience', subtitle: 'My professional journey',
+          job1: { badge: 'Retail', title: 'Assistant / Cashier', company: 'La Sirena · Dominican Republic', period: '2025 — 2026', desc: 'My first contact with the formal working world. Working at one of the largest supermarkets in the country taught me how a business really works from the inside: logistics, inventory, customer service under pressure. But I also saw up close the worst of physical labor without a future — exhaustion, lack of real opportunities, nepotism. That experience was the fuel that ignited my decision to get out and build a career in technology.' },
+          job2: { badge: 'Education', title: 'Full-Stack Bootcamp', company: 'Cincinnatus · Dominican Republic', period: '2024 — 2026', desc: 'The kickstarter for my programming career. Cincinnatus was the turning point where I went from a curious self-taught learner to a developer in training. I learned the fundamentals of full-stack web development, worked on real team projects, and discovered that programming wasn\'t just a job — it was my calling. Here I built the foundations that allow me today to work with MERN, DevOps and Linux.' },
+          job3: { badge: 'Current', title: 'MERN Stack Developer · DevOps', company: 'Freelance / Personal Projects · Arch Linux · Neovim', period: '2024 — Present', desc: 'Full-stack development with the MERN stack (MongoDB, Express, React, Node.js). Clean architectures, RESTful APIs, Docker deployments and workflow automation. My environment: Arch Linux with Hyprland, Neovim (LazyVim) as my main editor. I also configure dotfiles, manage servers and build tools that optimize my own workflow. Every project is an opportunity to write maintainable code and well-designed systems.' }
+        },
+        projects: {
+          heading: 'Projects', subtitle: 'Things I\'ve built',
+          dashboard: { title: 'Dashboard React', desc: 'Admin panel with charts, calculator, counter and TO-DO list. All in one project with React and react-router-dom.' },
+          terminal: { title: 'Terminal Portfolio', desc: 'Interactive portfolio with Linux terminal aesthetics. CLI commands, CRT effects, Vim-style navigation. Designed for developers.' },
+          dotfiles: { title: 'Dotfiles', desc: 'Complete Arch Linux configuration with Hyprland, Neovim (LazyVim), Kitty, Zsh, Waybar, EWW widgets and Rofi.' },
+           mcsd: { title: 'PCE-Agencia', desc: 'Finance and travel app — budget management, itinerary planning and expense tracking. Built with modern JavaScript.' },
+          code: 'Code', preview: 'Preview',
+          ptd: { title: 'PTD‑Talento', desc: 'Talent marketplace from Cincinnatus bootcamp: auth, profiles, course catalog, watchlist, notifications and admin panel.' },
+          nvim: { title: 'Nvim Config', desc: 'Universal Neovim configuration with LazyVim, LSP for TS/JS/Lua, snippets and cross-platform sync.' }
+        },
+        servicios: {
+          heading: 'Services', subtitle: 'What I can do for you',
+          s1: { title: 'Full-Stack MVP', desc: 'I build complete MVPs with MERN: from database to frontend, ready for production.' },
+          s2: { title: 'Design Systems', desc: 'Reusable components with Tailwind, Storybook and atomic design principles. Visual consistency guaranteed.' },
+          s3: { title: 'Auth & Security', desc: 'JWT, OAuth2, RBAC, route protection and secure authentication from backend to frontend.' },
+          s4: { title: 'Real-time Features', desc: 'WebSockets, SSE, live notifications and real-time updates for interactive apps.' },
+          s5: { title: 'Database Design', desc: 'Data modeling with MongoDB/Mongoose, efficient schemas, indexes and optimized queries.' },
+          s6: { title: 'Admin Panels', desc: 'Admin dashboards with audit logs, user management and full role-based control.' },
+          s7: { title: 'API Design', desc: 'RESTful APIs with Express, Swagger documentation, validation and modular middleware.' },
+          s8: { title: 'DevOps', desc: 'Docker, CI/CD with GitHub Actions, automated deployments and reproducible environments.' },
+        },
+        setup: {
+          heading: 'My Setup', subtitle: 'Arch Linux · Hyprland · Neovim · Dotfiles',
+          nvimDesc: 'Cross-platform configuration with LazyVim, LSP for TS/JS/CSS, Telescope, and 200+ optimized plugins. Click to see the full setup.',
+          dotfilesDesc: 'Arch Linux with Hyprland, EWW widgets, Waybar, Rofi, Wofi, and custom scripts. A complete ecosystem from scratch. Click for details.',
+          scriptsTitle: 'Scripts & Automation',
+          scriptsDesc: 'Custom Arch utilities: LimpiarCache, Gitaliases, Omarchy Package Install, Rofi System Control, Power Menu and more.',
+          galleryTitle: 'Setup Gallery',
+          galleryDesc: 'Desktop screenshots: Waybar with EWW widgets, Rofi System Control, Wofi Clipboard, Fastfetch, and the full visual ecosystem.',
+          galleryCta: 'View dotfiles repository →'
+        },
+        about: {
+          heading: 'About Me', subtitle: 'From San Pedro to the World',
+          card1: { title: 'Swiss Roots', desc: 'Swiss passport. Precision, order and quality are in my blood. From the Alps to the Caribbean — I carry Switzerland with me.' },
+          card2: { title: 'Dominican Heart', desc: 'Born in San Pedro de Macorís, raised in the Caribbean heat. Today I live in Jarabacoa, where cool weather meets the mountains.' },
+          desc1: 'I was born in San Pedro de Macorís, Dominican Republic — land of baseball stars and Caribbean breeze. But I carry the Swiss passport in my pocket and the Alps in my mind.',
+          desc2: 'Today I live in Jarabacoa, the "city of eternal spring", surrounded by mountains and rivers. A perfect middle ground between the tropics and the coolness I inherited.',
+          desc3: 'By day I build full-stack apps with the MERN stack. By night I\'m immersed in Neovim configurations, optimizing my Arch Linux Hyprland or automating workflows that shouldn\'t exist. I speak TypeScript, JavaScript, Lua, and the language of clean, maintainable systems.',
+          label: { name: 'Name', born: 'Born in', lives: 'Lives in', passport: 'Passport', role: 'Role', os: 'OS', editor: 'Editor', languages: 'Languages' }
+        },
+        stack: { heading: 'Tech Stack', subtitle: 'Tools of the trade', hint: 'Click on any tool above to learn more' },
+        contact: { heading: 'Contact', subtitle: 'Let\'s build something together', downloadResume: 'Download Resume (PDF)' },
+        footer: { terminal: '🖥️ Terminal Version', backToTop: 'Back to top ↑', subtitle: '🇩🇴 San Pedro de Macorís → Jarabacoa · 🇨🇭 Swiss' },
+        modal: {
+          cvTitle: 'Diego Härdi · CV', cvPlaceholder: '📄 Placeholder — CV screenshot', cvDesc: 'Download my resume to see my complete experience, education and technical skills.',
+          downloadCv: 'Download CV (PDF)', viewCode: 'View Code', livePreview: 'Live Preview', screenshotPrefix: '🖼️ Screenshot —', private: 'Private'
+        },
+        vibe: [
+          'Matterhorn · Switzerland ❄️', 'Punta Cana · Dominican Republic ☀️', 'Swiss Alps ⛰️',
+          'Pico Duarte · Jarabacoa 🏔️', 'Zürich · Switzerland 🏙️', 'Tropical Sunset · Caribbean 🌅',
+          'Swiss Alps Village 🏡', 'Dominican Republic Coast 🌊'
+        ],
+        tech: {
+          'Node.js': 'Server-side JS runtime. I use it to build RESTful APIs and scalable backends with Express.',
+          'Express': 'Minimalist framework for Node.js. My choice for creating servers, middleware and clean APIs.',
+          'React': 'Declarative UI library. I build interactive interfaces with reusable components and hooks.',
+          'MongoDB': 'NoSQL database. I use it as primary storage in my MERN projects with Mongoose.',
+          'Git': 'Essential version control. Workflow with feature branches, interactive rebase and semantic commits.',
+          'Arch': 'My daily driver. Arch Linux + Hyprland, everything configured from scratch with my own dotfiles.',
+          'Neovim': 'Main editor with LazyVim. Custom plugins, LSP for TS/JS, and 100% keyboard workflow.',
+          'TypeScript': 'Static typing for JS. I use it in backend and frontend for more robust and maintainable code.',
+          'Docker': 'Containers for development and production. Reproducible environments and consistent deployments.'
+        }
+      },
+      de: {
+        nav: { experience: 'Erfahrung', projects: 'Projekte', servicios: 'Services', setup: 'Setup', about: 'Über mich', contact: 'Kontakt', available: 'Verfügbar für Arbeit', resume: 'Lebenslauf' },
+        hero: { available: 'Verfügbar für Arbeit', title: 'DevOps & Software Engineer', born: '🇩🇴 Geboren in San Pedro de Macorís', passport: '🇨🇭 Schweizer Pass', lives: '🏔️ Lebt in Jarabacoa', tagline: 'Full-Stack-Entwicklung · Arch Linux · Neovim', getInTouch: 'Kontakt aufnehmen', previewCv: 'CV Vorschau' },
+        exp: {
+          heading: 'Erfahrung', subtitle: 'Mein beruflicher Werdegang',
+          job1: { badge: 'Einzelhandel', title: 'Assistent / Kassierer', company: 'La Sirena · Dominikanische Republik', period: '2025 — 2026', desc: 'Mein erster Kontakt mit der formalen Arbeitswelt. Die Arbeit in einem der größten Supermärkte des Landes lehrte mich, wie ein Unternehmen wirklich von innen funktioniert: Logistik, Inventar, Kundenservice unter Druck. Aber ich sah auch aus nächster Nähe das Schlimmste an körperlicher Arbeit ohne Zukunft — Erschöpfung, fehlende echte Chancen, Vetternwirtschaft. Diese Erfahrung war der Treibstoff, der meine Entscheidung entfachte, dort rauszukommen und eine Karriere in der Technologie aufzubauen.' },
+          job2: { badge: 'Bildung', title: 'Full-Stack Bootcamp', company: 'Cincinnatus · Dominikanische Republik', period: '2024 — 2026', desc: 'Der Startschuss für meine Programmierkarriere. Cincinnatus war der Wendepunkt, an dem ich vom neugierigen Autodidakten zum angehenden Entwickler wurde. Ich lernte die Grundlagen der Full-Stack-Webentwicklung, arbeitete an echten Teamprojekten und entdeckte, dass Programmieren nicht nur ein Job war — es war meine Berufung. Hier legte ich die Grundlagen, die es mir heute ermöglichen, mit MERN, DevOps und Linux zu arbeiten.' },
+          job3: { badge: 'Aktuell', title: 'MERN Stack Developer · DevOps', company: 'Freiberuflich / Eigene Projekte · Arch Linux · Neovim', period: '2024 — Heute', desc: 'Full-Stack-Entwicklung mit dem MERN-Stack (MongoDB, Express, React, Node.js). Saubere Architekturen, RESTful APIs, Docker-Deployments und Workflow-Automatisierung. Meine Umgebung: Arch Linux mit Hyprland, Neovim (LazyVim) als Haupteditor. Ich konfiguriere auch Dotfiles, verwalte Server und baue Werkzeuge, die meinen eigenen Workflow optimieren. Jedes Projekt ist eine Gelegenheit, wartbaren Code und gut durchdachte Systeme zu schreiben.' }
+        },
+        projects: {
+          heading: 'Projekte', subtitle: 'Dinge, die ich gebaut habe',
+          dashboard: { title: 'Dashboard React', desc: 'Admin-Panel mit Diagrammen, Rechner, Zähler und TO-DO-Liste. Alles in einem Projekt mit React und react-router-dom.' },
+          terminal: { title: 'Terminal Portfolio', desc: 'Interaktives Portfolio mit Linux-Terminal-Ästhetik. CLI-Befehle, CRT-Effekte, Vim-inspirierte Navigation. Entwickelt für Entwickler.' },
+          dotfiles: { title: 'Dotfiles', desc: 'Vollständige Arch Linux Konfiguration mit Hyprland, Neovim (LazyVim), Kitty, Zsh, Waybar, EWW Widgets und Rofi.' },
+           mcsd: { title: 'PCE-Agencia', desc: 'Finanz- und Reise-App — Budgetverwaltung, Reiseplanung und Ausgabenverfolgung. Entwickelt mit modernem JavaScript.' },
+          code: 'Code', preview: 'Vorschau',
+          ptd: { title: 'PTD‑Talento', desc: 'Talentmarktplatz aus dem Cincinnatus-Bootcamp: Auth, Profile, Kurskatalog, Watchlist, Benachrichtigungen und Admin-Panel.' },
+          nvim: { title: 'Nvim Config', desc: 'Universelle Neovim-Konfiguration mit LazyVim, LSP für TS/JS/Lua, Snippets und plattformübergreifender Synchronisation.' }
+        },
+        servicios: {
+          heading: 'Services', subtitle: 'Was ich für dich tun kann',
+          s1: { title: 'Full-Stack MVP', desc: 'Ich baue komplette MVPs mit MERN: von der Datenbank bis zum Frontend, produktionsbereit.' },
+          s2: { title: 'Design Systems', desc: 'Wiederverwendbare Komponenten mit Tailwind, Storybook und atomarem Design. Visuelle Konsistenz garantiert.' },
+          s3: { title: 'Auth & Security', desc: 'JWT, OAuth2, RBAC, Routenschutz und sichere Authentifizierung vom Backend bis zum Frontend.' },
+          s4: { title: 'Real-time Features', desc: 'WebSockets, SSE, Live-Benachrichtigungen und Echtzeit-Updates für interaktive Apps.' },
+          s5: { title: 'Database Design', desc: 'Datenmodellierung mit MongoDB/Mongoose, effiziente Schemata, Indizes und optimierte Abfragen.' },
+          s6: { title: 'Admin Panels', desc: 'Admin-Dashboards mit Audit-Logs, Benutzerverwaltung und vollständiger Rollensteuerung.' },
+          s7: { title: 'API Design', desc: 'RESTful-APIs mit Express, Swagger-Dokumentation, Validierung und modularem Middleware.' },
+          s8: { title: 'DevOps', desc: 'Docker, CI/CD mit GitHub Actions, automatisierte Deployments und reproduzierbare Umgebungen.' },
+        },
+        setup: {
+          heading: 'My Setup', subtitle: 'Arch Linux · Hyprland · Neovim · Dotfiles',
+          nvimDesc: 'Plattformübergreifende Konfiguration mit LazyVim, LSP für TS/JS/CSS, Telescope und 200+ optimierten Plugins. Klicke für das vollständige Setup.',
+          dotfilesDesc: 'Arch Linux mit Hyprland, EWW-Widgets, Waybar, Rofi, Wofi und benutzerdefinierten Skripten. Ein komplettes Ökosystem von Grund auf. Klicke für Details.',
+          scriptsTitle: 'Skripte & Automatisierung',
+          scriptsDesc: 'Eigene Arch-Dienstprogramme: LimpiarCache, Gitaliases, Omarchy Package Install, Rofi System Control, Power Menu und mehr.',
+          galleryTitle: 'Setup-Galerie',
+          galleryDesc: 'Desktop-Screenshots: Waybar mit EWW-Widgets, Rofi System Control, Wofi Clipboard, Fastfetch und das gesamte visuelle Ökosystem.',
+          galleryCta: 'Dotfiles-Repository anzeigen →'
+        },
+        about: {
+          heading: 'Über mich', subtitle: 'Von San Pedro in die Welt',
+          card1: { title: 'Schweizer Wurzeln', desc: 'Schweizer Pass. Präzision, Ordnung und Qualität liegen in meinem Blut. Von den Alpen in die Karibik — ich trage die Schweiz bei mir.' },
+          card2: { title: 'Dominikanisches Herz', desc: 'Geboren in San Pedro de Macorís, aufgewachsen in der karibischen Hitze. Heute lebe ich in Jarabacoa, wo kühles Wetter auf die Berge trifft.' },
+          desc1: 'Ich wurde in San Pedro de Macorís, Dominikanische Republik, geboren — Land der Baseballstars und karibischen Brisen. Aber ich trage den Schweizer Pass in der Tasche und die Alpen im Kopf.',
+          desc2: 'Heute lebe ich in Jarabacoa, der "Stadt des ewigen Frühlings", umgeben von Bergen und Flüssen. Ein perfekter Mittelweg zwischen den Tropen und der Kühle, die ich geerbt habe.',
+          desc3: 'Tagsüber baue ich Full-Stack-Apps mit dem MERN-Stack. Nachts bin ich in Neovim-Konfigurationen vertieft, optimiere mein Arch Linux Hyprland oder automatisiere Workflows. Ich spreche TypeScript, JavaScript, Lua und die Sprache sauberer, wartbarer Systeme.',
+          label: { name: 'Name', born: 'Geboren in', lives: 'Lebt in', passport: 'Pass', role: 'Rolle', os: 'Betriebssystem', editor: 'Editor', languages: 'Sprachen' }
+        },
+        stack: { heading: 'Tech-Stack', subtitle: 'Werkzeuge des Handwerks', hint: 'Klicke auf ein Werkzeug, um mehr zu erfahren' },
+        contact: { heading: 'Kontakt', subtitle: 'Lass uns etwas gemeinsam bauen', downloadResume: 'Lebenslauf herunterladen (PDF)' },
+        footer: { terminal: '🖥️ Terminal-Version', backToTop: 'Zurück nach oben ↑', subtitle: '🇩🇴 San Pedro de Macorís → Jarabacoa · 🇨🇭 Schweizer' },
+        modal: {
+          cvTitle: 'Diego Härdi · Lebenslauf', cvPlaceholder: '📄 Platzhalter — CV Screenshot', cvDesc: 'Lade meinen Lebenslauf herunter, um meine vollständige Erfahrung, Ausbildung und technische Fähigkeiten zu sehen.',
+          downloadCv: 'CV herunterladen (PDF)', viewCode: 'Code ansehen', livePreview: 'Live-Vorschau', screenshotPrefix: '🖼️ Screenshot —', private: 'Privat'
+        },
+        vibe: [
+          'Matterhorn · Schweiz ❄️', 'Punta Cana · Dominikanische Republik ☀️', 'Schweizer Alpen ⛰️',
+          'Pico Duarte · Jarabacoa 🏔️', 'Zürich · Schweiz 🏙️', 'Tropischer Sonnenuntergang · Karibik 🌅',
+          'Schweizer Alpendorf 🏡', 'Dominikanische Küste 🌊'
+        ],
+        tech: {
+          'Node.js': 'Serverseitige JS-Laufzeitumgebung. Ich verwende sie, um RESTful-APIs und skalierbare Backends mit Express zu erstellen.',
+          'Express': 'Minimalistisches Framework für Node.js. Meine Wahl für Server, Middleware und saubere APIs.',
+          'React': 'Deklarative UI-Bibliothek. Ich erstelle interaktive Oberflächen mit wiederverwendbaren Komponenten und Hooks.',
+          'MongoDB': 'NoSQL-Datenbank. Ich verwende sie als primären Speicher in meinen MERN-Projekten mit Mongoose.',
+          'Git': 'Wesentliche Versionskontrolle. Workflow mit Feature-Branches, interaktivem Rebase und semantischen Commits.',
+          'Arch': 'Mein Daily Driver. Arch Linux + Hyprland, alles von Grund auf mit eigenen Dotfiles konfiguriert.',
+          'Neovim': 'Haupteditor mit LazyVim. Benutzerdefinierte Plugins, LSP für TS/JS und 100% Tastatur-Workflow.',
+          'TypeScript': 'Statische Typisierung für JS. Ich verwende es im Backend und Frontend für robusteren und wartbareren Code.',
+          'Docker': 'Container für Entwicklung und Produktion. Reproduzierbare Umgebungen und konsistente Deployments.'
+        }
+      }
+    };
+
+    function switchLanguage(lang) {
+      localStorage.setItem('dhardi-lang', lang);
+      document.documentElement.lang = lang === 'es' ? 'es' : lang === 'de' ? 'de' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const keys = el.getAttribute('data-i18n').split('.');
+        let val = i18n[lang];
+        for (const k of keys) {
+          if (val && typeof val === 'object') val = val[k];
+          else { val = null; break; }
+        }
+        if (val && typeof val === 'string') el.textContent = val;
+      });
+      // Update vibe label if visible
+      if (typeof updateVibe === 'function') updateVibe();
+      // Update tech description if visible
+      const techDesc = document.getElementById('tech-desc');
+      if (techDesc && techDesc.dataset.i18n === 'stack.hint') {
+        techDesc.textContent = i18n[lang].stack.hint;
+      }
+      // Update dropdown label and highlight active language
+      document.getElementById('current-lang-label').textContent = lang.toUpperCase();
+      document.querySelectorAll('.lang-dropdown-item').forEach(item => {
+        const itemLang = item.getAttribute('data-lang') || item.textContent.toLowerCase().trim();
+        if (itemLang === lang) {
+          item.innerHTML = `${lang.toUpperCase()} ✓`;
+          item.style.color = 'var(--text-primary)';
+          item.style.fontWeight = '600';
+        } else {
+          item.textContent = itemLang.toUpperCase();
+          item.style.color = 'var(--text-muted)';
+          item.style.fontWeight = '';
+        }
+      });
+    }
+
+    function toggleLangDropdown() {
+      const menu = document.getElementById('lang-dropdown-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    function closeLangDropdown() {
+      document.getElementById('lang-dropdown-menu').classList.add('hidden');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLangDropdown();
+    });
+
+    document.addEventListener('click', (e) => {
+      const dd = document.getElementById('lang-dropdown');
+      if (dd && !dd.contains(e.target)) {
+        document.getElementById('lang-dropdown-menu').classList.add('hidden');
+      }
+    });
+
+    function switchTheme(theme) {
+      localStorage.setItem('dhardi-theme', theme);
+      document.documentElement.setAttribute('data-theme', theme);
+      document.querySelectorAll('#theme-dark-btn, #theme-light-btn').forEach(btn => {
+        const btnTheme = btn.id.replace('theme-', '').replace('-btn', '');
+        if (btnTheme === theme) {
+          btn.style.background = 'var(--bg-secondary)';
+          btn.style.color = 'var(--text-primary)';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.color = 'var(--text-muted)';
+        }
+      });
+    }
+
+    // Initialize on load
+    (function init() {
+      const savedLang = localStorage.getItem('dhardi-lang') || 'es';
+      const savedTheme = localStorage.getItem('dhardi-theme') || 'dark';
+      switchLanguage(savedLang);
+      switchTheme(savedTheme);
+    })();
+  </script>
 
   <!-- Background slideshow -->
   <script>
@@ -457,16 +1286,20 @@
     let current = 0;
     let interval;
 
-    const vibeLabels = [
-      'Matterhorn · Switzerland ❄️',
-      'Punta Cana · Dominican Republic ☀️',
-      'Swiss Alps ⛰️',
-      'Pico Duarte · Jarabacoa 🏔️',
-      'Zürich · Switzerland 🏙️',
-      'Tropical Sunset · Caribbean 🌅',
-      'Swiss Alps Village 🏡',
-      'Dominican Republic Coast 🌊'
-    ];
+    function getVibeLabels() {
+      const lang = localStorage.getItem('dhardi-lang') || 'es';
+      const t = i18n[lang];
+      return t.vibe || [
+        'Matterhorn · Switzerland ❄️',
+        'Punta Cana · Dominican Republic ☀️',
+        'Swiss Alps ⛰️',
+        'Pico Duarte · Jarabacoa 🏔️',
+        'Zürich · Switzerland 🏙️',
+        'Tropical Sunset · Caribbean 🌅',
+        'Swiss Alps Village 🏡',
+        'Dominican Republic Coast 🌊'
+      ];
+    }
 
     const vibeEl = document.getElementById('vibe-label');
     const vibeIcon = document.getElementById('vibe-icon');
@@ -487,7 +1320,7 @@
       vibeCounter.textContent = `${current + 1}/${totalSlides}`;
       const isSwiss = current === 0 || current === 2 || current === 4 || current === 6;
       vibeIcon.textContent = isSwiss ? '❄️' : '☀️';
-      vibeEl.textContent = vibeLabels[current];
+      vibeEl.textContent = getVibeLabels()[current];
       overlay.style.background = isSwiss
         ? 'linear-gradient(135deg, rgba(5,5,30,0.88) 0%, rgba(5,5,20,0.8) 50%, rgba(15,10,25,0.85) 100%)'
         : 'linear-gradient(135deg, rgba(30,10,5,0.85) 0%, rgba(5,5,5,0.8) 50%, rgba(25,15,5,0.85) 100%)';
@@ -496,26 +1329,39 @@
     function startSlideshow() { clearInterval(interval); interval = setInterval(nextSlide, 6000); }
     function stopSlideshow() { clearInterval(interval); }
 
-    // Init
     slides[0].classList.add('active', 'kenburns');
     startSlideshow();
 
-    // Keyboard arrows
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft') { stopSlideshow(); prevSlide(); startSlideshow(); }
       if (e.key === 'ArrowRight') { stopSlideshow(); nextSlide(); startSlideshow(); }
     });
 
-    // Mouse wheel on hero
-    const hero = document.getElementById('hero');
-    hero.addEventListener('wheel', e => {
-      if (hero.getBoundingClientRect().bottom > window.innerHeight) return;
-      e.preventDefault();
-      stopSlideshow();
-      if (e.deltaY > 0) nextSlide();
-      else prevSlide();
-      startSlideshow();
-    }, { passive: false });
+    // Click-and-drag on desktop
+    let isDragging = false;
+    let dragStartX = 0;
+    const bgSlideshow = document.querySelector('.bg-slideshow');
+    bgSlideshow.addEventListener('mousedown', e => {
+      isDragging = true;
+      dragStartX = e.screenX;
+      bgSlideshow.style.cursor = 'grabbing';
+    });
+    document.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const diff = dragStartX - e.screenX;
+      if (Math.abs(diff) > 80) {
+        stopSlideshow();
+        if (diff > 0) nextSlide();
+        else prevSlide();
+        startSlideshow();
+        isDragging = false;
+        bgSlideshow.style.cursor = 'grab';
+      }
+    });
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      bgSlideshow.style.cursor = 'grab';
+    });
 
     // Touch swipe
     let touchStartX = 0;
@@ -530,32 +1376,147 @@
       }
     }, { passive: true });
 
-    // Pause on hover
     hero.addEventListener('mouseenter', stopSlideshow);
     hero.addEventListener('mouseleave', startSlideshow);
   </script>
 
-  <!-- Dev.to API -->
+  <!-- Modal system -->
   <script>
-    fetch('https://dev.to/api/articles?username=dizzi1222&per_page=3')
-      .then(res => res.json())
-      .then(articles => {
-        const container = document.getElementById('devto-articles');
-        if (!articles || articles.length === 0) {
-          container.innerHTML = '<p class="text-[#555]">No articles yet. Stay tuned!</p>';
-          return;
-        }
-        container.innerHTML = '<div class="grid md:grid-cols-3 gap-6 text-left">' + articles.map(a => `
-          <a href="${a.url}" target="_blank" class="block bg-[#111] border border-[#222] rounded-xl p-5 hover:border-[#00d9ff] transition-all group">
-            <h3 class="font-display font-bold text-[#eaeaea] group-hover:text-[#00d9ff] transition-colors mb-2">${a.title}</h3>
-            <p class="text-xs text-[#555]">${a.readable_publish_date} · ${(a.tag_list || []).slice(0,3).join(', ')}</p>
-          </a>
-        `).join('') + '</div>';
-      })
-      .catch(() => {
-        document.getElementById('devto-articles').innerHTML = '<p class="text-[#555]">Could not load articles. <a href="https://dev.to/dizzi1222" target="_blank" class="text-[#00d9ff]">Visit Dev.to →</a></p>';
-      });
+    const projectModalData = [
+      {
+        title: 'Dashboard React',
+        description: 'Panel de administración completo con gráficos interactivos (Chart.js), calculadora integrada, sistema de contador y TO-DO list con persistencia. Desarrollo con React y react-router-dom para navegación SPA. Una muestra de mi capacidad para construir interfaces funcionales, reactivas y bien organizadas.',
+        url: 'https://dhardi007.github.io/REACT-Diego-Dizzi-Dashboard/',
+        code: 'https://github.com/dizzi1222/REACT-Diego-Dizzi-Dashboard',
+        image: 'assets/modal-tech-Dashboard-REACT.png'
+      },
+      {
+        title: 'Terminal Portfolio',
+        description: 'Portfolio interactivo con estética de terminal Linux. Comandos CLI personalizados (whoami, ls, cat, help, neofetch, sudo), efectos CRT con scanlines, glitch text y navegación inspirada en Vim. Diseñado específicamente para developers que aprecian una buena experiencia de línea de comandos.',
+        url: 'https://dizzi1222.github.io/portfolio-terminal-dhardi/',
+        code: 'https://github.com/dizzi1222/portfolio-terminal-dhardi',
+        image: 'assets/modal-tech-portfolio-terminal.png'
+      },
+      {
+        title: 'Dotfiles',
+        description: 'Configuración completa de mi entorno Arch Linux con Hyprland como compositor Wayland. Incluye Neovim (LazyVim) con plugins personalizados, Kitty como terminal, Zsh con powerlevel10k, Waybar, EWW widgets para system tray personalizado, Rofi como lanzador de apps, y wallpapers curados. Git bare repo para gestionar los dotfiles en mi home sin contaminar el sistema.',
+        url: 'https://github.com/dizzi1222/dotfiles-dizzi',
+        code: 'https://github.com/dizzi1222/dotfiles-dizzi',
+        image: 'assets/modal-tech-dotfiles.png'
+      },
+      {
+        title: 'PCE-Agencia',
+        description: 'App de finanzas y viajes — gestión de presupuestos, planificación de itinerarios y seguimiento de gastos. Construida con JavaScript moderno, diseño responsive y flujo de datos limpio.',
+        url: 'https://github.com/dhardi007/PCE-Agencia',
+        code: 'https://github.com/dhardi007/PCE-Agencia',
+        image: 'assets/modal-tech-pce-agencia-reskyt.png'
+      },
+      {
+        title: 'PTD‑Talento',
+        description: 'Plataforma full-stack del bootcamp Cincinnatus: autenticación JWT, perfiles de usuario, catálogo de cursos con búsqueda y filtros, watchlist personalizada, notificaciones en tiempo real, panel de administración con auditoría. Stack MERN con Docker, WebSockets y diseño responsive.',
+        url: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front',
+        code: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back',
+        isPrivate: true,
+        image: 'assets/modal-tech-ptd-talento.png'
+      },
+      {
+        title: 'Nvim Config',
+        description: 'Configuración universal de Neovim con LazyVim como base. LSP completo para TypeScript, JavaScript, Lua y CSS. Snippets personalizados, Telescope para búsqueda, y atajos tipo IDE. Sincronización multiplataforma entre Linux (Hyprland), WSL y Windows. Setup gestionado con dotfiles, sync scripts y PowerToys.',
+        url: 'https://github.com/dizzi1222/nvim',
+        code: 'https://github.com/dizzi1222/nvim',
+        image: 'assets/modal-tech-nvim.png'
+      }
+    ];
+
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImage = document.getElementById('modal-image');
+    const modalDesc = document.getElementById('modal-description');
+    const modalFooter = document.getElementById('modal-footer');
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function openCVModal() {
+      const lang = localStorage.getItem('dhardi-lang') || 'es';
+    const t = i18n[lang];
+    modalTitle.textContent = t.modal.cvTitle;
+    modalImage.innerHTML = `<div style="width:100%;padding:3rem 0;text-align:center;color:var(--text-subtle);font-size:0.875rem;">📄 ${t.modal.cvPlaceholder}</div>`;
+    modalDesc.textContent = t.modal.cvDesc;
+    modalFooter.innerHTML = `<a href="assets/cv.pdf" target="_blank" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all">${t.modal.downloadCv}</a>`;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    }
+
+    function openProjectModal(index) {
+      const p = projectModalData[index];
+      const lang = localStorage.getItem('dhardi-lang') || 'es';
+      const t = i18n[lang];
+      modalTitle.textContent = p.title;
+
+      if (p.image) {
+        modalImage.innerHTML = `<div style="width:100%;border-radius:0.75rem;overflow:hidden;background:var(--bg-card)"><img src="${p.image}" alt="${p.title}" style="width:100%;display:block" /></div>`;
+        modalDesc.textContent = p.description;
+        modalFooter.innerHTML = p.isPrivate ? `
+          <a href="${p.code}" target="_blank" class="px-5 py-2 border border-custom text-muted text-sm font-semibold rounded-lg hover:border-[#00d9ff] hover:text-[#00d9ff] transition-all">${t.modal.viewCode} · Backend</a>
+          <a href="${p.url}" target="_blank" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all">${t.modal.viewCode} · Frontend</a>
+          <span class="px-3 py-1 text-[10px] bg-red-500/10 text-red-400 rounded font-mono border border-red-500/20">🔒 ${t.modal.private || 'Privado'}</span>
+        ` : `
+          <a href="${p.code}" target="_blank" class="px-5 py-2 border border-custom text-muted text-sm font-semibold rounded-lg hover:border-[#00d9ff] hover:text-[#00d9ff] transition-all">${t.modal.viewCode}</a>
+          <a href="${p.url}" target="_blank" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all">${t.modal.livePreview}</a>
+        `;
+      } else if (p.isPrivate) {
+        modalImage.innerHTML = `<div style="width:100%;padding:4rem 0;text-align:center;background:linear-gradient(135deg, var(--bg-card), var(--modal-bg));border-radius:0.75rem;color:var(--text-subtle);font-size:0.875rem;">🔒 ${t.modal.screenshotPrefix} ${p.title}</div>`;
+        modalDesc.textContent = p.description;
+        modalFooter.innerHTML = `
+          <a href="${p.code}" target="_blank" class="px-5 py-2 border border-custom text-muted text-sm font-semibold rounded-lg hover:border-[#00d9ff] hover:text-[#00d9ff] transition-all">${t.modal.viewCode} · Backend</a>
+          <a href="${p.url}" target="_blank" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all">${t.modal.viewCode} · Frontend</a>
+          <span class="px-3 py-1 text-[10px] bg-red-500/10 text-red-400 rounded font-mono border border-red-500/20">🔒 ${t.modal.private || 'Privado'}</span>
+        `;
+      } else {
+        modalImage.innerHTML = `<div style="width:100%;padding:4rem 0;text-align:center;background:linear-gradient(135deg, var(--bg-card), var(--modal-bg));border-radius:0.75rem;color:var(--text-subtle);font-size:0.875rem;">🖼️ ${t.modal.screenshotPrefix} ${p.title}</div>`;
+        modalDesc.textContent = p.description;
+        modalFooter.innerHTML = `
+          <a href="${p.code}" target="_blank" class="px-5 py-2 border border-custom text-muted text-sm font-semibold rounded-lg hover:border-[#00d9ff] hover:text-[#00d9ff] transition-all">${t.modal.viewCode}</a>
+          <a href="${p.url}" target="_blank" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all">${t.modal.livePreview}</a>
+        `;
+      }
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openNeovimModal() {
+      const lang = localStorage.getItem('dhardi-lang') || 'es';
+      const t = i18n[lang];
+      modalTitle.textContent = '💤 Neovim · LazyVim · Dotfiles';
+      modalImage.innerHTML = `
+        <div style="width:100%;border-radius:0.75rem;overflow:hidden;background:var(--bg-card)">
+          <img src="https://github.com/user-attachments/assets/8adb6f60-bb35-4704-b4ab-12bd587f3992" alt="Nvim Desktop" style="width:100%;display:block" />
+        </div>
+        <div class="grid grid-cols-2 gap-2 mt-2" style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.5rem">
+          <div style="border-radius:0.5rem;overflow:hidden;background:var(--bg-card)">
+            <img src="https://github.com/user-attachments/assets/b9d75c3d-29af-4d33-8333-84e9e9a61659" alt="EWW Waybar" style="width:100%;display:block" />
+          </div>
+          <div style="border-radius:0.5rem;overflow:hidden;background:var(--bg-card)">
+            <img src="https://github.com/user-attachments/assets/536344b3-bfae-4b2d-9321-94961d4e4e33" alt="Fastfetch" style="width:100%;display:block" />
+          </div>
+        </div>
+      `;
+      modalDesc.textContent = 'Neovim (LazyVim) como editor principal con LSP para TypeScript, JavaScript, Lua y CSS. Arch Linux con Hyprland, EWW widgets, Waybar personalizado, Rofi, Wofi, y más de 50 scripts propios. Todo gestionado con dotfiles via GNU Stow y Git bare repo.';
+      modalFooter.innerHTML = `
+        <a href="https://github.com/dizzi1222/dotfiles-dizzi" target="_blank" class="px-5 py-2 border border-custom text-muted text-sm font-semibold rounded-lg hover:border-[#00d9ff] hover:text-[#00d9ff] transition-all">${t.modal.viewCode} · Dotfiles</a>
+        <a href="https://github.com/dizzi1222/nvim" target="_blank" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all">${t.modal.viewCode} · Nvim</a>
+      `;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
+
+
 
   <!-- Scroll reveal -->
   <script>
@@ -568,6 +1529,70 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.section-in').forEach(el => revealObserver.observe(el));
+  </script>
+
+  <!-- Scroll spy for nav -->
+  <script>
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const spySections = document.querySelectorAll('section[id]');
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.remove('text-primary');
+            link.classList.add('text-muted');
+            if (link.getAttribute('href') === '#' + id) {
+              link.classList.remove('text-muted');
+              link.classList.add('text-primary');
+            }
+      });
+      closeLangDropdown();
+    }
+      });
+    }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
+
+    spySections.forEach(s => spyObserver.observe(s));
+  </script>
+
+  <!-- Tech Stack click interaction -->
+  <script>
+    function getTechInfo() {
+      const lang = localStorage.getItem('dhardi-lang') || 'es';
+      const t = i18n[lang];
+      return t.tech || {};
+    }
+
+    const techPopup = document.getElementById('tech-popup');
+    const techDesc = document.getElementById('tech-desc');
+
+    document.querySelectorAll('#tech-grid > div').forEach(el => {
+      const label = el.querySelector('span:last-child')?.textContent.trim();
+      const isNeovim = label === 'Neovim';
+      el.addEventListener('click', () => {
+        const techInfo = getTechInfo();
+        if (isNeovim) {
+          openNeovimModal();
+          techPopup.classList.remove('show');
+          return;
+        }
+        if (!techInfo[label]) return;
+
+        // Update description text below grid
+        techDesc.textContent = `${label} — ${techInfo[label]}`;
+
+        const rect = el.getBoundingClientRect();
+        techPopup.innerHTML = `<span class="tp-label">${label}</span> — ${techInfo[label]}`;
+        const left = Math.min(rect.left + rect.width / 2 - 20, window.innerWidth - 320);
+        const top = rect.bottom + 8;
+        techPopup.style.left = Math.max(10, left) + 'px';
+        techPopup.style.top = top + 'px';
+        techPopup.classList.add('show');
+
+        clearTimeout(techPopup._hide);
+        techPopup._hide = setTimeout(() => techPopup.classList.remove('show'), 2500);
+      });
+    });
   </script>
 </body>
 </html>
