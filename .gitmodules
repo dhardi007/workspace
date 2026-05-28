@@ -41,3 +41,6 @@
 [submodule "PCE-Agencia"]
 	path = PCE-Agencia
 	url = https://github.com/dhardi007/PCE-Agencia
+[submodule "portafolio-eric-godtier"]
+	path = portafolio-eric-godtier
+	url = https://github.com/EricDominici/portafolio-eric-godtier.git
