@@ -25,6 +25,7 @@ git submodule update --init --recursive GLAZE-WM-make-windows-pretty-main-dizzi
 git submodule update --init --recursive kimu-underground
 git submodule update --init --recursive portfolio-terminal-dhardi
 git submodule update --init --recursive PCE-Agencia
+git submodule update --init --recursive portafolio-eric-godtier
 
 echo ""
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
@@ -59,6 +60,10 @@ cd ../FCTicService.github.6c-Diego-05/ && git checkout main
 cd ../REACT-Diego-Dizzi-Dashboard/ && git checkout main
 cd ../Proyecto-App-MCSD/ && git checkout main
 cd ../PCE-Agencia/ && git checkout main
+cd ../proyeccion-astral/ && git checkout main
+cd ../ptd-talento-back/ && git checkout dev
+cd ../ptd-talento-front/ && git checkout dev
+cd ../portafolio-eric-godtier/ && git checkout main
 
 echo ""
 echo "${VERDE}✅ Workspace listo!${RESET}"

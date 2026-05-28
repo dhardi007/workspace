@@ -4,20 +4,24 @@ Workspace con todos los proyectos clonados como submódulos.
 
 ## 📦 Proyectos
 
-| # | Proyecto | Descripción |
-|---|----------|-------------|
-| 1 | `dizzi1222` | Perfil de GitHub |
-| 2 | `Librezam` | — |
-| 3 | `retro-portfolio` | Portfolio retro |
-| 4 | `kimu-underground` | — |
-| 5 | `portfolio-terminal-dhardi` | Portfolio estilo terminal |
-| 6 | `GLAZE-WM-make-windows-pretty-main-dizzi` | Windows customización |
-| 7 | `FCTicService.github.6c-Diego-05` | — |
-| 8 | `REACT-Diego-Dizzi-Dashboard` | Dashboard en React |
-| 9 | `Proyecto-App-MCSD` | App MCSD v2.0 |
-| 10 | `dhardi.dev` | Landing page comercial |
-| 11 | `PCE-Agencia` | App de finanzas y viajes |
-| 12 | `Just-coding` | Proyectos de práctica y algoritmos |
+| #   | Proyecto                                  | Descripción                                          |
+| --- | ----------------------------------------- | ---------------------------------------------------- |
+| 1   | `dizzi1222`                               | — Perfil de GitHub                                   |
+| 2   | `Librezam`                                | — Rework de UI/UX de extension de Firefox de Shazam  |
+| 3   | `retro-portfolio`                         | — Portfolio retro                                    |
+| 4   | `kimu-underground`                        | — Portfolio retro de kimu v2 (inspiracion)           |
+| 5   | `portfolio-terminal-dhardi`               | — Portfolio estilo terminal                          |
+| 6   | `GLAZE-WM-make-windows-pretty-main-dizzi` | — Windows customización                              |
+| 7   | `FCTicService.github.6c-Diego-05`         | — Pagina trucha para Papaleria de Jarabacoa          |
+| 8   | `REACT-Diego-Dizzi-Dashboard`             | — Dashboard en React                                 |
+| 9   | `Proyecto-App-MCSD`                       | — App MCSD v2.0                                      |
+| 10  | `dhardi.dev`                              | — Portfolio Landing page comercial                   |
+| 11  | `PCE-Agencia`                             | — App de finanzas y viajes                           |
+| 12  | `Just-coding`                             | — Proyectos de práctica y algoritmos                 |
+| 13  | `proyeccion-astral`                       | — Carta Apologys, para mi querida amiga-crush Marian |
+| 14  | `ptd-talento-back`                        | — El detras de camara de PTD-Talento                 |
+| 15  | `ptd-talento-front`                       | — La cara de Martketplace de Talento                 |
+| 16  | `portafolio-eric-godtier`                 | — Portfolio de un buen amigo, fuente de inspiracion  |
 
 ## 🔧 Restaurar todos los proyectos
 
@@ -36,6 +40,7 @@ chmod +x setup.sh
 ## ▶️ Iniciar proyectos localmente
 
 ### Portfolio Terminal (HTML estático)
+
 ```bash
 cd portfolio-terminal-dhardi
 python3 -m http.server 8080
@@ -43,6 +48,7 @@ python3 -m http.server 8080
 ```
 
 ### Retro Portfolio (HTML estático)
+
 ```bash
 cd retro-portfolio
 python3 -m http.server 8081
@@ -50,6 +56,7 @@ python3 -m http.server 8081
 ```
 
 ### REACT-Diego-Dizzi-Dashboard (React)
+
 ```bash
 cd REACT-Diego-Dizzi-Dashboard
 npm install
@@ -58,6 +65,7 @@ npm run dev
 ```
 
 ### Proyecto-App-MCSD (Vite + Tailwind)
+
 ```bash
 cd Proyecto-App-MCSD
 npm install
@@ -66,6 +74,7 @@ npm run dev
 ```
 
 ### dhardi.dev (Landing page comercial)
+
 ```bash
 cd dhardi.dev
 python3 -m http.server 8082

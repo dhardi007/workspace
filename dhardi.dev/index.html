@@ -157,6 +157,13 @@
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     @keyframes kenburns { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+    @keyframes mobileNavIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes mobileNavBackdrop { from { opacity: 0; } to { opacity: 1; } }
+    #mobile-nav-menu.open { display: block; animation: mobileNavIn 0.2s ease forwards; }
+    #mobile-nav-backdrop.open { display: block; animation: mobileNavBackdrop 0.2s ease forwards; }
+    #mobile-nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    #mobile-nav-toggle.open span:nth-child(2) { opacity: 0; }
+    #mobile-nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     @keyframes pulse-soft { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
     @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
@@ -278,6 +285,12 @@
             <button onclick="switchLanguage('de')" class="lang-dropdown-item block w-full text-left px-3 py-1.5 text-xs hover:bg-badge transition-colors cursor-pointer" style="color:var(--text-muted)">DE</button>
           </div>
         </div>
+        <!-- Mobile Nav Toggle -->
+        <button id="mobile-nav-toggle" onclick="toggleMobileNav()" class="md:hidden flex flex-col items-center justify-center w-9 h-9 rounded-lg bg-badge hover:bg-secondary transition-all cursor-pointer" aria-label="Toggle navigation">
+          <span class="mobile-hamburger-line" style="width:16px;height:2px;background:var(--text-primary);border-radius:1px;transition:all 0.25s ease;transform-origin:center"></span>
+          <span class="mobile-hamburger-line" style="width:16px;height:2px;background:var(--text-primary);border-radius:1px;transition:all 0.25s ease;margin:4px 0"></span>
+          <span class="mobile-hamburger-line" style="width:16px;height:2px;background:var(--text-primary);border-radius:1px;transition:all 0.25s ease;transform-origin:center"></span>
+        </button>
         <span class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-medium">
           <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
           <span data-i18n="nav.available">Disponible</span>
@@ -285,6 +298,19 @@
         <button onclick="openCVModal()" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all hover-glow cursor-pointer"><span data-i18n="nav.resume">Resume</span></button>
       </div>
     </div>
+    <!-- Mobile Nav Menu -->
+    <div id="mobile-nav-menu" class="md:hidden fixed left-0 right-0 nav-blur nav-bg border-b hidden" style="top:64px;border-color:var(--nav-border);z-index:49">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-1">
+        <a href="#experience" onclick="closeMobileNav()" class="mobile-nav-link px-4 py-3 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.experience">Experience</a>
+        <a href="#projects" onclick="closeMobileNav()" class="mobile-nav-link px-4 py-3 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.projects">Projects</a>
+        <a href="#servicios" onclick="closeMobileNav()" class="mobile-nav-link px-4 py-3 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.servicios">Services</a>
+        <a href="#setup" onclick="closeMobileNav()" class="mobile-nav-link px-4 py-3 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.setup">Setup</a>
+        <a href="#about" onclick="closeMobileNav()" class="mobile-nav-link px-4 py-3 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.about">About</a>
+        <a href="#contact" onclick="closeMobileNav()" class="mobile-nav-link px-4 py-3 text-sm text-muted hover:text-primary hover-subtle rounded-lg transition-all" data-i18n="nav.contact">Contact</a>
+      </div>
+    </div>
+    <!-- Mobile Nav Backdrop -->
+    <div id="mobile-nav-backdrop" class="md:hidden fixed inset-0 hidden" style="z-index:48;background:rgba(0,0,0,0.5)" onclick="closeMobileNav()"></div>
   </nav>
 
   <!-- ===== HERO ===== -->
@@ -683,8 +709,8 @@
               <span class="px-2 py-0.5 text-[10px] bg-yellow-500/10 text-yellow-400 rounded font-mono">★ 5</span>
             </div>
           </div>
-          <h3 class="font-display text-lg font-bold mb-2 text-[#00d9ff]" data-i18n="projects.nvim.title">Nvim Config</h3>
-          <p class="text-muted text-sm mb-4 leading-relaxed" data-i18n="projects.nvim.desc">Configuración universal de Neovim con LazyVim, LSP para TS/JS/Lua, snippets y sincronización multiplataforma.</p>
+          <h3 class="font-display text-lg font-bold mb-2 text-[#00d9ff]" data-i18n="projects.nvim.title">Nvim · WSL + Linux</h3>
+          <p class="text-muted text-sm mb-4 leading-relaxed" data-i18n="projects.nvim.desc">Neovim LazyVim para WSL/Windows y Linux Hyprland. LSP completo, sincronización multiplataforma.</p>
           <div class="flex flex-wrap gap-1.5 mb-4">
             <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">Lua</span>
             <span class="px-2 py-0.5 text-[11px] bg-badge text-[#e94560] rounded font-mono">LazyVim</span>
@@ -986,7 +1012,7 @@
            mcsd: { title: 'PCE-Agencia', desc: 'App de finanzas y viajes — gestión de presupuestos, planificación de itinerarios y seguimiento de gastos. Construida con JavaScript moderno.' },
           code: 'Código', preview: 'Vista previa',
           ptd: { title: 'PTD‑Talento', desc: 'Marketplace de talento del bootcamp Cincinnatus: auth, perfiles, catálogo, watchlist, notificaciones y panel admin.' },
-          nvim: { title: 'Nvim Config', desc: 'Configuración universal de Neovim con LazyVim, LSP para TS/JS/Lua, snippets y sincronización multiplataforma.' }
+          nvim: { title: 'Nvim · WSL + Linux', desc: 'Neovim LazyVim para WSL/Windows y Linux Hyprland. LSP completo, sincronización multiplataforma.' }
         },
         servicios: {
           heading: 'Servicios', subtitle: 'Lo que puedo hacer por ti',
@@ -1061,7 +1087,7 @@
            mcsd: { title: 'PCE-Agencia', desc: 'Finance and travel app — budget management, itinerary planning and expense tracking. Built with modern JavaScript.' },
           code: 'Code', preview: 'Preview',
           ptd: { title: 'PTD‑Talento', desc: 'Talent marketplace from Cincinnatus bootcamp: auth, profiles, course catalog, watchlist, notifications and admin panel.' },
-          nvim: { title: 'Nvim Config', desc: 'Universal Neovim configuration with LazyVim, LSP for TS/JS/Lua, snippets and cross-platform sync.' }
+          nvim: { title: 'Nvim · WSL + Linux', desc: 'Neovim LazyVim for WSL/Windows and Linux Hyprland. Full LSP, cross-platform sync.' }
         },
         servicios: {
           heading: 'Services', subtitle: 'What I can do for you',
@@ -1136,7 +1162,7 @@
            mcsd: { title: 'PCE-Agencia', desc: 'Finanz- und Reise-App — Budgetverwaltung, Reiseplanung und Ausgabenverfolgung. Entwickelt mit modernem JavaScript.' },
           code: 'Code', preview: 'Vorschau',
           ptd: { title: 'PTD‑Talento', desc: 'Talentmarktplatz aus dem Cincinnatus-Bootcamp: Auth, Profile, Kurskatalog, Watchlist, Benachrichtigungen und Admin-Panel.' },
-          nvim: { title: 'Nvim Config', desc: 'Universelle Neovim-Konfiguration mit LazyVim, LSP für TS/JS/Lua, Snippets und plattformübergreifender Synchronisation.' }
+          nvim: { title: 'Nvim · WSL + Linux', desc: 'Neovim LazyVim für WSL/Windows und Linux Hyprland. Vollständiger LSP, plattformübergreifende Synchronisation.' }
         },
         servicios: {
           heading: 'Services', subtitle: 'Was ich für dich tun kann',
@@ -1417,11 +1443,15 @@
         image: 'assets/modal-tech-ptd-talento.png'
       },
       {
-        title: 'Nvim Config',
+        title: 'Nvim · WSL + Linux',
         description: 'Configuración universal de Neovim con LazyVim como base. LSP completo para TypeScript, JavaScript, Lua y CSS. Snippets personalizados, Telescope para búsqueda, y atajos tipo IDE. Sincronización multiplataforma entre Linux (Hyprland), WSL y Windows. Setup gestionado con dotfiles, sync scripts y PowerToys.',
-        url: 'https://github.com/dizzi1222/nvim',
-        code: 'https://github.com/dizzi1222/nvim',
-        image: 'assets/modal-tech-nvim.png'
+        linuxCode: 'https://github.com/dizzi1222/nvim',
+        wslCode: 'https://github.com/dizzi1222/nvim-wsl',
+        image: 'assets/modal-tech-nvim.png',
+        nvimScreenshots: [
+          'https://github.com/user-attachments/assets/9144215e-6156-43c3-beba-4cca7f431337',
+          'https://github.com/user-attachments/assets/8adb6f60-bb35-4704-b4ab-12bd587f3992'
+        ]
       }
     ];
 
@@ -1457,7 +1487,16 @@
       const t = i18n[lang];
       modalTitle.textContent = p.title;
 
-      if (p.image) {
+      if (p.nvimScreenshots) {
+        modalImage.innerHTML = `<div style="width:100%;border-radius:0.75rem;overflow:hidden;background:var(--bg-card)">${p.nvimScreenshots.map(url =>
+          `<img src="${url}" alt="Nvim screenshot" style="width:100%;display:block;border-bottom:2px solid var(--border-light)" />`
+        ).join('')}</div>`;
+        modalDesc.textContent = p.description;
+        modalFooter.innerHTML = `
+          <a href="${p.linuxCode}" target="_blank" class="inline-flex items-center gap-1.5 px-5 py-2 border border-custom text-muted text-sm font-semibold rounded-lg hover:border-[#00d9ff] hover:text-[#00d9ff] transition-all">${ghIcon} Linux Config</a>
+          <a href="${p.wslCode}" target="_blank" class="px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-lg hover:bg-[#d91a3a] transition-all">${ghIcon} WSL/Windows</a>
+        `;
+      } else if (p.image) {
         modalImage.innerHTML = `<div style="width:100%;border-radius:0.75rem;overflow:hidden;background:var(--bg-card)"><img src="${p.image}" alt="${p.title}" style="width:100%;display:block" /></div>`;
         modalDesc.textContent = p.description;
         modalFooter.innerHTML = p.isPrivate
@@ -1478,6 +1517,19 @@
 
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
+    function toggleMobileNav() {
+      document.getElementById('mobile-nav-menu').classList.toggle('open');
+      document.getElementById('mobile-nav-backdrop').classList.toggle('open');
+      document.getElementById('mobile-nav-toggle').classList.toggle('open');
+    }
+    function closeMobileNav() {
+      document.getElementById('mobile-nav-menu').classList.remove('open');
+      document.getElementById('mobile-nav-backdrop').classList.remove('open');
+      document.getElementById('mobile-nav-toggle').classList.remove('open');
+    }
+    document.addEventListener('scroll', closeMobileNav, { passive: true });
+    window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMobileNav(); });
   </script>
 
 
