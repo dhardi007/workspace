@@ -39,8 +39,27 @@ workspace/
 └── plan-de-estudio-Dhardi-dizzi1222.md
 ```
 
+## Ecosistema de Aprendizaje (Multi-plataforma)
+
+| Plataforma | Rol | Estado / Foco |
+|------------|-----|---------------|
+| **JSCamp** | Principal | Bootcamp fullstack industrial (Docker, gcloud, CI/CD, backend/frontend) |
+| **Mimo** | Refuerzo diario | Duolingo-style: JS, Python, MERN, certificados |
+| **Exercism** | Katas progresivas | Roadmap: PHP → Python → JS/TS → C/C++/C# → Rust |
+| **TryHackMe** | Hobby cybersec | Reconocimiento (dirb, etc.), vuln scanning básico |
+
+## Roadmap Exercism (orden de prioridad)
+1. **PHP** — 111 ejercicios, 11 conceptos
+2. **Python** — 146 ejercicios, 17 conceptos
+3. **JavaScript** — 159 ejercicios, 37 conceptos
+4. **TypeScript** — 106 ejercicios
+5. **Java** — 158 ejercicios, 26 conceptos
+6. **C / C++ / C#** — bases de sistemas
+7. **Rust** — 99 ejercicios (objetivo final)
+
 ## Notas
 
-- El bootcamp es 100% gratuito en [jscamp.dev](https://jscamp.dev)
+- El bootcamp JSCamp es 100% gratuito en [jscamp.dev](https://jscamp.dev)
 - No hay dependencias externas de backend que requieran el repo original de midu
 - Las ramas en el fork permiten mostrar mi progreso y recibir feedback
+- Fork activo: `dizzi1222/jscamp` como submodule en workspace
