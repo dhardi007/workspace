@@ -44,3 +44,10 @@
 [submodule "portafolio-eric-godtier"]
 	path = portafolio-eric-godtier
 	url = https://github.com/EricDominici/portafolio-eric-godtier.git
+[submodule "jscamp"]
+	path = jscamp
+	url = https://github.com/midudev/jscamp.git
+	branch = main
+[submodule "jscamp"]
+	path = jscamp
+	url = https://github.com/midudev/jscamp.git

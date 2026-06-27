@@ -26,6 +26,7 @@ git submodule update --init --recursive kimu-underground
 git submodule update --init --recursive portfolio-terminal-dhardi
 git submodule update --init --recursive PCE-Agencia
 git submodule update --init --recursive portafolio-eric-godtier
+git submodule update --init --recursive jscamp
 
 echo ""
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
@@ -64,6 +65,7 @@ cd ../proyeccion-astral/ && git checkout main
 cd ../ptd-talento-back/ && git checkout dev
 cd ../ptd-talento-front/ && git checkout dev
 cd ../portafolio-eric-godtier/ && git checkout main
+cd ../jscamp/ && git checkout main
 
 echo ""
 echo "${VERDE}✅ Workspace listo!${RESET}"
