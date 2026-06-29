@@ -22,6 +22,7 @@ Workspace con todos los proyectos clonados como submódulos.
 | 14  | `ptd-talento-back`                        | — El detras de camara de PTD-Talento                 |
 | 15  | `ptd-talento-front`                       | — La cara de Martketplace de Talento                 |
 | 16  | `portafolio-eric-godtier`                 | — Portfolio de un buen amigo, fuente de inspiracion  |
+| 17  | `jscamp`                                  | — Bootcamp Fullstack midudev (JS, React, Node, Docker, CI/CD) |
 
 ## 🔧 Restaurar todos los proyectos
 
@@ -79,4 +80,14 @@ npm run dev
 cd dhardi.dev
 python3 -m http.server 8082
 # → http://localhost:8082
+```
+
+### JSCamp (Bootcamp midudev - HTML/CSS/JS vanilla)
+
+```bash
+cd jscamp/01-javascript
+# Abre empleos.html directo en navegador
+# O sirve con python:
+python3 -m http.server 8083
+# → http://localhost:8083/empleos.html
 ```
