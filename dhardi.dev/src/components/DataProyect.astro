@@ -1,0 +1,18 @@
+---
+import IconCalendar from "./icons/IconCalendar.astro";
+import IconTag from "./icons/IconTag.astro";
+import IconUsers from "./icons/IconUsers.astro";
+
+interface Props {
+  year: number;
+  category: string;
+  teamSize: string;
+}
+const { year, category, teamSize } = Astro.props;
+---
+
+<div class="flex flex-wrap items-center gap-4 text-xs" style="color: var(--text-muted);">
+  <span class="flex items-center gap-1"><IconCalendar size={14} /> {year}</span>
+  <span class="flex items-center gap-1"><IconTag size={14} /> {category}</span>
+  <span class="flex items-center gap-1"><IconUsers size={14} /> {teamSize}</span>
+</div>
