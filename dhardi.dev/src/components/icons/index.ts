@@ -37,6 +37,11 @@ import IconCanvas from './IconCanvas.astro';
 import IconRailway from './IconRailway.astro';
 import IconVoltBuilder from './IconVoltBuilder.astro';
 import IconMaterialUI from './IconMaterialUI.astro';
+import IconVite from './IconVite.astro';
+import IconLua from './IconLua.astro';
+import IconShell from './IconShell.astro';
+import IconLazyVim from './IconLazyVim.astro';
+import IconReactRouter from './IconReactRouter.astro';
 
 export const iconMap: Record<string, AstroComponentFactory> = {
   IconReact,
@@ -77,4 +82,9 @@ export const iconMap: Record<string, AstroComponentFactory> = {
   IconRailway,
   IconVoltBuilder,
   IconMaterialUI,
+  IconVite,
+  IconLua,
+  IconShell,
+  IconLazyVim,
+  IconReactRouter,
 };
