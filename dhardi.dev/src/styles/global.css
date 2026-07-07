@@ -156,6 +156,20 @@ html { scroll-behavior: smooth; }
 .exp-card { transition: all 0.3s ease; }
 .exp-card:hover { transform: translateX(8px); }
 
+/* Progressive timeline - animated line */
+.timeline-progressive {
+  position: absolute; top: 20px; left: 6px;
+  width: 2px;
+  background: linear-gradient(to bottom, #e94560, #00d9ff);
+  height: 0;
+  transition: height 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+.section-in.visible .timeline-progressive {
+  height: calc(100% + 24px);
+}
+.timeline-item { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+.timeline-item:hover { transform: translateX(8px); }
+
 /* Project card */
 .project-card { transition: all 0.3s ease; border: 1px solid transparent; }
 .project-card:hover { border-color: #e94560; transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
