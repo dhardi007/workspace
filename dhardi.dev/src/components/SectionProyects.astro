@@ -8,8 +8,8 @@ const rest = projects.filter(p => !p.featured);
 ---
 
 <section id="projects" class="mx-auto max-w-5xl px-4 py-20">
-  <h2 class="mb-2 text-sm font-semibold tracking-widest uppercase" style="color: var(--color-brand);">// Proyectos</h2>
-  <p class="mb-10 text-sm" style="color: var(--text-muted);">
+  <h2 class="mb-2 text-sm font-semibold tracking-widest uppercase" style="color: var(--color-brand);" data-i18n="proyectos.heading">// Proyectos</h2>
+  <p class="mb-10 text-sm" style="color: var(--text-muted);" data-i18n="proyectos.subtitle">
     Proyectos destacados y experimentos.
   </p>
 
@@ -21,7 +21,7 @@ const rest = projects.filter(p => !p.featured);
 
   {rest.length > 0 && (
     <>
-      <h3 class="mt-12 mb-6 text-sm font-semibold" style="color: var(--text-muted);">Más proyectos</h3>
+      <h3 class="mt-12 mb-6 text-sm font-semibold" style="color: var(--text-muted);" data-i18n="proyectos.more">Más proyectos</h3>
       <BlurFadeW delay={0.2} client:load>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map(p => <Proyect project={p} />)}
