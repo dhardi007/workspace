@@ -48,3 +48,6 @@
 	path = jscamp
 	url = https://github.com/dizzi1222/jscamp.git
 	branch = main
+[submodule "proyeccion-astral"]
+	path = proyeccion-astral
+	url = https://github.com/dizzi1222/proyeccion-astral-disculpa.git
