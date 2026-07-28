@@ -1,6 +1,6 @@
 # 🚀 Workspace — dizzi1222
 
-Workspace con todos los proyectos clonados como submódulos.
+Workspace con proyectos como submódulos y repos independientes.
 
 ## 📦 Proyectos
 
@@ -19,8 +19,8 @@ Workspace con todos los proyectos clonados como submódulos.
 | 11  | `PCE-Agencia`                             | — App de finanzas y viajes                           |
 | 12  | `Just-coding`                             | — Proyectos de práctica y algoritmos                 |
 | 13  | `proyeccion-astral`                       | — Carta Apologys, para mi querida amiga-crush Marian |
-| 14  | `ptd-talento-back`                        | — El detras de camara de PTD-Talento                 |
-| 15  | `ptd-talento-front`                       | — La cara de Martketplace de Talento                 |
+| 14  | `ptd-talento-back` ⭐                       | — El detras de camara de PTD-Talento (repo independiente) |
+| 15  | `ptd-talento-front` ⭐                      | — La cara de Martketplace de Talento (repo independiente) |
 | 16  | `portafolio-eric-godtier`                 | — Portfolio de un buen amigo, fuente de inspiracion  |
 | 17  | `jscamp`                                  | — Bootcamp Fullstack midudev (JS, React, Node, Docker, CI/CD) |
 
@@ -28,15 +28,17 @@ Workspace con todos los proyectos clonados como submódulos.
 
 ```bash
 # 1. Clonar el workspace con submódulos
-git clone --recurse-submodules https://github.com/dizzi1222/<repo>
+git clone --recurse-submodules https://github.com/dizzi1222/workspace
 
 # O si ya lo clonaste sin submódulos:
 git submodule update --init --recursive
 
-# 2. Ejecutar setup (clona, limpia y deja en main)
+# 2. Ejecutar setup (clona, limpia y deja en main/ dev)
 chmod +x setup.sh
 ./setup.sh
 ```
+
+> ⭐ Los proyectos `ptd-talento-back` y `ptd-talento-front` son **repos independientes** (no submódulos). Usan `origin` → CIC y `dizzi1222` → fork personal.
 
 ## ▶️ Iniciar proyectos localmente
 
@@ -80,6 +82,24 @@ npm run dev
 cd dhardi.dev
 python3 -m http.server 8082
 # → http://localhost:8082
+```
+
+### PTD-Talento Back (NestJS + PostgreSQL)
+
+```bash
+cd ptd-talento-back
+npm install
+npm run start:dev
+# → http://localhost:3000/api
+```
+
+### PTD-Talento Front (React + Vite)
+
+```bash
+cd ptd-talento-front
+npm install
+npm run dev
+# → http://localhost:5173
 ```
 
 ### JSCamp (Bootcamp midudev - HTML/CSS/JS vanilla)

@@ -62,10 +62,49 @@ cd ../REACT-Diego-Dizzi-Dashboard/ && git checkout main
 cd ../Proyecto-App-MCSD/ && git checkout main
 cd ../PCE-Agencia/ && git checkout main
 cd ../proyeccion-astral/ && git checkout main
-cd ../ptd-talento-back/ && git checkout dev
-cd ../ptd-talento-front/ && git checkout dev
 cd ../portafolio-eric-godtier/ && git checkout main
 cd ../jscamp/ && git checkout main
+
+echo ""
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo "${AZUL}Paso 5: Configurando repos independientes (ptd-talento)...${RESET}"
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo ""
+
+# Volver a la raiz del workspace
+cd "$(dirname "$0")"
+
+# ptd-talento-back
+if [ -d "ptd-talento-back/.git" ]; then
+  cd ptd-talento-back
+  git checkout dev
+  git remote set-url origin https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back.git
+  git remote set-url dizzi1222 https://github.com/dizzi1222/ptd-talento-back.git 2>/dev/null || \
+    git remote add dizzi1222 https://github.com/dizzi1222/ptd-talento-back.git
+  cd "$OLDPWD"
+else
+  echo "${ROJO}⚠ ptd-talento-back no existe, clonando...${RESET}"
+  git clone https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back.git
+  cd ptd-talento-back && git checkout dev
+  git remote add dizzi1222 https://github.com/dizzi1222/ptd-talento-back.git
+  cd ..
+fi
+
+# ptd-talento-front
+if [ -d "ptd-talento-front/.git" ]; then
+  cd ptd-talento-front
+  git checkout dev
+  git remote set-url origin https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front.git
+  git remote set-url dizzi1222 https://github.com/dizzi1222/ptd-talento-front.git 2>/dev/null || \
+    git remote add dizzi1222 https://github.com/dizzi1222/ptd-talento-front.git
+  cd "$OLDPWD"
+else
+  echo "${ROJO}⚠ ptd-talento-front no existe, clonando...${RESET}"
+  git clone https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front.git
+  cd ptd-talento-front && git checkout dev
+  git remote add dizzi1222 https://github.com/dizzi1222/ptd-talento-front.git
+  cd ..
+fi
 
 echo ""
 echo "${VERDE}✅ Workspace listo!${RESET}"
