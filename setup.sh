@@ -27,6 +27,7 @@ git submodule update --init --recursive portfolio-terminal-dhardi
 git submodule update --init --recursive PCE-Agencia
 git submodule update --init --recursive portafolio-eric-godtier
 git submodule update --init --recursive jscamp
+git submodule update --init --recursive dhardi.dev
 
 echo ""
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
@@ -64,6 +65,7 @@ cd ../PCE-Agencia/ && git checkout main
 cd ../proyeccion-astral/ && git checkout main
 cd ../portafolio-eric-godtier/ && git checkout main
 cd ../jscamp/ && git checkout main
+cd ../dhardi.dev/ && git checkout main
 
 echo ""
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
@@ -79,7 +81,7 @@ if [ -d "ptd-talento-back/.git" ]; then
   cd ptd-talento-back
   git checkout dev
   git remote set-url origin https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back.git
-  git remote set-url dizzi1222 https://github.com/dizzi1222/ptd-talento-back.git 2>/dev/null || \
+  git remote set-url dizzi1222 https://github.com/dizzi1222/ptd-talento-back.git 2>/dev/null ||
     git remote add dizzi1222 https://github.com/dizzi1222/ptd-talento-back.git
   cd "$OLDPWD"
 else
@@ -95,7 +97,7 @@ if [ -d "ptd-talento-front/.git" ]; then
   cd ptd-talento-front
   git checkout dev
   git remote set-url origin https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front.git
-  git remote set-url dizzi1222 https://github.com/dizzi1222/ptd-talento-front.git 2>/dev/null || \
+  git remote set-url dizzi1222 https://github.com/dizzi1222/ptd-talento-front.git 2>/dev/null ||
     git remote add dizzi1222 https://github.com/dizzi1222/ptd-talento-front.git
   cd "$OLDPWD"
 else
