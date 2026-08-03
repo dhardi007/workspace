@@ -51,3 +51,6 @@
 [submodule "proyeccion-astral"]
 	path = proyeccion-astral
 	url = https://github.com/dizzi1222/proyeccion-astral-disculpa.git
+[submodule "dhardi.dev"]
+	path = dhardi.dev
+	url = https://github.com/dizzi1222/dhardi.dev.git

@@ -1,8 +1,0 @@
----
-export interface Props {
-  size?: number;
-  class?: string;
-}
-const { size = 20, class: className = "" } = Astro.props;
----
-<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" class={className}><path d="M12 2L2 21h20L12 2z"/></svg>
