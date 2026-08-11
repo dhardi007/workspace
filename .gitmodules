@@ -54,3 +54,7 @@
 [submodule "dhardi.dev"]
 	path = dhardi.dev
 	url = https://github.com/dizzi1222/dhardi.dev.git
+[submodule "opencode-discord-rpc"]
+	path = opencode-discord-rpc
+	url = https://github.com/dizzi1222/opencode-discord-rpc.git
+	branch = main
