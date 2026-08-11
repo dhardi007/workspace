@@ -28,6 +28,7 @@ git submodule update --init --recursive PCE-Agencia
 git submodule update --init --recursive portafolio-eric-godtier
 git submodule update --init --recursive jscamp
 git submodule update --init --recursive dhardi.dev
+git submodule update --init --recursive opencode-discord-rpc
 
 echo ""
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
@@ -66,6 +67,23 @@ cd ../proyeccion-astral/ && git checkout main
 cd ../portafolio-eric-godtier/ && git checkout main
 cd ../jscamp/ && git checkout main
 cd ../dhardi.dev/ && git checkout main
+cd ../opencode-discord-rpc/ && git checkout main
+
+# Volver a la raíz del workspace
+cd "$(dirname "$0")"
+
+echo ""
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo "${CYAN}Compilando plugin opencode-discord-rpc...${RESET}"
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo ""
+
+if [ -d "opencode-discord-rpc" ]; then
+  cd opencode-discord-rpc
+  npm install
+  npm run build
+  cd ..
+fi
 
 echo ""
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
