@@ -159,3 +159,5 @@ Orden final (definir exacto durante build, incluye lo pendiente):
 - Deploy no interactivo: `vercel --prod --yes`.
 - Nunca commitear `hypr/.config/hypr/scripts/text_animation/scripttext`.
 - Compresión imágenes: verificar `cwebp`/ImageMagick disponible; fallback sharp vía npx.
+- Breakpoints móviles: convención global XS `< 468px` (antes `450px`) en todos los proyectos. `dhardi.dev` nunca tuvo breakpoint 450px (los únicos "450" son coordenadas SVG) → nada que editar. Terminal: `@media (max-width:468px)` + `innerWidth > 468`.
+- PTD-Talento front (MUI): breakpoints custom en `src/themes/main.ts` — xs `0` · sm `768` · md `1024` · lg `1440` · xl `1920`; sub-rango móvil < 468px con `useMediaQuery("(max-width:468px)")`, detección móvil/tablet con `theme.breakpoints.down("md")`.

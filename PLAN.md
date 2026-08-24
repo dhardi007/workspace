@@ -60,3 +60,9 @@
 3. Crear `dhardi.dev` desde cero
 4. Deploy a GitHub Pages + Vercel
 5. Publicar enlaces cruzados
+
+## Breakpoints (convención global)
+- Umbral móvil XS: **`< 468px`** (antes `450px`) en todos los proyectos.
+- `dhardi.dev`: nunca tuvo breakpoint 450px (los únicos "450" son coordenadas SVG) → sin cambios.
+- `portfolio-terminal-dhardi`: `@media (max-width: 468px)` + `innerWidth > 468`.
+- `ptd-talento-front`: MUI breakpoints custom (`src/themes/main.ts`: xs 0 · sm 768 · md 1024 · lg 1440 · xl 1920) + `useMediaQuery("(max-width:468px)")` para el sub-rango móvil.

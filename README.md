@@ -40,6 +40,15 @@ chmod +x setup.sh
 
 > ⭐ Los proyectos `ptd-talento-back` y `ptd-talento-front` son **repos independientes** (no submódulos). Usan `origin` → CIC y `dizzi1222` → fork personal.
 
+## 📐 Breakpoints móviles (convención)
+
+Umbral móvil XS: **`< 468px`** (antes `450px`) en todos los proyectos.
+- `dhardi.dev` — nunca tuvo breakpoint en 450px (los únicos "450" son coordenadas SVG) → sin cambios.
+- `portfolio-terminal-dhardi` — `@media (max-width: 468px)` en CSS + `innerWidth > 468` en Svelte.
+- `ptd-talento-front` — MUI con breakpoints custom (`src/themes/main.ts`): xs `0` · sm `768` · md `1024` · lg `1440` · xl `1920`; el sub-rango < 468px va con `useMediaQuery("(max-width:468px)")`.
+
+> ⚠️ No tocar números "450" dentro de paths SVG — son geometría, no breakpoints.
+
 ## ▶️ Iniciar proyectos localmente
 
 ### Portfolio Terminal (HTML estático)
