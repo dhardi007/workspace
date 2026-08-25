@@ -62,7 +62,8 @@
 5. Publicar enlaces cruzados
 
 ## Breakpoints (convención global)
-- Umbral móvil XS: **`< 468px`** (antes `450px`) en todos los proyectos.
-- `dhardi.dev`: nunca tuvo breakpoint 450px (los únicos "450" son coordenadas SVG) → sin cambios.
-- `portfolio-terminal-dhardi`: `@media (max-width: 468px)` + `innerWidth > 468`.
-- `ptd-talento-front`: MUI breakpoints custom (`src/themes/main.ts`: xs 0 · sm 768 · md 1024 · lg 1440 · xl 1920) + `useMediaQuery("(max-width:468px)")` para el sub-rango móvil.
+- Umbral móvil XS: **`≤ 480px`** (antes `450px`, luego `468px`) en todos los proyectos.
+- ⚠️ Nunca knife-edge en el ancho que reporta un dispositivo: mismo hardware da viewport CSS distinto por motor (Firefox Android DSF 2.3077 → ~468.x px fraccional; Chromium ~2.62 → ~412px). Con 468 exacto, Firefox quedaba fuera del rango → reglas móviles muertas/toggle duplicado.
+- `dhardi.dev`: nunca tuvo breakpoint móvil (los únicos "450" son coordenadas SVG) → sin cambios.
+- `portfolio-terminal-dhardi`: `@media (max-width: 480px)` + `innerWidth > 480`; toggle nav oculto con `min-width: 481px`.
+- `ptd-talento-front`: MUI breakpoints custom (`src/themes/main.ts`: xs 0 · sm 768 · md 1024 · lg 1440 · xl 1920) + `useMediaQuery("(max-width:480px)")` para el sub-rango móvil.

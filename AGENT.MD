@@ -159,5 +159,5 @@ Orden final (definir exacto durante build, incluye lo pendiente):
 - Deploy no interactivo: `vercel --prod --yes`.
 - Nunca commitear `hypr/.config/hypr/scripts/text_animation/scripttext`.
 - Compresión imágenes: verificar `cwebp`/ImageMagick disponible; fallback sharp vía npx.
-- Breakpoints móviles: convención global XS `< 468px` (antes `450px`) en todos los proyectos. `dhardi.dev` nunca tuvo breakpoint 450px (los únicos "450" son coordenadas SVG) → nada que editar. Terminal: `@media (max-width:468px)` + `innerWidth > 468`.
-- PTD-Talento front (MUI): breakpoints custom en `src/themes/main.ts` — xs `0` · sm `768` · md `1024` · lg `1440` · xl `1920`; sub-rango móvil < 468px con `useMediaQuery("(max-width:468px)")`, detección móvil/tablet con `theme.breakpoints.down("md")`.
+- Breakpoints móviles: convención global XS **`≤ 480px`** (antes `450px`, luego `468px`). Nunca knife-edge en el ancho reportado por un dispositivo: Firefox Android reporta viewport ~468.x CSS px (DSF 2.3077 vs ~2.62 de Chromium en el mismo hardware) y fraccional → `(max-width: 468px)` no matcheaba aunque Eruda mostrara "468" (toggle invisible/duplicado). Terminal: `@media (max-width:480px)` + `innerWidth > 480`, toggle nav oculto con `min-width: 481px`.
+- PTD-Talento front (MUI): breakpoints custom en `src/themes/main.ts` — xs `0` · sm `768` · md `1024` · lg `1440` · xl `1920`; sub-rango móvil ≤ 480px con `useMediaQuery("(max-width:480px)")`, detección móvil/tablet con `theme.breakpoints.down("md")`.

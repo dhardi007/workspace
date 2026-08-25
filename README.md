@@ -42,12 +42,15 @@ chmod +x setup.sh
 
 ## 📐 Breakpoints móviles (convención)
 
-Umbral móvil XS: **`< 468px`** (antes `450px`) en todos los proyectos.
-- `dhardi.dev` — nunca tuvo breakpoint en 450px (los únicos "450" son coordenadas SVG) → sin cambios.
-- `portfolio-terminal-dhardi` — `@media (max-width: 468px)` en CSS + `innerWidth > 468` en Svelte.
-- `ptd-talento-front` — MUI con breakpoints custom (`src/themes/main.ts`): xs `0` · sm `768` · md `1024` · lg `1440` · xl `1920`; el sub-rango < 468px va con `useMediaQuery("(max-width:468px)")`.
+Umbral móvil XS: **`≤ 480px`** (antes `450px`, luego `468px`) en todos los proyectos.
 
-> ⚠️ No tocar números "450" dentro de paths SVG — son geometría, no breakpoints.
+> ⚠️ **Nunca usar valores knife-edge medidos de un dispositivo real.** El mismo hardware reporta anchos CSS distintos por motor: Firefox Android usa DSF 2.3077 → viewport ~468.x px; Chromium usa ~2.62 → ~412px. Además el ancho real es fraccional (Eruda lo redondea al mostrarlo), así que `(max-width: 468px)` no matcheaba aunque la consola dijera "468". Con 480 ambos motores caen en el bucket móvil.
+
+- `dhardi.dev` — sin breakpoints móviles propios (los únicos "450" son coordenadas SVG) → sin cambios.
+- `portfolio-terminal-dhardi` — `@media (max-width: 480px)` en CSS + `innerWidth > 480` en Svelte; toggle nav oculto con `@media (min-width: 481px)`.
+- `ptd-talento-front` — MUI con breakpoints custom (`src/themes/main.ts`): xs `0` · sm `768` · md `1024` · lg `1440` · xl `1920`; el sub-rango ≤ 480px va con `useMediaQuery("(max-width:480px)")` y `window.innerWidth <= 480`.
+
+> ⚠️ No tocar números "450"/"468" dentro de paths SVG — son geometría, no breakpoints.
 
 ## ▶️ Iniciar proyectos localmente
 
