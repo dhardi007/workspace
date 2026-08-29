@@ -193,12 +193,44 @@ a estudiar, conectados con los conceptos ya vistos:
 | Tema | Qué es | Conexión con la entrevista |
 |------|--------|------------------------------|
 | **Frameworks de React** | Usar un framework ≠ instalar una lib. Configurarlo manualmente es decisión de cada quien. Ej: Auth.js (`authjs.dev`) para Next/React, Svelte, Express. | Fallo #1 (Redux): su auth custom en AuthContext es lo que Auth.js abstrae |
-| **Mermaid (mermaid.ai)** | Diagramar workflows (flowcharts/sequence/ERD) como texto. | Fallo #3 (ruta back): el flujo front→back se explica perfecto con un sequence diagram |
+| **Mermaid** (docs: `mermaid.js.org`, editor: `mermaid.live`. ⚠️ mermaid.ai NO es el sitio oficial) | Diagramar workflows (flowcharts/sequence/ERD) como texto. | Fallo #3 (ruta back): el flujo front→back se explica perfecto con un sequence diagram. Ahora es práctica activa → [Práctica Mermaid + MongoDB](#sección-extra--práctica-mermaid--mongodb-para-afirmar-el-dominio-mern) |
 | **Helix vs Neovim/VSCode** | Helix es modal (como vim) pero menos configurable; Neovim/LazyVim más potente. **No es mejor que el vim actual de Diego.** | Fallo #4 (vim motions): su stack vim sigue siendo válido |
 | **Jest** | Framework de tests automatizados recomendado por Carlos. | Fallo #2 (contador): con tests se habría detectado antes la falta de UI |
 | **pnpm vs npm** | pnpm es más eficiente que npm; son compatibles. Diego terminó con npm — no grave. | Transversal (builds de sus repos) |
 | **TypeScript config** | `tsconfig.json` ya existe en sus repos (`strict`). | Transversal |
 | **`isResponse` / `Machine` / `extend`** | ⚠️ PENDIENTE: Diego cree que es backend. Confirmar qué eran antes de documentar. | ¿Backend? ¿State machine? ¿TypeScript? |
+
+---
+
+## SECCIÓN EXTRA — Práctica Mermaid + MongoDB (para afirmar el dominio MERN)
+
+### Retro: por qué esto hoy
+En la entrevista, más que un error técnico, fue **falta de tiempo**: no alcanzó a **afirmar su
+dominio del stack MERN** (Mongo · Express · React · Node). Decisión de estudio: aprender
+**MongoDB de verdad** para poder defender la "M" con la misma soltura con la que ya defiende React,
+Express y Node.
+
+Oportunidad única: **PCE-Agencia** tiene el dominio modelado en MongoDB — 7 modelos mongoose
+legacy en `server/src/models/*.model.js`. Es material real, corto y legible para practicar
+diseño de datos de Mongo sin inventar un proyecto ficticio.
+
+### Sitios oficiales de la herramienta
+- Documentación: **`mermaid.js.org`** (mermaid.ai NO es el sitio oficial)
+- Editor online para probar mientras se escribe: **`mermaid.live`**
+
+### Plan de lecciones (orden de estudio)
+| Lección | Qué se ve | Conexión |
+|---------|-----------|----------|
+| **L0** | Qué es mermaid: texto → diagrama. Un bloque de código `mermaid` dentro de markdown. Nada de render todavía. | Fundamentos |
+| **L1** | `flowchart` del flujo del backend de PCE-Agencia (auth → rutas → validación → DB) | Fallo #3 sin front |
+| **L2** | `sequenceDiagram` front→back (fetch/axios → ruta → controller → service → DB → respuesta) | Fallo #3: exactamente lo que Carlos pidió explicar |
+| **L3** | `erDiagram` de los 7 modelos de PCE-Agencia + decisión **embebido vs referenciado** (diseño de colecciones de Mongo) | Afirmar MERN + diseño de datos |
+| **Lx** | Usar mermaid en documentos de proyectos reales | Hábito + portafolio |
+
+### Regla de la práctica (vim-learn)
+- Profesor: razonamiento + snippet de referencia en el chat; **Diego escribe los archivos**.
+- El feedback del render (cómo ver el diagrama mientas se escribe) se define en L0; opciones
+  pendientes: mermaid.live manual / mermaid-cli (`mmdc`) en work.nix / HTML local en Chromium.
 
 ---
 
