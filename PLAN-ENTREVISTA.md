@@ -185,6 +185,23 @@ Por cada tema, en el chat:
 
 ---
 
+## SECCIÓN EXTRA — Charla con Carlos (sábado 2026-08-29)
+
+Diego asistió a una charla del mismo Senior Carlos (el de la entrevista). Temas nuevos
+a estudiar, conectados con los conceptos ya vistos:
+
+| Tema | Qué es | Conexión con la entrevista |
+|------|--------|------------------------------|
+| **Frameworks de React** | Usar un framework ≠ instalar una lib. Configurarlo manualmente es decisión de cada quien. Ej: Auth.js (`authjs.dev`) para Next/React, Svelte, Express. | Fallo #1 (Redux): su auth custom en AuthContext es lo que Auth.js abstrae |
+| **Mermaid (mermaid.ai)** | Diagramar workflows (flowcharts/sequence/ERD) como texto. | Fallo #3 (ruta back): el flujo front→back se explica perfecto con un sequence diagram |
+| **Helix vs Neovim/VSCode** | Helix es modal (como vim) pero menos configurable; Neovim/LazyVim más potente. **No es mejor que el vim actual de Diego.** | Fallo #4 (vim motions): su stack vim sigue siendo válido |
+| **Jest** | Framework de tests automatizados recomendado por Carlos. | Fallo #2 (contador): con tests se habría detectado antes la falta de UI |
+| **pnpm vs npm** | pnpm es más eficiente que npm; son compatibles. Diego terminó con npm — no grave. | Transversal (builds de sus repos) |
+| **TypeScript config** | `tsconfig.json` ya existe en sus repos (`strict`). | Transversal |
+| **`isResponse` / `Machine` / `extend`** | ⚠️ PENDIENTE: Diego cree que es backend. Confirmar qué eran antes de documentar. | ¿Backend? ¿State machine? ¿TypeScript? |
+
+---
+
 ## Nota final
 
 Regla Profesor confirmada: **NO escribo código en archivos**. Los ejercicios los hace Diego.

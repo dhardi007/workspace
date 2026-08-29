@@ -123,3 +123,16 @@ cd jscamp/01-javascript
 python3 -m http.server 8083
 # → http://localhost:8083/empleos.html
 ```
+
+## 🗄️ mongodb (shared dev database)
+
+Instancia de MongoDB compartida para los proyectos MERN del workspace.
+
+```bash
+docker compose up -d     # levanta (escucha en 127.0.0.1:27017, solo local)
+docker compose down      # bajar (los datos persisten en el volume mongodb-data)
+```
+
+- Imagen `mongo:7`, datos en el volume `mongodb-data`.
+- GUI: `mongodb-compass` (ver `nixconf/README.md`), conexión `mongodb://localhost:27017`.
+- Proyectos: apuntan via `.env` → `MONGO_URI=mongodb://127.0.0.1:27017/<su_db>`.
