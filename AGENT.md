@@ -63,6 +63,16 @@ Al inicio de cada tarea diré algo como:
 - Convención heredada: nunca commitear `hypr/.config/hypr/scripts/text_animation/scripttext`
   (detalle en `~/.claude/CLAUDE.md`).
 
+## Referencias de la sesión
+
+- **Resumen de sesión** (reflexión "Desconociendo lazygit..."): `workspace/motivational.md`
+  (31-08: lazygit, vim motions, Redux Toolkit, Docker MongoDB, links de setup + moraleja).
+- **Tema de UI candidato**: `workspace/theme-neonforge.css` — preset **NeonForge** del hermano
+  de Diego (https://github.com/ghaerdi/neonforge · https://neonforge.ghaerdi.dev/). Para el
+  proyecto MongoDB/PCE-Agencia. ⚠️ Es *override* de tokens: **appendeer al final** del
+  `theme.css` completo (no usarlo solo, se rompen las utilities glass-panel/neon-glow/grid-bg).
+  Ver nota completa en `AGENT-records/PCE-Agencia/server/2026-08-31-PLAN-mongodb-migracion.md`.
+
 ---
 
 ## Sesión

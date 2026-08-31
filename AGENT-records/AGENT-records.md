@@ -57,6 +57,11 @@ Cada registro de sesión lleva **fecha inicial** al frente, para alinear la evid
 - `vim-basics.md` — fundamentos y trucos de comandos `:` (compilado del prepack LazyVim + docs nvim)
 - `vim-ui.md` — mapa de todas las UIs/paneles que se abren en Neovim (Space+u toggles, Space+x quickfix, LazyGit, DAP)
 
+### Referencias externas (fuera de AGENT-records/)
+
+- `../motivational.md` — resumen de la sesión del 31-08 (lazygit, vim motions, Redux Toolkit, Docker MongoDB, links de setup). Reflexión final "Desconociendo lazygit...". En `workspace/`.
+- `../theme-neonforge.css` — preset de tokens **NeonForge** (proyecto del hermano de Diego, https://github.com/ghaerdi/neonforge · https://neonforge.ghaerdi.dev/). Candidato de esquema de color para el proyecto MongoDB/PCE-Agencia. En `workspace/`. ⚠️ No es tema standalone: es *override* a **appender al final** del `theme.css` completo (con `@theme inline`, `@utility` glass-panel/neon-glow/grid-bg).
+
 ---
 
 ## Registro por sesiones

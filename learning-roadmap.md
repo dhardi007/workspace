@@ -148,8 +148,10 @@ workspace/
 │   └── src/routes/2026-08-30-express-rutas.md
 ├── ptd-talento-front/                # Frontend projects
 │   └── src/store/slices/2026-08-31-ejercicio-contador-redux.md
-└── PCE-Agencia/                      # Real-world projects
-    └── server/2026-08-31-PLAN-mongodb-migracion.md
+├── PCE-Agencia/                      # Real-world projects
+│   └── server/2026-08-31-PLAN-mongodb-migracion.md
+├── motivational.md                   # Resumen de la sesión del 31-08 (lazygit, vim, Redux Toolkit, Docker MongoDB, moraleja)
+└── theme-neonforge.css               # Preset NeonForge (hermano: ghaerdi/neonforge) — candidato UI para MongoDB/PCE-Agencia
 ```
 
 ### Future Goals

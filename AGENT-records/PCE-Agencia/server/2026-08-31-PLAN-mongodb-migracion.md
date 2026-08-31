@@ -59,6 +59,19 @@ es el **aprendizaje**: modelado de Mongo, diseño de colecciones, embebido vs re
   replicando la ruta del archivo real que se estudie (ej. `models/Cliente.model.js.md`).
   (Nombre con fecha: `2026-08-31-...` por convención.)
 
+## Tema de UI (opcional — posible esquema de color)
+
+Si el proyecto termina con UI, candidato de esquema de color: **NeonForge** (proyecto del
+hermano de Diego → https://github.com/ghaerdi/neonforge · demo https://neonforge.ghaerdi.dev/).
+
+- Archivo local: `workspace/theme-neonforge.css` (override de tokens de la página *Create*).
+- ⚠️ **Gotcha:** NO es un tema standalone — es un *override* de custom properties. Debe
+  **APPENDEARSE al final** del `theme.css` completo (el que trae `@theme inline`,
+  `@utility` glass-panel / neon-glow / grid-bg). Si se usa solo, esas utilities desaparecen.
+- Decisión pendiente: integrarlo en PCE-Agencia (lo más probable) o en un proyecto MongoDB nuevo.
+
+Referencia de sesión completa: `workspace/motivational.md`.
+
 ## Relación con el resto del plan
 
 - Es el **ejercicio posterior al contador** (que es ejercicio front/Redux). Este toca la
