@@ -1,5 +1,13 @@
 vim-learn: Resumen de la sesión — 31 de agosto (Aprendizaje continuo)
 
+<img width="1926" height="1080" alt="image" src="https://github.com/user-attachments/assets/5741e376-5fe5-4a18-aefb-6d066014140b" />
+
+<img width="1089" height="962" alt="imgi_2_a77699b0d4df7679c2e0c175e1a1ce27" src="https://github.com/user-attachments/assets/2562eda0-0bfe-4df0-9a47-2235bd5b7266" />
+
+<img width="834" height="956" alt="image(1)" src="https://github.com/user-attachments/assets/99b189c6-db74-4110-857c-1924b4b43150" />
+
+<img width="1100" height="901" alt="image(3)" src="https://github.com/user-attachments/assets/0bae7838-6596-40f0-a239-913cb2666dd4" />
+
 — Lazygit + Neovim:
 Desconocia por completo lazygit inicialmente, pensando que era solo otra herramienta de desarrollo. Pero descubrí que lazygit es una poderosa herramienta de navegación git dentro de neovim que, cuando se configura correctamente, permite un flujo de trabajo integrado manteniendo toda la potencia de mi configuración de zsh, incluyendo funciones personalizadas como gitflow, opencommit (commits automáticos) y aliases, mientras trabajo dentro del entorno de edición.
 
@@ -21,6 +29,8 @@ Se implementará un contador usando createSlice (que combina acciones y reducer)
 
 Docker config para mongoup y MongoDB Compass GUI:
 Se estableció "credsStore": "" en .docker/config.json para asegurar que Docker pudiera autenticar correctamente y permitir la instalación de mongoup sin conflictos, facilitando el uso de MongoDB Compass GUI para visualización y administración de bases de datos.
+
+<img width="1436" height="806" alt="image(2)" src="https://github.com/user-attachments/assets/55eddbaa-9b9c-4438-8f5a-f6a79ddfcfc9" />
 
 📄 Ver configuración Docker (<https://github.com/dizzi1222/dotfiles-dizzi/blob/main/.docker/config.json>) [No lo subo por seguridad ‼️]
 
@@ -54,8 +64,8 @@ Continuo con el plan definido en workspace/learning-roadmap.md, enfocándome en 
 👾🔳 Spam de mi portfolio (builtin Svelte) porque no xd?: (<https://portfolio-terminal-dhardi.vercel.app/>)
 👾🎨 NeonForge UI theme (proyecto de mi hermano): (<https://neonforge.ghaerdi.dev/> · <https://github.com/ghaerdi/neonforge>) — preset en `workspace/theme-neonforge.css`, candidato UI para el proyecto MongoDB/PCE-Agencia
 👾 Best Neovim config: <https://github.com/dizzi1222/nvim>
-👾💻 Best NIX OS/Linux Dotfiles Config (<https://github.com/dizzi1222/dotfiles-dizzi>)
 👾📲 Best Termux Setup: (<https://github.com/dhardi007/dotfiles-dizzi/tree/termux>)
+👾💻 Best NIX OS/Linux Dotfiles Config (<https://github.com/dizzi1222/dotfiles-dizzi>)
 
 — Moraleja:
 La ignorancia lleva al aprendizaje, el aprendizaje lleva a la solución, y la solución lleva a una mejor ignorancia (para el próximo problema a resolver).
