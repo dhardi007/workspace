@@ -51,6 +51,7 @@ Cada registro de sesión lleva **fecha inicial** al frente, para alinear la evid
 - `ptd-talento-front/src/contexts/2026-08-30-AuthContext.tsx.md` — React.FC + Context ↔ Redux
 - `ptd-talento-front/src/hooks/2026-08-30-useStore.ts.md` — useAppDispatch / useAppSelector
 - `ptd-talento-back/src/routes/2026-08-30-express-rutas.md` — Express: patrón de rutas
+- `PCE-Agencia/server/2026-08-31-PLAN-mongodb-migracion.md` — plan: volver a MongoDB aprendiendo la "M" (ejercicio post-contador)
 - `vim-motions.md` — chuleta vim transversal (sin fecha: es referencia continua, no una sesión)
 - `vim-basics.md` — fundamentos y trucos de comandos `:` (compilado del prepack LazyVim + docs nvim)
 - `vim-ui.md` — mapa de todas las UIs/paneles que se abren en Neovim (Space+u toggles, Space+x quickfix, LazyGit, DAP)
