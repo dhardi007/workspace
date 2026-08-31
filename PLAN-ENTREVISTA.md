@@ -198,7 +198,7 @@ a estudiar, conectados con los conceptos ya vistos:
 | **Jest** | Framework de tests automatizados recomendado por Carlos. | Fallo #2 (contador): con tests se habría detectado antes la falta de UI |
 | **pnpm vs npm** | pnpm es más eficiente que npm; son compatibles. Diego terminó con npm — no grave. | Transversal (builds de sus repos) |
 | **TypeScript config** | `tsconfig.json` ya existe en sus repos (`strict`). | Transversal |
-| **`isResponse` / `Machine` / `extend`** | ⚠️ PENDIENTE: Diego cree que es backend. Confirmar qué eran antes de documentar. | ¿Backend? ¿State machine? ¿TypeScript? |
+| **`isResponse` / `Machine` / `extend`** | Interfaces en **TypeScript** que Carlos creó para **tipar** valores (Machine, Cliente, Estudiante/request), según el diagrama de flujo que generó en Mermaid. NO son backend; son modelos/tipos. | Tipado TS (tiempo de diseño, no runtime). Patrón: modelar entidades con interfaces |
 
 ---
 
