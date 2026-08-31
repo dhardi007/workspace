@@ -108,6 +108,22 @@ instala bajo el cursor, `x` desinstala, `C-u` actualiza, `g?` muestra la ayuda.
 ventana de Opencode /el buffer anterior **desaparece de la vista**, pero NO se cerró:
 quedó como buffer **oculto** (hidden) en Neovim.
 
+### Equivalente moderno (LazyVim/Snacks) a `:ls!` + `:b<num>`
+
+| Comando clásico              | Equivalente LazyVim (Snacks picker)                          |
+| ---------------------------- | ------------------------------------------------------------ |
+| `:ls!` (todos, incl. ocultos)| `<leader>fB` (`Space + f + B`) — **Buffers (all, incl. hidden)** ← **equivalente EXACTO a `:ls!`** |
+| `:ls` (solo visibles)        | `<leader>fb` (`Space + f + b`) — **Buffers**                  |
+| `:b<num>` (ir al buffer N)   | `<leader>fB`, tipear el nombre, Enter                         |
+| `Ctrl+^` (buffer alterno `#`) | `<leader>bb` (`Space + b + b`) — Switch to Other Buffer      |
+
+> 💡 **`<leader>fB` es la respuesta a "encontrar a Opencode"**: cuando la ventana/buffer
+> de Opencode "desapareció", en realidad quedó como buffer **oculto** → abrís `<leader>fB`,
+> tipeás `opencode` (o lo que fuera) y Enter. Muestra TODOS los buffers, incluidos los
+> ocultos, con preview y filtrado — el reemplazo directo y moderno de `:ls!`/`:b7`.
+
+### Comandos clásicos (referencia)
+
 | Comando             | Qué hace                                           |
 | ------------------- | -------------------------------------------------- |
 | `:ls`               | Lista los buffers abiertos (con número)            |
