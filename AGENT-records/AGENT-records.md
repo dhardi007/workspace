@@ -48,6 +48,7 @@ Cada registro de sesión lleva **fecha inicial** al frente, para alinear la evid
 
 - `2026-08-30-helix-vs-neovim.md` — desmitificando ventajas de Helix vs LazyVim
 - `ptd-talento-front/src/store/slices/2026-08-30-session-redux.md` — sesión Redux Toolkit
+- `ptd-talento-front/src/store/slices/2026-08-31-ejercicio-contador-redux.md` — ejercicio contador con Redux Toolkit (createSlice + hooks)
 - `ptd-talento-front/src/contexts/2026-08-30-AuthContext.tsx.md` — React.FC + Context ↔ Redux
 - `ptd-talento-front/src/hooks/2026-08-30-useStore.ts.md` — useAppDispatch / useAppSelector
 - `ptd-talento-back/src/routes/2026-08-30-express-rutas.md` — Express: patrón de rutas
