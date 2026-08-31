@@ -129,6 +129,11 @@ Entonces sí, en nvim: `<leader>dc` → elige **Attach** → elige el proceso/li
 | `No thread to stop. Not pausing...`                    | No hay sesión activa / no hay hilos en pausa. Normal si nunca lanzaste. |
 | `Debug adapter didn't respond`                         | El adapter tardó (esperá) o hay problema de config. Revisá `:help dap.set_log_level`. |
 | `dap.ext.vscode.load_launchjs is deprecated`           | Ya no se usa; nvim-dap lee `.vscode/launch.json` solo. Eliminado de tu config. |
+| `adapter.port is required for server adapter` (en `session.lua:1492`) | Es **de config**, no de uso. Aparece al seleccionar **"Attach to Chrome"** (`pwa-chrome` attach): nvim-dap espera que un adapter de tipo `server` tenga `port`, pero `vscode-js-debug` lo registra como executable y el `port = 9222` de la config no alcanza. **Fix:** mientras tanto, evitar "Attach to Chrome"; usar **Launch Chrome (React/Dev)** o **Launch file**. Verificar que el adapter esté registrado:
+  ```lua
+  :lua print(vim.inspect(require("dap").adapters["pwa-chrome"]))
+  :lua print(vim.inspect(require("dap").adapters["pwa-node"]))
+  ``` |
 
 ---
 

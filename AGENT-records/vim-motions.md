@@ -5,25 +5,25 @@ SIEMPRE le recuerde la clave vim del momento.
 
 ## En terminal (CLI)
 
-| Comando              | Qué hace                            |
-| -------------------- | ----------------------------------- |
-| `rg "palabra"`       | buscar en archivos (ripgrep)        |
-| `rg "palabra" src/`  | buscar acotado a una carpeta        |
-| `grep -rn "p" src/`  | alternativa clásica                 |
+| Comando             | Qué hace                     |
+| ------------------- | ---------------------------- |
+| `rg "palabra"`      | buscar en archivos (ripgrep) |
+| `rg "palabra" src/` | buscar acotado a una carpeta |
+| `grep -rn "p" src/` | alternativa clásica          |
 
 ## En Neovim / LazyVim
 
-| Key                | Qué hace                                |
-| ------------------ | --------------------------------------- |
-| `Space + /`        | **Live Grep** (búsqueda global)         |
-| `Space + s + w`    | buscar la palabra bajo el cursor        |
-| `Space + f + f`    | buscar archivo por nombre               |
-| `*`                | buscar palabra bajo cursor en archivo   |
-| `/`                | buscar en el archivo actual             |
-| `n` / `N`          | siguiente / anterior coincidencia       |
-| `Space + g + g`    | ir al inicio del archivo                |
-| `viw`              | **seleccionar** la palabra (visual)     |
-| `Space + s + r`    | Snacks **Rename** (reemplazo)           |
+| Key             | Qué hace                              |
+| --------------- | ------------------------------------- |
+| `Space + /`     | **Live Grep** (búsqueda global)       |
+| `Space + s + w` | buscar la palabra bajo el cursor      |
+| `Space + f + f` | buscar archivo por nombre             |
+| `*`             | buscar palabra bajo cursor en archivo |
+| `/`             | buscar en el archivo actual           |
+| `n` / `N`       | siguiente / anterior coincidencia     |
+| `Space + g + g` | ir al inicio del archivo              |
+| `viw`           | **seleccionar** la palabra (visual)   |
+| `Space + s + r` | Snacks **Rename** (reemplazo)         |
 
 ## ⚠️ `*` NO selecciona la palabra
 
@@ -36,11 +36,11 @@ Search/Replace del selector aparece **vacío**.
 
 ### Cómo se comporta cada editor
 
-| Acción                | Helix                           | Neovim (Vim)                    |
-| --------------------- | ------------------------------- | ------------------------------- |
-| Poner cursor          | El cursor es la selección       | El cursor es un punto           |
-| "Marcar" la palabra   | La selección es objeto nativo   | `*` = busca, NO selecciona      |
-| Ejecutar reemplazo    | Afecta la selección directo     | Necesitás seleccionar primero   |
+| Acción              | Helix                         | Neovim (Vim)                  |
+| ------------------- | ----------------------------- | ----------------------------- |
+| Poner cursor        | El cursor es la selección     | El cursor es un punto         |
+| "Marcar" la palabra | La selección es objeto nativo | `*` = busca, NO selecciona    |
+| Ejecutar reemplazo  | Afecta la selección directo   | Necesitás seleccionar primero |
 
 **Conclusión:** en este punto Helix es más directo
 (selección nativa). Lo reconozco. La ventaja de
@@ -153,16 +153,79 @@ todo el archivo, sin riesgo de `:cfdo`):
 Ventajas: elegís cada uno, no borra de más,
 no toca archivos que no querés.
 
-## Truco del `*` + `:%s//`
+## Remplazo PRO: Truco del `*` + `:%s //`
 
 ```vim
-cursor sobre la palabra → * → :%s//reemplazo/g
+cursor sobre la palabra → * → :%s //reemplazo/g
 // vacío = usa la palabra que marcaste con *
 ```
 
 `*` busca la palabra bajo el cursor;
 `:%s//texto/g` reemplaza con `//` vacío
 aprovechando ese patrón de búsqueda.
+
+> ⚠️ **Peligro (lección del 2026-08-31):** el `//` vacío usa el **último patrón buscado**
+> (`@/`), NO la palabra bajo el cursor. Si no hiciste `*` justo antes (o la búsqueda previa
+> era otra/heredada), termina reemplazando lo que coincida con ESE patrón viejo, y puede
+> romper código real (ej. explotó "Error while decoding suggestions" en tsserver al tocar
+> un buffer que quedó inconsistente). → **Siempre hacé `*` primero** y revisá con `gc`
+> (confirmación) antes de un `:%s//`. Probá en un archivo de prueba, nunca sobre código vivo.
+
+### `viw` NO alimenta el `//` (diferencia con `*`)
+
+- `*` **fija el patrón de búsqueda** `@/` → el `//` lo usa. ✅
+- `viw` **solo selecciona** visualmente la palabra; **NO toca `@/`**. Por eso `viw` + `:%s//`
+  **NO** reemplaza lo que seleccionaste — usa el último patrón buscado (¡riesgo de romper código!).
+
+**Para reemplazar exactamente lo que seleccionaste con `viw`, pegá el registro visual en el `:s`:**
+```
+viw
+: s / <C-r>" / nueva / g
+```
+`<C-r>"` pega el texto que `viw` dejó en el registro `"` (el yank visual). Así no dependés de `@/`.
+
+**¿Cuándo usar cuál?**
+
+| Querés                                  | Uso                          |
+| --------------------------------------- | ---------------------------- |
+| La palabra en **todo el archivo**       | `*` → `:%s//nueva/g` (o `gc`) |
+| **Solo una ocurrencia puntual** (manúa) | `viw` → `c` / `d` (cambiar/borrar el text-object) |
+| Selección visual → reemplazar ese texto | `viw` → `:s/<C-r>"/nueva/`    |
+
+> Regla: para **reemplazos masivos** de archivo usá `*` (fija patrón) + `gc` de confirmación.
+> Para **tocar un solo text-object** usá `viw` + `c`/`d`. (`Space + s + r` de Snacks sigue
+> siendo el camino para reemplazos con UI de búsqueda/reemplazo.)
+
+## Mover líneas / bloques (plugin `move.nvim`) — el "O" que buscás
+
+> ⚠️ **Distinguir tres usos de `O`/teclas visuales:**
+>
+> - Modo normal `O` / `Shift+O` = insertar línea en blanco arriba.
+> - **En modo VISUAL `O` = alternar la dirección/ancla de la selección** (salta el cursor al
+>   otro extremo: fila superior ↔ inferior; en visual-block también alterna esquinas). Sirve
+>   para seguir extendiendo la selección hacia el lado opuesto sin perder lo ya marcado.
+> - Para **mover físicamente** (reordenar) líneas/bloques se usa el plugin **`move.nvim`**
+>   (config en `nvim/.config/nvim/lua/plugins/move.lua`), con `Alt + h/j/k/l`:
+
+| Modo       | Tecla                | Acción                                               |
+| ---------- | -------------------- | ---------------------------------------------------- |
+| normal     | `<A-j>` / `<A-Down>` | Mover la línea hacia **abajo**                       |
+| normal     | `<A-k>` / `<A-Up>`   | Mover la línea hacia **arriba**                      |
+| normal     | `<A-h>`              | Mover carácter hacia **izquierda**                   |
+| normal     | `<A-l>`              | Mover carácter hacia **derecha**                     |
+| visual (V) | `<A-j>` / `<A-Down>` | Mover el **bloque** seleccionado **abajo**           |
+| visual (V) | `<A-k>` / `<A-Up>`   | Mover el **bloque** seleccionado **arriba**          |
+| visual (V) | `<A-h>`              | Mover **bloque** hacia la **izquierda**              |
+| visual (V) | `<A-l>`              | Mover **bloque** hacia la **derecha**                |
+| normal     | `<F2>` / `<F3>`      | Mover línea abajo / arriba (alternativa confirmada)  |
+| visual (V) | `<F2>` / `<F3>`      | Mover bloque abajo / arriba (alternativa confirmada) |
+
+**En modo VISUAL, alternar la dirección con `O`:**
+
+1. Entrás en visual (ej. `V` para líneas, o `v`/`Ctrl+V`).
+2. Marcás un rango (`j`/`k`).
+3. Apretás `O` → el cursor salta al **otro extremo** de la selección; ahora `j`/`k` extienden
+   hacia el lado contrario. (En `Ctrl+V` alterna entre las 4 esquinas.)
 
 ## Regla de oro
 
@@ -178,5 +241,34 @@ rg -n "Background" workspace/ptd-talento-front/src
 
 ```markdown
 # Luego Space + / en nvim, escribir Background,
+
 # Enter, y navegar con n/N
 ```
+
+## Folds: plegar / desplegar código
+
+Los **folds** (pliegues) ocultan/expanden bloques de código (funciones, clases, `if`, etc.)
+para navegar un archivo largo sin distracciones. El cursor debe estar **dentro** del pliegue.
+
+| Comando | Qué hace                                                   |
+| ------- | ---------------------------------------------------------- |
+| `zc`    | **Cerrar** el pliegue bajo el cursor (1 nivel)             |
+| `zo`    | **Abrir** el pliegue bajo el cursor (1 nivel)              |
+| `zC`    | **Cerrar todos** los pliegues **anidados** bajo el cursor  |
+| `zO`    | **Abrir todos** los pliegues **anidados** bajo el cursor   |
+| `za`    | Alternar abrir/cerrar el pliegue bajo el cursor            |
+| `zM`    | **Cerrar todos** los pliegues del archivo                  |
+| `zR`    | **Abrir todos** los pliegues del archivo                   |
+
+> ⚠️ Error típico `E490: No fold found` → el cursor NO está sobre un bloque plegable
+> (o los folds están desactivados para ese filetype). Movete a la línea de la
+> **definición de función/clase** (la de apertura) y probá de nuevo.
+> En LazyVim los folds suelen ir con `Space + space` (fold) o `:norm zR` para abrir todo.
+
+### Mnemotécnica
+
+- **c** = **c**lose → `zc` / `zC` (mayúscula = todo lo anidado).
+- **o** = **o**pen → `zo` / `zO` (mayúscula = todo lo anidado).
+- **a** = **a**lternate → `za`.
+- **M** = todas cerradas (`M` de "minimizado") / **R** = todas abiertas (`R` de "reducido/revelado").
+
