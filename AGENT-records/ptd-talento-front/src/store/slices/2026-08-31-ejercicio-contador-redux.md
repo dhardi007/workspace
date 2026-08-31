@@ -5,7 +5,7 @@ Fecha: 2026-08-31 · Sesión `vim-learn` · Método: aprender haciendo (rol Prof
 > **Objetivo:** armar el contador que fallaste en la entrevista (IntelliSys 2026-08-26:
 > solo hiciste una IIFE, sin estado ni UI), pero esta vez con **Redux Toolkit** (estado
 > global real + UI). Entrena exactamente lo que te tumbó: **`createSlice` (Redux) +
-> hooks (`useDispatch`/`useSelector`)** y que la **UI reaccione**.
+> hooks tipados (`useAppDispatch`/`useAppSelector`)** y que la **UI reaccione**.
 
 Referencia real: `workspace/ptd-talento-front/src/store/` (patrón de `authSlice`).
 
@@ -41,28 +41,42 @@ export default contadorSlice.reducer;
 - `state.valor += 1` parece mutación, pero **Immer** hace la copia inmutable por ti → el
   "reducer puro" (debe devolver estado nuevo) se mantiene sin escribir spreads.
 
-## Paso 2 — conectar al store (`src/store/index.ts`)
+## Paso 2 — conectar al store (`src/store/store.ts`)
+
+> ⚠️ El repo real NO usa `store/index.ts` sino **`store/store.ts`**, y ya tiene **muchos
+> reducers** (auth, talent, etc.). Solo agregás el import y la entrada `contador` al
+> objeto `reducer` existente (mismo naming: `ContadorReducer`, igual que `FeedBackReducer`).
 
 ```ts
-import { configureStore } from '@reduxjs/toolkit';
-import contadorReducer from './slices/contadorSlice';
-
+// src/store/store.ts (agregar al archivo existente)
+import ContadorReducer from './slices/contadorSlice';
+// ...
 export const store = configureStore({
-  reducer: { contador: contadorReducer },
+  reducer: {
+    // ...reducers existentes...
+    contador: ContadorReducer,
+  },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 ```
 
-> Conservá lo que ya tengas de `auth` — agregá `contador` al objeto `reducer`.
+> `RootState` / `AppDispatch` ya están exportados en `store.ts` y son lo que tipa los hooks.
 
-## Paso 3 — componente con hooks (`src/components/Contador.tsx`)
+## Paso 3 — componente con hooks tipados (`src/components/Contador.tsx`)
+
+> ⚠️ El repo NO usa `useDispatch`/`useSelector` crudos. Usa los **hooks tipados**
+> `useAppDispatch`/`useAppSelector` definidos en `src/hooks/useStore.ts`, que ya traen
+> `RootState`/`AppDispatch` tipados (sin cast manual). Ver `2026-08-30-useStore.ts.md`.
 
 ```tsx
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/useStore';
 import { decrementar, incrementar, resetear } from '../store/slices/contadorSlice';
 
 export default function Contador() {
-  const valor = useSelector((state) => state.contador.valor); // LEE del store
-  const dispatch = useDispatch();                             // DISPARA acciones
+  const valor = useAppSelector((state) => state.contador.valor); // LEE del store (tipado)
+  const dispatch = useAppDispatch();                             // DISPARA acciones (tipado)
 
   return (
     <div>
@@ -76,25 +90,28 @@ export default function Contador() {
 ```
 
 **Razonamiento clave:**
-- `useSelector` **lee** (`state.contador.valor`).
-- `useDispatch` **dispara** (`dispatch(incrementar())`).
+- `useAppSelector` **lee** (`state.contador.valor`).
+- `useAppDispatch` **dispara** (`dispatch(incrementar())`).
+- **Por qué tipados:** `useAppSelector: TypedUseSelectorHook<RootState>` infiere el shape del
+  estado y `useAppDispatch: () => AppDispatch` tipa las acciones (lo viste en la sesión 30-08).
 - Esto es lo que se te escapó: **la IIFE sola no actualiza nada visual**. El store +
-  dispatch + suscripción vía `useSelector` es lo que hace reaccionar la UI.
+  dispatch + suscripción vía `useAppSelector` es lo que hace reaccionar la UI.
 
-## Paso 4 — verificar Provider
+## Paso 4 — verificar Provider ✅ (ya está)
 
-El `<Provider store={store}>` debe envolver la app (`main.tsx` o `App.tsx`).
-**Sin Provider, los hooks crashean.** Verificá que ya esté.
+El `<Provider store={store}>` **ya envuelve la app** en `src/main.tsx` (importando `store`
+desde `./store/store.ts`). No hace falta tocar nada; solo confirmar que sigue ahí.
+**Sin Provider, los hooks crashean** — por eso `contadorSlice` y el componente dependen de él.
 
 ---
 
 ## Checklist de verificación / preguntas
 
-- ¿Ya existe `src/store/index.ts` con `configureStore` y el `<Provider>` montado en `main.tsx`?
-  Si no lo está → **ese es el paso que falta recordar** (useSelector crashea sin Provider).
-- Archivos sueltos sin trackear (intentos previos): `createSlice.js`, `createSlice.ts`, `contador.ts`.
-  ¿Los borramos al final o los dejamos como "intentos"? (decisión de Diego)
+- ✅ `src/store/store.ts` (NO `index.ts`) ya existe con `configureStore` y exporta `RootState`/`AppDispatch`.
+- ✅ El `<Provider store={store}>` ya está montado en `main.tsx`. Si faltara → los hooks crashean.
+- ✅ `src/util/contador.ts` (intento IIFE viejo) **borrado** 2026-08-31.
+- ✅ Hooks tipados: `src/hooks/useStore.ts` (useAppSelector/useAppDispatch) — usar esos, no los crudos.
 
 ## Feynman (Diego explica tras hacerlo)
 
-_(ocupar acá: "qué hace createSlice, qué hace useSelector/useDispatch, por qué sin Provider crashea")_
+_(ocupar acá: "qué hace createSlice, qué hace useAppSelector/useAppDispatch, por qué sin Provider crashea")_
