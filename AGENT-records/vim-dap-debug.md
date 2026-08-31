@@ -6,7 +6,10 @@ diferencia crítica entre **Launch** y **Attach** (la causa de tu error), y las 
 que ya tienes para Node y React/Chrome.
 
 > Fuente: `dotfiles-dizzi/nvim/.config/nvim/lua/plugins/nvim-dap.lua` (config real).
-> Debugger: `vscode-js-debug` (`pwa-node` / `pwa-chrome`) vía `nvim-dap-vscode-js`.
+> Debugger: `vscode-js-debug` (`pwa-node` / `pwa-chrome`) con adapter `server` de
+> puerto fijo (53700) — se arranca `node vsDebugServer.js 53700` como job al cargar
+> nvim-dap. `program` de "Launch file" usa la ruta ABSOLUTA del buffer (`expand("%:p")`)
+> para que el breakpoint siempre case con el archivo ejecutado.
 > ⚠️ Contexto: Diego abrió una vez "Attach" sin tener un proceso Node con `--inspect`
 > y falló con "Could not connect to debug target at localhost:9229".
 
@@ -34,13 +37,24 @@ Son **dos formas distintas** de debuggear, y confundirlas es el error más comú
 
 ## 2. El flujo básico (Launch)
 
+> ⚠️ **ATENCIÓN con los atajos (fuente de tu confusión):**
+> - `Space + d + d` **NO es DAP** en tu setup — es el **dashboard** de LazyVim.
+>   No tiene nada que ver con debuggear.
+> - El menú de elegir config (**"Launch file"**) se abre con **`Space + d + c`**
+>   (`continue()`), que la primera vez te muestra las configs para elegir.
+> - `Space + d + a` es **"Run with Args"** (`da` → `continue({ before = get_args })`),
+>   no estrictamente el menú genérico; igual te deja elegir "Launch file".
+> - Resumiendo, las dos teclas que te llevan a seleccionar config y lanzar son
+>   **`dc`** / **`da`**. `dd` = dashboard, no lo uses.
+
 1. Abres el archivo a debuggear (`.ts`, `.js`, `.tsx`, `.jsx`).
 2. Pones un breakpoint donde quieras pausar:
    - `<leader>db` — toggle breakpoint en la línea actual.
    - O `:lua require('dap').toggle_breakpoint()`.
-3. Lanzas: `<leader>dc` (Continue). Por primera vez **nvim te muestra un menú** con las
-   configs disponibles para ese filetype — elige la que corresponda.
-4. A pausa: inspeccioná variables con **DAP UI** (`<leader>du`).
+3. Lanzas con **`<leader>dc`** (Continue) o **`<leader>da`**. Por primera vez **nvim te
+   muestra un menú** con las configs disponibles para ese filetype — elige **"Launch file"**.
+4. Al pausar: se resalta la línea en amarillo. Inspeccioná variables con **DAP UI**
+   (`<leader>du`).
 5. Avanzás con step over / into / out (ver sección 3).
 6. Terminás con `<leader>dt` (Terminate).
 
@@ -50,8 +64,10 @@ Son **dos formas distintas** de debuggear, y confundirlas es el error más comú
 
 | Atajo             | Acción                              | Equivalente que lanza                    |
 | ----------------- | ----------------------------------- | ---------------------------------------- |
+| `Space + D + d`   | ⚠️ **NO es DAP** — abre el DASHBOARD de LazyVim. No lanza nada. | — |
 | `Space + D + u`   | **Toggle DAP UI** (panel variables / call stack / breakpoints / watch) | `:lua require('dapui').toggle()` |
-| `Space + D + c`   | **Continue** (lanzar / continuar)   | `require('dap').continue()`              |
+| `Space + D + c`   | **Continue** (lanzar / continuar). La primera vez abre el menú para elegir **"Launch file"** | `require('dap').continue()`              |
+| `Space + D + a`   | **Run with Args** — también abre el selector de config (elegí "Launch file") | `continue({ before = get_args })`        |
 | `Space + D + b`   | **Toggle breakpoint** en esta línea | `require('dap').toggle_breakpoint()`     |
 | `Space + D + B`   | Breakpoint **con condición**        | pide una condición                       |
 | `Space + D + i`   | **Step into** (entrar a la función) | `step_into()`                            |
@@ -141,18 +157,24 @@ Entonces sí, en nvim: `<leader>dc` → elige **Attach** → elige el proceso/li
 
 ```vim
 " Debuggear un archivo TS/JS (Node):
-Space + db        " breakpoint en la línea
-Space + dc        " Launch file  -> elige 'Launch file' en el menú
-Space + du        " abrir DAP UI (variables)
+Space + db        " breakpoint en la línea (aparece el punto rojo)
+Space + dc        " lanzar -> en el menú elige 'Launch file'
+                  "    (Space + da también sirve; Space + dd es el DASHBOARD, NO DAP)
+Space + du        " abrir DAP UI (variables / stack / breakpoints)
 Space + dO        " step over
 Space + di        " step into
 Space + dt        " terminar
 
-" Debuggear React (Vite):
-npm run dev       " (en otra terminal) levanta el server 5173
-Space + db        " breakpoint en el .tsx
-Space + dc        " elige 'Launch Chrome (React/Dev)'
+" Otros útiles:
+Space + dC        " run to cursor (solo si YA está pausado en un breakpoint)
+Space + d r       " toggle REPL
+Space + d R?      " si el menú no aparece, revisá que el buffer sea .js/.ts/.jsx/.tsx
 ```
+
+> ⚠️ `run_to_cursor can only be used if stopped at a breakpoint` → significa que la
+> sesión está **corriendo sin pausar** (no se detuvo en ningún breakpoint). Si el archivo
+> corre entero sin pausar pese a tener punto rojo, el breakpoint no casa con la ruta
+> ejecutada (ver sección de arreglo `program` absoluto más abajo).
 
 ---
 
