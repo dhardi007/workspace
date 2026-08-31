@@ -131,9 +131,29 @@ Que Diego pueda explicar, con sus palabras y apuntando a su código:
   - `*` = buscar palabra bajo cursor en el archivo
 - Sentar la regla: **siempre usar búsqueda, nunca el ojo/scroll manual**.
 
+### Recursos de práctica (fortalecimiento)
+
+- **Vim Mastery Trainer RPG**: `dotfiles-dizzi/nvim/.config/nvim/docs/vim-trainer-spec.md`
+  Trainer estilo keybr.com con RPG: lecciones → práctica → boss fight, por módulo
+  (horizontal, vertical, text objects, change & repeat, sustitución, regex/vimgrep, macros).
+  Sirve para practicar y medir progreso (spaced repetition con stats).
+- **vim-be-good** (plugin de juegos): `dotfiles-dizzi/nvim/.config/nvim/lua/plugins/vim-be-good.lua`
+  Plugin de ThePrimeagen (https://github.com/ThePrimeagen/vim-be-good). Son **juegos tipo
+  arcade** para agilizar motions (varios juegos con teclas: `:Vimgame*` y otros).
+  Complemento ideal al Vim Trainer RPG para practicar velocidad/fluidez de motions.
+- **Chuleta de comandos `:`**: `AGENT-records/vim-basics.md` (compilado del prepack LazyVim + docs).
+- **Chuleta transversal**: `AGENT-records/vim-motions.md` (incluye `viw` vs `*` y el combo selectivo).
+
+### El combo mágico de reemplazo selectivo (de vim-trainer-spec)
+```
+*  →  cgn  →  {texto}  →  Esc  →  .  (repetir)  →  n  (saltear)  →  .
+```
+Permite reemplazar eligiendo cada caso, sin los riesgos de `:cfdo`.
+
 ### Métodos
 - **Repetición espaciada** (reforzar cada vez que toquemos un archivo)
 - **Mini-ejercicio** (buscar un token específico en el repo con ripgrep)
+- **Práctica gamificada** (hacer módulos del Vim Trainer para medir progreso)
 
 ---
 
