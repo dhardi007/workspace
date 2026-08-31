@@ -88,6 +88,20 @@ Navegación rápida de diagnostics/quickfix:
 > ⚠️ DAP puede pedir config por lenguaje (`dap.configurations.<lang>`).
 > `dap.ext.vscode.load_launchjs` ya no hace falta: los `.vscode/launch.json` se leen solos.
 
+## 5.1 Mason (paquetería LSP/DAP/linters) — `Space + c + m`
+
+| Atajo           | UI           | Qué es                                                                       |
+| --------------- | ------------ | ---------------------------------------------------------------------------- |
+| `Space + c + m` | **Mason TUI**| Gestor de paquetes de **LSPs / DAPs / linters / formatters** (`:Mason`)       |
+
+Dentro de Mason: `1/2/3/4` filtran por **All / LSP / DAP / Linter / Formatter**, `i`
+instala bajo el cursor, `x` desinstala, `C-u` actualiza, `g?` muestra la ayuda.
+
+> ⚠️ **Gotcha:** el `ensure_installed` de DAPs (`mason-nvim-dap` en `nvim-dap.lua`) solo
+> corre **cuando se carga `nvim-dap` por demanda** (lazy-load), no al abrir nvim. Si nunca
+> tocas un keybinding de debug, no se autoinstala. Se instala manual con `:MasonInstall`.
+> Todo el detalle en `vim-mason.md`.
+
 ## 6. Recuperar ventanas / buffers (`:ls!` y `:b<num>`)
 
 **El caso de Diego:** a veces cambia de "window" (o se abre un panel/otro buffer) la

@@ -56,6 +56,8 @@ Cada registro de sesión lleva **fecha inicial** al frente, para alinear la evid
 - `vim-motions.md` — chuleta vim transversal (sin fecha: es referencia continua, no una sesión)
 - `vim-basics.md` — fundamentos y trucos de comandos `:` (compilado del prepack LazyVim + docs nvim)
 - `vim-ui.md` — mapa de todas las UIs/paneles que se abren en Neovim (Space+u toggles, Space+x quickfix, LazyGit, DAP)
+- `vim-mason.md` — Mason: atajo `Space+cm`, por qué el `ensure_installed` de DAP no autoinstala al abrir nvim, adapters por lenguaje y paquetes LSP/DAP/linters recomendados según el roadmap
+- `vim-dap-debug.md` — cómo usar el debugger nvim-dap (flujo completo + errores comunes + configuración real)
 
 ### Referencias externas (fuera de AGENT-records/)
 
