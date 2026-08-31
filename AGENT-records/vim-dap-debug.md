@@ -178,6 +178,63 @@ Space + d R?      " si el menú no aparece, revisá que el buffer sea .js/.ts/.j
 
 ---
 
+## 8. Arreglos aplicados hoy (2026-08-31)
+
+### 8.1 Error `adapter.port is required for server adapter` — RESUELTO
+
+El plugin `nvim-dap-vscode-js` descubre el puerto TCP de `vsDebugServer.js` leyendo su
+**stdout** (fragilidad: si el puerto llega con texto extra, `tonumber` falla → el error de
+`session.lua:1492`). Se reemplazó por un enfoque **determinístico**:
+- `vsDebugServer.js` acepta el puerto como **argumento posicional**:
+  `node vsDebugServer.js 53700` → imprime `Listening at :::53700`.
+- En `nvim-dap.lua` (config) se arranca `node <bin> 53700` como job (`jobstart detach`)
+  y se registran los adapters como `server` con ese puerto fijo:
+
+  ```lua
+  dap.adapters["pwa-node"] = { type = "server", host = "127.0.0.1", port = 53700 }
+  dap.adapters["pwa-chrome"]       = dap.adapters["pwa-node"]
+  dap.adapters["pwa-msedge"]       = dap.adapters["pwa-node"]
+  dap.adapters["node-terminal"]    = dap.adapters["pwa-node"]
+  ```
+
+  `adapter.port` es SIEMPRE `53700` (número) → el assert ya no puede fallar.
+
+> ⚠️ **Si el puerto está ocupado** (`EADDRINUSE`), el job del server no arranca y los
+> breakpoints se colocan pero nunca se disparan. Fix:
+> ```bash
+> pkill -9 -f vsDebugServer.js   # libera el puerto 53700
+> ```
+> y reiniciá Neovim (tu config relanza el server limpio).
+
+### 8.2 Sesión "running" que nunca pausa (breakpoint no casa) — RESUELTO
+
+Con `program = "${file}"` y `cwd = "${workspaceFolder}"`, el debugger ejecutaba
+`node ../../tmp/test.js` (ruta relativa) mientras el breakpoint se registraba con la ruta
+**absoluta** del buffer → no coincidían → el archivo corría entero sin pausar, dando
+`run_to_cursor can only be used if stopped at a breakpoint` y `No stopped threads`.
+
+Fix: la config **"Launch file"** usa ruta absoluta y cwd en el directorio del archivo:
+
+```lua
+{
+  type = "pwa-node",
+  request = "launch",
+  name = "Launch file",
+  program = function()
+    return vim.fn.expand("%:p")                    -- ruta ABSOLUTA del buffer
+  end,
+  cwd = function()
+    return vim.fn.fnamemodify(vim.fn.expand("%:p"), ":h")  -- dir del archivo
+  end,
+  sourceMaps = true,
+},
+```
+
+> 💡 Para validar que la sesión existe: `:lua print(require("dap").session())`
+> devuelve un objeto (no `nil`) si hay sesión activa.
+
+---
+
 ## Huecos detectados / por confirmar
 
 1. El puerto de Vite (5173) y el de attach (9222/9229) están **hardcodeados** en las
