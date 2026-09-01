@@ -17,6 +17,11 @@ adapters DAP, y qué **otras herramientas** conviene agregar según el roadmap d
 Dentro de Mason:
 
 - `1/2/3/4` filtran por **All / LSP / DAP / Linter / Formatter**.
+- `<C-f>` abre el **Language Filter**: escribís una extensión de lenguaje (p. ej. `cpp`, `py`,
+  `go`) y **`<Enter>` la aplica** → Mason muestra solo los paquetes de ese lenguaje. Útil para
+  ver qué LSP/DAP/linter hay disponible para C++ o cualquier lenguaje sin hacer scroll.
+  (El prompt dice: _press `<C-f>` to apply filter_; limpiás el filtro con `<C-f>` + borrar o
+  `l` para limpiar).
 - `g?` abre la ayuda de keymaps internos.
 - `i` instala el paquete bajo el cursor, `x` lo desinstala, `C-u` lo actualiza.
 
@@ -65,6 +70,13 @@ un lenguaje. Si al abrir no tocaste nada de debug, el `ensure_installed` jamás 
 > entre sesiones del mismo equipo, pero **NO se replican** a otras PCs. Cada máquina dispara
 > su propio install cuando cargas nvim-dap.
 
+> 💡 **¿Y por qué veo "Installing ◍ cpptools" al abrir nvim?** Eso **no** viene del `ensure_installed`
+> de DAPs (npm-dap → solo codelldb/delve/netcoredbg/java-debug/php-debug). `cpptools` es un **LSP**
+> y lo instala **`mason-lspconfig`** (LazyVim auto-agrega LSPs a su `ensure_installed` según los
+> lenguajes/formatters que detecta en tu config). A Java se vio "Downloading LSP configuration
+> schema from `vscode-cpptools/.../package.json`" = cpptools descargando su schema al compilar.
+> Es **normal y esperado**: es un segundo `ensure_installed` distinto (el de LSPs).
+
 ## 3. Paquetes DAP instalados (adapters por lenguaje)
 
 | Adapter             | Lenguaje(s)        | Binario en Mason      | Estado              | Config en nvim-dap.lua |
@@ -105,6 +117,7 @@ DAP. Faltan los **LSPs** — sin LSP el autocompletado/diagnóstico no funciona.
 | `gopls`                 | Go           | LSP oficial de Go                       |
 | `phpactor` o `intelephense` | PHP      | LSP de PHP; intelephense requiere key   |
 | `clangd`                | C / C++      | el LSP estándar de C/C++                |
+| `cpptools`              | C / C++      | ✅ **Instalado** (vscode-cpptools) — lo instala `mason-lspconfig`; al compilar descarga su schema `vscode-cpptools/.../package.json` |
 | `jdtls`                 | Java         | Java LSP (Eclipse)                      |
 | `omnisharp` / `csharp_ls` | C# / .NET  | LSP de C#                               |
 
@@ -132,6 +145,10 @@ DAP. Faltan los **LSPs** — sin LSP el autocompletado/diagnóstico no funciona.
 - `mason.nvim` instala LSPs; `mason-nvim-dap` instala DAPs; ambos con `ensure_installed`.
 - El `ensure_installed` de nvim-dap **solo corre al cargar nvim-dap** (lazy), no al abrir nvim
   → pero **ya se disparó**: los 5 DAPs están **Installed** (confirmado en lista Mason).
+- Los **LSPs** (p. ej. `cpptools`) los auto-instala **`mason-lspconfig`** por un `ensure_installed`
+  distinto: si ves "Installing cpptools / Downloading schema vscode-cpptools" es normal, es ese.
+- En Mason: `<C-f>` abre el **Language Filter** — escribís la extensión (ej. `cpp`) y `<Enter>`
+  la aplica para ver solo los paquetes de ese lenguaje.
 - Mason es **por-máquina**: lo instalado persiste en esa PC, no se replica a otras.
 - **Java**: DAP via extra LazyVim `lang.java` (jdtls). Falta `:MasonInstall jdtls` (JDK 21 ya hay).
 - Atajo rápido: `Space + c + m` para abrir Mason y ver qué tienes instalado/available.
