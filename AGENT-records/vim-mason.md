@@ -86,7 +86,15 @@ un lenguaje. Si al abrir no tocaste nada de debug, el `ensure_installed` jamás 
 | `netcoredbg`        | C# / VB / F#       | `mason/bin/netcoredbg`| ✅ Funciona | executable con `--interpreter=vscode` |
 | `java-debug-adapter`| Java               | (bundle dentro de `jdtls`) | ✅ Funciona vía jdtls | extra LazyVim `lang.java` → `jdtls.setup_dap()` |
 | `php-debug-adapter` | PHP (Xdebug)       | `mason/bin/php-debug-adapter` | ✅ Instalado (requiere Xdebug) | executable, puerto 9003 |
-| `pwa-node`          | JS/TS (Node)       | (viene de `vscode-js-debug`) | ✅ Funciona | adapter `pwa-*` vía plugin `nvim-dap-vscode-js` |
+| `pwa-node`          | JS/TS (Node)       | `js-debug-adapter` → `js-debug/src/dapDebugServer.js` | ✅ Funciona | adapter `server` con `dapDebugServer.js` de Mason + `host="127.0.0.1"` |
+
+> **JS/TS migrado a `js-debug-adapter` de Mason (2026-09-01).** Antes se compilaba
+> `vscode-js-debug` a mano con gulp (build desde main/HEAD), lo que rompía el stepping
+> ("No stopped threads. Cannot move" — issue `mxsdev/nvim-dap-vscode-js#19`). Ahora el binario
+> empaquetado de Mason se usa como adapter `server` (`dapDebugServer.js`) con
+> `host="127.0.0.1"` explícito. Se eliminó el spec `microsoft/vscode-js-debug` del
+> `nvim-dap.lua` (ya no se compila a mano).
+
 
 ### ✅ Java ahora vía jdtls (migrado)
 
@@ -127,7 +135,7 @@ DAP. Faltan los **LSPs** — sin LSP el autocompletado/diagnóstico no funciona.
 | -------------- | ------------- | ------------------------------ |
 | `bash-debug-adapter` | Bash    | depura scripts bash            |
 | `debugpy`      | Python        | si algún día agregas Python    |
-| `js-debug-adapter`   | JS/TS | ya cubierto por `pwa-node` (no hace falta) |
+| `js-debug-adapter`   | JS/TS | ✅ **Instalado y en uso** — es el back-end moderno de `pwa-*`/`pwa-chrome` (reemplazó el build manual de `vscode-js-debug`, ver nota abajo) |
 
 ### Linters / formatters útiles (ya tienes shfmt, prettier, stylua, eslint, biome)
 

@@ -592,6 +592,39 @@ nvim /tmp/testpython/main.py
   Binarios confirmados en disco: `vscode-js-debug/out/src/vsDebugServer.js` ✓ y
   `nvim-dap-vscode-js/lua/dap-vscode-js/init.lua` ✓.
 
+### 9.11 JS/TS — causa raíz del "No stopped threads" + migración a Mason (2026-09-01)
+
+- **Diagnóstico de raíz.** El error "No stopped threads. Cannot move" viene de
+  `nvim-dap/lua/dap/session.lua` → `_step()`: solo hace Step si hay `stopped_thread_id` **o** un
+  thread con `stopped=true`. Si `event_stopped()` no resuelve frame (en `get_top_frame(frames)`
+  retorna nil por source-map/path mal resuelto) hace `return` temprano **sin marcar el thread**
+  → Step falla.
+- **Causa real (bug conocido):** compilar `vscode-js-debug` a mano desde **main/HEAD (v1.117.0)**
+  con `gulp` rompe el stepping. Documentado en la issue
+  `mxsdev/nvim-dap-vscode-js#19`: los builds recientes rompen step over/into/out; la config canónica
+  (LazyVim/banjocode/jvt.me/tduyng) usa el paquete **empaquetado y versionado de Mason**, no un
+  gulp-build casero.
+- **Fix aplicado:** migrar los adapters `pwa-*` al binario de **`:MasonInstall js-debug-adapter`**:
+  - Ruta: `~/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js`.
+  - En `nvim-dap.lua`: `dap.adapters[name] = { type="server", host="127.0.0.1", port="${port}",
+    executable={ command=node, args={ js_debug_server, "${port}" } } }` para `pwa-node`,
+    `pwa-chrome`, `pwa-msedge`, `node-terminal`.
+  - **`host="127.0.0.1"` explícito es clave:** nvim-dap tiene un bug documentado si falta
+    host+port juntos en un adapter `type=server` (queda sin conectar en silencio).
+  - **Se BORRÓ el spec `microsoft/vscode-js-debug`** (líneas finales) con su `build =
+    npm install...gulp vsDebugServerBundle`: ya no se compila a mano, Mason lo provee.
+- **TS sin tsx:** "Launch TS" ahora usa **node nativo** (Node ≥23.6 ejecuta `.ts` por type
+  stripping, sin compilar). Solo sintaxis "erasable" (enum/decorators requieren tsx/ts-node).
+  Respaldo si se necesita: `npm install -g tsx`.
+- **React (`App.tsx`):** un componente React NO se debugea con "Launch file"/"Launch TS" (no es
+  script independiente). Requiere Vite (`npm run dev` en :5173) + **"Launch Chrome (React/Dev)"**
+  (`pwa-chrome`). Usar "Launch file"/"Launch TS" SOLO para scripts sueltos `.js`/`.ts`.
+- **Rendimiento (opcional, PR `rcarriga/nvim-dap-ui#403`):** `nvim-dap-ui` evalua "Scopes" de
+  todos los breakpoints aunque no estés viendo el panel → lento con React. Solo aplicar si tras
+  arreglar el step nota lentitud.
+- **Validación:** `nvim --headless -u NONE -c "luafile nvim-dap.lua" -c "q"` → EXIT 0.
+  Adapter confirmado en disco: `mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js` ✓.
+
 ### Resumen estado de builds de los tests
 
 | Test                      | Estado build      | Requisito previo                 |
