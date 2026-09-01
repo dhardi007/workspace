@@ -19,6 +19,8 @@ Grug-Far Snacks Rename: Space + s + r
 Para renombrar símbolos con precisión usando Grug-Far Snacks Rename, primero se selecciona el símbolo exacto con viw (usando v o V para selección visual), luego se aplica el rename para evitar cambios no deseados en comentarios o strings similares.
 Remplazo profesional: Para reemplazos masivos y consistentes, primero se usa * para seleccionar todas las ocurrencias de una palabra, luego se aplica :%s/pattern/replacement/g para reemplazar todas las instancias de forma segura y eficiente.
 
+Rip-substitute (Space + f + s): Descubrí que la vía MÁS fácil y rápida para reemplazar en UN solo archivo es Space + f + s (nvim-rip-substitute). En modo normal posiciona el cursor sobre la palabra (o seleccionás con viw en visual) y el plugin la carga automáticamente como patrón a buscar, con previsualización en vivo de cada coincidencia y reemplazo aplicado solo a ese archivo — sin depender del último patrón de búsqueda (@/) ni barrer otras carpetas. Es el atajo ideal entre el * + :%s// clásico y el Grug-Far para archivos únicos.
+
 📄 Ver vim-motions.md (<https://github.com/dizzi1222/workspace/blob/main/AGENT-records/vim-motions.md>)
 
 — Redux Toolkit — Aprendizaje:

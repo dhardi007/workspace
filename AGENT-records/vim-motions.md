@@ -196,6 +196,45 @@ viw
 > Para **tocar un solo text-object** usá `viw` + `c`/`d`. (`Space + s + r` de Snacks sigue
 > siendo el camino para reemplazos con UI de búsqueda/reemplazo.)
 
+## 🚀 `Space + f + s` — rip-substitute (la vía MÁS fácil al reemplazo)
+
+> Plugin: **nvim-rip-substitute** (`chrisgrieser/nvim-rip-substitute`).
+> Config: `nvim/.config/nvim/lua/plugins/rip.lua:11-21` (`<leader>fs`).
+> Comando subyacente: `:RipSubstitute`.
+
+**`Space + f + s` = reemplazo con ripgrep SOLO en el archivo actual**, usando
+automáticamente la palabra/valor que tengas bajo el cursor (modo normal) o la
+selección (modo visual).
+
+### Por qué es la vía más fácil (vs `*` + `:%s//`)
+
+- En **modo normal**, ponés el cursor sobre la palabra y `Space+f+s` la **carga
+  automáticamente** como el patrón a buscar — NO necesitás `*` ni escribir nada.
+- Se abre un mini-buffer que **previsualiza en vivo** cada coincidencia del
+  archivo actual, con paneo entre ellas.
+- Aplicás el reemplazo y ripgrep lo escribe **solo en ese archivo** (no barre
+  otras carpetas, a diferencia de Grug-Far con Paths mal apuntado).
+
+### Cómo se usa
+
+```text
+1. cursor sobre la palabra  (o seleccionás con viw en modo visual)
+2. Space + f + s
+3. Confirmás el patrón (search) y escribís el reemplazo (replace)
+4. Paneás entre coincidencias y aceptás el cambio → solo este archivo
+```
+
+| Situación                          | Herramienta recomendada              |
+| ---------------------------------- | ------------------------------------ |
+| Reemplazo en **solo 1 archivo**    | **`Space+f+s`** (rip-substitute) ⭐   |
+| Reemplazo con UI search/replace    | `Space + s + r` (Grug-Far)           |
+| Reemplazo masivo multi-archivo     | `Space + s + r` cuidando **Paths**   |
+| Sustitución clásica `:s`           | `:%s/old/new/gc` (con confirmación)  |
+
+> Diferencia clave con `*`+`:%s//`: `Space+f+s` usa el **valor bajo el cursor**
+> directamente (o la selección visual), NO el último patrón `@/` — así evitás el
+> peligro de reemplazar con un patrón heredado/viejo documentado más arriba.
+
 ## Mover líneas / bloques (plugin `move.nvim`) — el "O" que buscás
 
 > ⚠️ **Distinguir tres usos de `O`/teclas visuales:**

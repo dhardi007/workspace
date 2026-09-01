@@ -49,6 +49,7 @@ This roadmap documents Diego's structured learning path towards becoming a full-
 | **C++**  | STL, RAII, templates                              | Aplicaciones de alto rendimiento, juegos   |
 | **C#**   | CLIs, .NET, Web ASP.NET                           | Windows apps, servicios web                |
 | **Java** | Collections, streams, concurrencia                | Aplicaciones empresariales, Android        |
+| **Python**| Duck typing, decoradores, list/dict comprehensions, virtualenv | **ML/IA**, ciencia de datos, scripting, backend (Django/FastAPI) |
 
 ### 3. Modern Development Practices
 

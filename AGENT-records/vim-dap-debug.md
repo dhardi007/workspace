@@ -6,12 +6,16 @@ diferencia crítica entre **Launch** y **Attach** (la causa de tu error), y las 
 que ya tienes para Node y React/Chrome.
 
 > Fuente: `dotfiles-dizzi/nvim/.config/nvim/lua/plugins/nvim-dap.lua` (config real).
-> Debugger: `vscode-js-debug` (`pwa-node` / `pwa-chrome`) con adapter `server` de
-> puerto fijo (53700) — se arranca `node vsDebugServer.js 53700` como job al cargar
-> nvim-dap. `program` de "Launch file" usa la ruta ABSOLUTA del buffer (`expand("%:p")`)
-> para que el breakpoint siempre case con el archivo ejecutado.
+> Debugger: `vscode-js-debug` (`pwa-node` / `pwa-chrome`). Los adapters `pwa-*` los provee
+> el plugin **`nvim-dap-vscode-js`**, que lanza un `dapDebugServer` **por sesión con puerto
+> dinámico** (reemplazó al viejo `server` de puerto fijo 53700, que era single-session y se
+> colgaba → "comportamiento nulo" en JS/TS). `program` de "Launch file" usa la ruta ABSOLUTA
+> del buffer (`expand("%:p")`) para que el breakpoint siempre case con el archivo ejecutado.
 > ⚠️ Contexto: Diego abrió una vez "Attach" sin tener un proceso Node con `--inspect`
 > y falló con "Could not connect to debug target at localhost:9229".
+> ⚠️ **Bug E5108 arreglado (2026-09-01):** `preflight_check()` se llamaba ANTES de su
+> declaración `local function`, por lo que `<leader>dc`/`<F9>` crasheaban con "attempt to
+> call global 'preflight_check' (a nil value)" y NUNCA lanzaban la sesión DAP. Reordenado.
 
 ---
 
@@ -38,6 +42,7 @@ Son **dos formas distintas** de debuggear, y confundirlas es el error más comú
 ## 2. El flujo básico (Launch)
 
 > ⚠️ **ATENCIÓN con los atajos (fuente de tu confusión):**
+>
 > - `Space + d + d` **NO es DAP** en tu setup — es el **dashboard** de LazyVim.
 >   No tiene nada que ver con debuggear.
 > - El menú de elegir config (**"Launch file"**) se abre con **`Space + d + c`**
@@ -89,6 +94,39 @@ Son **dos formas distintas** de debuggear, y confundirlas es el error más comú
 
 ---
 
+### 3.1 Notificaciones fallback por lenguaje (build/requisito)
+
+En `nvim-dap.lua` se agregó un sistema de avisos que, cuando el debugger **falla** o
+**falta preparar el proyecto**, te dice el comando exacto según el lenguaje del buffer
+en vez de un error criptico.
+
+| Disparo | Qué hace |
+| ------- | -------- |
+| **`<leader>dc` / `<F9>`** (continue con preflight) | Antes de lanzar hace `preflight_check()`: si falta el binario (Rust/C/C++) o el `.dll` (C#) avisa qué compilar; si es Java muestra el bloqueo. Luego `dap.continue()`. |
+| **Fallo del adapter** (`output` con patrón conocido: "not a valid executable", "does not exist", "No module named debugpy", "adapter didn't respond", `0x80070002`) | Muestra el hint del lenguaje. |
+| **Evento `initialized` de sesión PHP** | Cuando arranca un "Listen for Xdebug" en PHP, recuerda proactivamente levantar el servidor con Xdebug (antes de `dc`). |
+| **`<F8>`** (hint manual) | Muestra el comando/requisito de build del lenguaje del buffer actual. |
+| **`<leader>dx`** (hint manual) | Igual que `<F8>` pero accesible desde el grupo debug (`Space+d+x`). |
+
+> ⚠️ Se **descartó** interceptar `vim.notify` globalmente (rompía Noice: "vim.notify has
+> been overwritten"). El aviso de Java sale del **preflight** en `<leader>dc`/`<F9>`, no de
+> un wrapper global.
+
+Los hints por filetype (se generan con el **directorio del buffer actual**, no al cargar el config):
+
+| filetype | Comando/requisito que sugiere |
+| -------- | ----------------------------- |
+| `rust`   | `cd <dir> && rustc -g -o build/main main.rs` |
+| `c`/`cpp`| `cd <dir> && g++ -g -o build/main main.cpp` |
+| `cs`     | `cd <dir> && dotnet build` |
+| `java`   | DAP vía extra LazyVim `lang.java` (jdtls). Falta `:MasonInstall jdtls`; requiere JDK (hay 21). |
+| `php`    | Levantar servidor con Xdebug antes de `dc` + `:MasonInstall php-debug-adapter` + **disparar request HTTP** (curl/URL) |
+| `python` | debugpy ya viene en `work.nix`; fallback `pip install debugpy` |
+
+> El preflight corre en `<leader>dc` (sobrescribe el de LazyVim); los demás hooks coexisten.
+
+---
+
 ## 4. Configs que ya tienes (por filetype JS/TS/React)
 
 Tus configs viven en `nvim-dap.lua` bajo `dap.configurations` para
@@ -102,6 +140,18 @@ Tus configs viven en `nvim-dap.lua` bajo `dap.configurations` para
 | **Attach to Chrome**        | `pwa-chrome` (attach)| Se conecta a un Chromium abierto con `--remote-debugging-port=9222`. |
 
 **Para Node (TS/JS puro):** usa **Launch file** — sin setup previo, solo breakpoints y `dc`.
+
+> ⚠️ En un `.js`/`.ts` suelto, al hacer `<leader>dc` el selector muestra Varias configs:
+> hay que elegir **"Launch file"** (pwa-node), **NO** "Launch Chrome (React/Dev)" ni
+> "Attach to Chrome". Elegir pwa-chrome da `Debug adapter didn't respond ... pwa-chrome`
+> y intenta abrir Chromium (no es lo que quieres en un script Node suelto).
+
+> **Fix "No thread to stop" (JS/TS):** en scripts cortos, `node ./index.js` corre entero
+> en milisegundos y termina antes de que el breakpoint case (mensaje "Running …" que nunca
+> pausa). La config **Launch file** de JS ahora usa `stopOnEntry = true`, así pausa en la
+> primera línea ejecutable y luego los breakpoints sí casan al continuar.
+> ⚠️ Esto es específico de **pwa-node (JS)**. En **codelldb (C/C++/Rust)** NO conviene
+> `stopOnEntry` porque frena en `_start`/SIGSTOP (gotcha documentado en la § de C++).
 
 **Para React (Vite):**
 
@@ -145,11 +195,7 @@ Entonces sí, en nvim: `<leader>dc` → elige **Attach** → elige el proceso/li
 | `No thread to stop. Not pausing...`                    | No hay sesión activa / no hay hilos en pausa. Normal si nunca lanzaste. |
 | `Debug adapter didn't respond`                         | El adapter tardó (esperá) o hay problema de config. Revisá `:help dap.set_log_level`. |
 | `dap.ext.vscode.load_launchjs is deprecated`           | Ya no se usa; nvim-dap lee `.vscode/launch.json` solo. Eliminado de tu config. |
-| `adapter.port is required for server adapter` (en `session.lua:1492`) | Es **de config**, no de uso. Aparece al seleccionar **"Attach to Chrome"** (`pwa-chrome` attach): nvim-dap espera que un adapter de tipo `server` tenga `port`, pero `vscode-js-debug` lo registra como executable y el `port = 9222` de la config no alcanza. **Fix:** mientras tanto, evitar "Attach to Chrome"; usar **Launch Chrome (React/Dev)** o **Launch file**. Verificar que el adapter esté registrado:
-  ```lua
-  :lua print(vim.inspect(require("dap").adapters["pwa-chrome"]))
-  :lua print(vim.inspect(require("dap").adapters["pwa-node"]))
-  ``` |
+| `adapter.port is required for server adapter` (en `session.lua:1492`) | Es **de config**, no de uso. Aparece al seleccionar **"Attach to Chrome"** (`pwa-chrome` attach): nvim-dap espera que un adapter de tipo `server` tenga `port`, pero `vscode-js-debug` lo registra como executable y el `port = 9222` de la config no alcanza. **Fix:** mientras tanto, evitar "Attach to Chrome"; usar **Launch Chrome (React/Dev)** o **Launch file**. Verificar que el adapter esté registrado con `:lua print(vim.inspect(require("dap").adapters["pwa-node"]))` |
 
 ---
 
@@ -180,31 +226,45 @@ Space + d R?      " si el menú no aparece, revisá que el buffer sea .js/.ts/.j
 
 ## 8. Arreglos aplicados hoy (2026-08-31)
 
-### 8.1 Error `adapter.port is required for server adapter` — RESUELTO
+### 8.1 Adapter JS/TS: migrado de puerto fijo a `nvim-dap-vscode-js`
 
-El plugin `nvim-dap-vscode-js` descubre el puerto TCP de `vsDebugServer.js` leyendo su
-**stdout** (fragilidad: si el puerto llega con texto extra, `tonumber` falla → el error de
-`session.lua:1492`). Se reemplazó por un enfoque **determinístico**:
-- `vsDebugServer.js` acepta el puerto como **argumento posicional**:
-  `node vsDebugServer.js 53700` → imprime `Listening at :::53700`.
-- En `nvim-dap.lua` (config) se arranca `node <bin> 53700` como job (`jobstart detach`)
-  y se registran los adapters como `server` con ese puerto fijo:
+**ANTES (obsoleto):** se arrancaba `node vsDebugServer.js 53700` como **job con puerto FIJO**
+(`jobstart detach`) y se registraban los adapters `pwa-*` como `server` en ese puerto:
 
-  ```lua
-  dap.adapters["pwa-node"] = { type = "server", host = "127.0.0.1", port = 53700 }
-  dap.adapters["pwa-chrome"]       = dap.adapters["pwa-node"]
-  dap.adapters["pwa-msedge"]       = dap.adapters["pwa-node"]
-  dap.adapters["node-terminal"]    = dap.adapters["pwa-node"]
-  ```
+```lua
+dap.adapters["pwa-node"] = { type = "server", host = "127.0.0.1", port = 53700 }
+dap.adapters["pwa-chrome"]       = dap.adapters["pwa-node"]
+dap.adapters["pwa-msedge"]       = dap.adapters["pwa-node"]
+dap.adapters["node-terminal"]    = dap.adapters["pwa-node"]
+```
 
-  `adapter.port` es SIEMPRE `53700` (número) → el assert ya no puede fallar.
+**PROBLEMA (diagnosticado 2026-09-01):** `vsDebugServer.js` es **single-session** con puerto
+fijo. Si una sesión DAP quedaba colgada/ocupada, el server dejaba de responder a nuevos
+clients → el DAP conectaba pero **no respondía al `initialize`** → "comportamiento nulo"
+(`stopOnEntry` no cambiaba nada porque la nueva sesión ni conectaba).
 
-> ⚠️ **Si el puerto está ocupado** (`EADDRINUSE`), el job del server no arranca y los
-> breakpoints se colocan pero nunca se disparan. Fix:
-> ```bash
-> pkill -9 -f vsDebugServer.js   # libera el puerto 53700
-> ```
-> y reiniciá Neovim (tu config relanza el server limpio).
+**AHORA:** el plugin **`nvim-dap-vscode-js`** (dependency del spec de `vscode-js-debug`)
+registra los adapters `pwa-*` y lanza un `dapDebugServer` **por sesión con puerto dinámico**,
+parseando el stdout de forma robusta. Ya NO hay server global de puerto fijo.
+
+```lua
+-- En el spec de plugins de nvim-dap.lua
+{
+  "mxsdev/nvim-dap-vscode-js",
+  lazy = true,
+  dependencies = { "microsoft/vscode-js-debug" },
+  config = function()
+    require("dap-vscode-js").setup({
+      debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
+      adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal" },
+    })
+  end,
+}
+```
+
+> ⚠️ Usar **"Launch file"** (pwa-node), NO "Launch Chrome" (pwa-chrome da "adapter didn't
+> respond" si no hay Chromium/DevTools). Al cambiar la config hay que **reiniciar nvim**
+> (antes un server zombie del puerto 53700 podía quedar ocupándolo).
 
 ### 8.2 Sesión "running" que nunca pausa (breakpoint no casa) — RESUELTO
 
@@ -233,7 +293,237 @@ Fix: la config **"Launch file"** usa ruta absoluta y cwd en el directorio del ar
 > 💡 Para validar que la sesión existe: `:lua print(require("dap").session())`
 > devuelve un objeto (no `nil`) si hay sesión activa.
 
+### 8.3 `No configuration found for javascript/typescript` + `E565: checktime` — RESUELTO
+
+**Síntoma:** al pulsar `<leader>dc` (Continue) salía:
+
+- `No configuration found for 'javascript'` / `'typescript'`
+- y en el log de lazy: `Failed to run config for nvim-dap ... E565: Not allowed to
+  change text or change window: checktime ... nvim-dap.lua:306`
+
+**Causa raíz:** en la config de Java dejé `mainClass = vim.fn.input(...)` como **llamada directa**,
+cuando el resto de lenguajes (codelldb, C#, Go) usan `input()` **deferido dentro de una función**:
+
+```lua
+-- ❌ ROTO: ejecuta vim.fn.input() AL CARGAR (durante lazy-load con vim.schedule)
+mainClass = vim.fn.input("Main class (ej. com.example.Main): ", "", "file")
+
+-- ✅ CORRECTO: solo pide input cuando se lanza el debug de Java
+mainClass = function()
+  return vim.fn.input("Main class (ej. com.example.Main): ")
+end
+```
+
+`<leader>dc` dispara nvim-dap por demanda (lazy-load). Durante ese `vim.schedule`,
+llamar a `vim.fn.input()` está **prohibido** → `E565` → la carga de `config` se abortaba →
+las configs de `javascript`/`typescript` (definidas en un `for` al final del mismo `config`)
+**nunca se registraban**.
+
+**Regla:** **nunca** poner `vim.fn.input()` como valor directo de un campo de configuración.
+Siempre envolverlo en `function()`. Eso aplica a `mainClass`, `program`, `cwd`, `args`, etc.
+
+### 8.4 Ejemplo C++ con codelldb (probado) — flujo + gotcha de `_start`
+
+**Probar:** ejemplo en `/tmp/testcpp/main.cpp` (calculadora, build con `g++ -g -O0 main.cpp -o build/main`).
+
+**Flujo** (igual al video de debugging C++/Neovim):
+
+1. `nvim /tmp/testcpp/main.cpp`
+2. `Space + d + b` → toggle breakpoint en una línea (ej. `int suma = sumar(...)`)
+3. `Space + d + u` → abrir DAP UI (a la izquierda: Locals, Call Stack, Breakpoints; inferior: REPL/Console)
+4. `Space + d + c` → menú → **"Launch file (codelldb)"**
+5. Pregunta **"Path to executable:"** → `/tmp/testcpp/build/main` (apuntar al build dir, como el video)
+6. Se detiene en el breakpoint. `Space + d + O` step over, `Space + d + c` continuar.
+   - Locals muestra `x`, `y`, `suma`, `resta`, `mult` en vivo.
+   - Le paso `-g` a g++ es **obligatorio**: sin debug info, codelldb no puede mapear el binario a tus líneas de fuente.
+
+**Gotcha: parada en `_start` / `signal SIGSTOP` (NO es un crash)**
+
+- **Síntoma:** al lanzar, el debugger frena en `_start` (no en `main`), muestra `Stop reason:
+  signal SIGSTOP`, registros (`rax`, `rbx`, `ymm0`...) y desensamblado (`movq %rsp, %rdi`),
+  con `Source: unknown` y sin variables del programa.
+- **Causa:** la config C++ tenía `stopOnEntry = true`. Eso obliga a codelldb a detener el
+  proceso **justo al arrancar, en `_start`** (punto de entrada más bajo del binario, código
+  del loader, antes de `main`). Ahí no hay fuente ni variables aún → parece un crash pero NO lo es.
+- **Fix aplicado:** se quitó `stopOnEntry = true` de la config C++ (`nvim-dap.lua`). Ahora solo
+  para en tus breakpoints reales, limpio como en el video.
+- **Si aún quieres conservarla:** tras el stop en `_start`, `Space + d + c` salta a tu breakpoint.
+- **`Console is in 'commands' mode, prefix expressions with '?'`** → no es error; es el REPL de
+  codelldb en modo comandos (tipo gdb). Ignóralo.
+
 ---
+
+---
+
+## 9. 🧪 Práctica por lenguaje (archivos de test en `/tmp/`)
+
+Cada test es una **calculadora** simple con operaciones en funciones — ideal para poner
+breakpoints, step over/into y ver las variables (Locals) en la DAP UI. El flujo es siempre
+el mismo:
+
+> `nvim <archivo>` → `Space + db` (breakpoint) → `Space + dc` (lanzar, elegí config) → `Space + du` (DAP UI) → `Space + dO` (step over) / `di` (into) / `dc` (continuar) → `Space + dt` (terminar).
+
+### 9.1 JavaScript/TypeScript — `/tmp/testjs/index.js` (pwa-node) ✅ sin build
+```bash
+# NO compila nada. Directo.
+nvim /tmp/testjs/index.js
+# <leader>db en una línea de console.log -> <leader>dc -> "Launch file"
+```
+- Inspección: panel **Locals** ya muestra `x`, `y` y el resultado de cada `console.log`
+  cuando pausas. El **REPL** (`Space + dr`) evalúa con prefijo por filetype:
+  `:x-y` (o en el REPL de pwa-node, `:exec x + y`). Recomendado usar **Watches**.
+- **Si al lanzar ves `dap> node ./index.js` y luego `No thread to stop. Not pausing...`:**
+  el programa `index.js` corrió del inicio al fin sin detenerse en tu breakpoint (es una
+  calculadora que imprime y sale al instante). Causas:
+  1. **Breakpoint en línea que no se alcanza** o el proceso ya terminó → verificar el punto rojo.
+  2. **Ruta no casa** → confirmar que la config use `program = expand("%:p")` (absoluto) y
+     `cwd` en el dir del archivo (ya está así en `nvim-dap.lua`).
+  3. Si el puerto 53700 no escucha, el server no arrancó (ver sección 8.1). Verificalo con
+     `ss -ltn | grep 53700` o `pkill -9 -f vsDebugServer.js` + reiniciar nvim.
+  → Solución rápida: loguear tiempo suficiente o poner un breakpoint en una línea alcanzada y
+  usar `pwa-node` Launch file; si sigue, revisar el log `:DapShowLog`.
+
+### 9.2 C++ — `/tmp/testcpp/main.cpp` (codelldb) ✅ build listo
+```bash
+# Ya está compilado en build/main. Si cambias el .cpp:
+cd /tmp/testcpp && g++ -g -O0 main.cpp -o build/main
+nvim /tmp/testcpp/main.cpp
+# <leader>db en "int suma = ..." -> <leader>dc -> "Launch file (codelldb)"
+# Pide "Path to executable:" -> /tmp/testcpp/build/main
+```
+- **Gotcha:** codelldb frena en `_start`/`SIGSTOP` si tu config tiene `stopOnEntry=true`
+  (ya lo quitamos). Si vuelve a pasar, `dc` salta a tu breakpoint.
+- REPL de codelldb está en modo **comandos** (tipo gdb, prefijo `?`). Para variables usa
+  **Locals** o **Watches**.
+
+### 9.3 Rust — `/tmp/testrust/main.rs` (codelldb) ⚠️ compilar primero
+```bash
+cd /tmp/testrust && rustc -g -o build/main main.rs   # build/ estaba vacío
+nvim /tmp/testrust/main.rs
+# <leader>db -> <leader>dc -> "Launch file (codelldb)" -> path: /tmp/testrust/build/main
+```
+- **Error típico sin build:** `Error on launch: '/tmp/testrust/main.rs' is not a valid executable`
+  y `'/tmp/testrust/main' does not exist` — no había binario compilado, find_executable no
+  halló nada. Solución: `rustc -g -o build/main main.rs` ANTES.
+- Requiere `-g` (debug info). Igual que C++: usa **Watches**/Locals, no el REPL de comandos.
+
+### 9.4 Go — `/tmp/testgo/main.go` (delve) ✅ sin build manual
+```bash
+nvim /tmp/testgo/main.go
+# <leader>db -> <leader>dc -> elige "Launch" (delve compila el paquete solo)
+```
+- delve lanza con `program="${file}"` y compila él mismo. Si prefieres binario:
+  `cd /tmp/testgo && go build -o build/main main.go` y usa la otra config.
+- delve SI tiene REPL razonable; pero para ver variables usa **Watches** para ser consistente.
+
+### 9.5 C# — `/tmp/testcs/Program.cs` (netcoredbg) ⚠️ compilar primero
+```bash
+cd /tmp/testcs && dotnet build            # genera bin/Debug/net8.0/*.dll
+nvim /tmp/testcs/Program.cs
+# <leader>db -> <leader>dc -> "Launch .NET" (hace glob de bin/Debug/**/*.dll)
+```
+- **Error típico sin build:** `Failed command 'configurationDone' : 0x80070002` (file not
+  found) → el glob devuelve vacío porque no hay `.dll`. Solución: `dotnet build` ANTES.
+- El adapter hace `glob("bin/Debug/**/*.dll")` — ya cubre el caso `net8.0/`. Si pide dll,
+  apunta al `.dll` del build (no al `.cs`).
+
+### 9.6 Java — `/tmp/testjava` (jdtls + java-debug-adapter) ⚠️ REQUIERE PROYECTO REAL
+```bash
+# El archivo a debugear DEBE estar dentro de un PROYECTO Java real.
+# Formas válidas: pom.xml (Maven), build.gradle/.kts (Gradle), o markers Eclipse simple-project.
+# /tmp/testjava usa markers Eclipse (ver abajo). jdtls importa el proyecto via LSP.
+nvim /tmp/testjava/src/main/java/com/example/Main.java
+# <leader>db -> <leader>dc -> "Launch Main Class" -> mainClass: com.example.Main
+```
+- **✅ MIGRADO a jdtls (2026-09-01):** el jar `com.microsoft.java.debug.plugin-0.53.2.jar` es un
+  **bundle OSGi** que SOLO corre **DENTRO de jdtls** (runtime Eclipse/Equinox), no standalone
+  (`java -jar` → "no main manifest attribute"). Ya NO se configura `dap.adapters.java` a mano.
+  El adapter `java` ahora lo registra el **extra LazyVim `lang.java`** via
+  `require("jdtls").setup_dap()`. **Requisitos runtime:** `:MasonInstall jdtls` + JDK (hay 21).
+- **⚠️ "Main.java is a non-project file, only syntax errors are reported Java (16)":** jdtls trata
+  un archivo suelto como NO-proyecto → análisis incompleto y NO permite DAP. Arreglado en
+  `/tmp/testjava` con **markers Eclipse simple-project**: `.project` (natura javabuilder),
+  `.classpath` (src `src/main/java`, JRE_CONTAINER **JavaSE-21**, output `bin`) y
+  `.settings/org.eclipse.jdt.core.prefs` (compliance/source/target = 21). Opcional: borrar
+  `pom.xml` si no hay Maven instalado (jdtls solo necesita un marker de proyecto válido).
+- **⚠️ "Could not resolve java executable: Index 1 out of bounds for length 1":** falla jdtls al
+  resolver el ejecutable de Java. En NixOS el JDK vive en `/nix/store/.../lib/openjdk` (layout no
+  estándar) y `JAVA_HOME` suele estar VACÍO. Arreglado en `lua/config/options.lua`: al arrancar
+  nvim, si `JAVA_HOME` está vacío se resuelve desde `exepath("java")` (dir que contiene `bin/
+  java`) y se setea `vim.env.JAVA_HOME`. Esto lo hereda el proceso jdtls al lanzarse.
+- **⚠️ "Error on attach: Failed to attach to 127.0.0.1:5005 (attach timeout ...)":** es un
+  **SÍNTOMA**, no la config real. Cuando jdtls NO reconoce el proyecto ("non-project"), su config
+  provider devuelve vacío y nvim-dap cae a la config **estática** `dap.configurations.java` del
+  extra LazyVim `lang.java`, que es `{ request = "attach", port = 5005, name = "Debug (Attach) -
+  Remote" }` (`~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/extras/lang/java.lua:47-55`).
+  Sin un debuggee escuchando en 5005 → falla el attach. **Fix:** lograr que jdtls importe el
+  proyecto (markers `.project`/`.classpath`, ver arriba) y **reiniciar nvim DESDE la raíz del
+  proyecto** (`nvim /tmp/testjava/src/main/java/com/example/Main.java`). Así el provider devuelve
+  configs `request = "launch"` y `<leader>dc` lanza el Main Class en vez de attachear.
+
+### 9.7 PHP — `/tmp/testphp/index.php` (Xdebug) ⚠️ requiere php-debug-adapter + Xdebug
+```bash
+# 1) PREPARAR EL ADAPTER (una sola vez): php NO implementa DAP, hace falta el adapter de node
+#    :MasonInstall php-debug-adapter
+
+# 0) ⚠️ PREREQUISITO CRITICO: la extension Xdebug debe estar CARGADA en el PHP.
+#    Comprobar:  php -m | grep xdebug        (debe listar 'xdebug')
+#    Si NO aparece -> el debug NUNCA conecta (el adapter escucha en 9003 pero Xdebug no existe).
+#    Causa real del error "thread stop no respuestas": Xdebug no instalado en este PHP (2026-09-01).
+#    En NixOS se instala con un PHP construido con la extension, ej. en work.nix:
+#      (php.withExtensions ({ enabled, all }: enabled ++ (with all; [ xdebug ])))
+#    y luego `nixconf-rebuild` (home-manager). Sin el rebuild, usar `php -m` para confirmar.
+
+# 2) PREPARAR EL SERVIDOR PHP con Xdebug ANTES de <leader>dc:
+#    Servir con Xdebug en modo debug escuchando el puerto 9003:
+cd /tmp/testphp
+php -d xdebug.mode=debug -d xdebug.start_with_request=yes \
+    -d xdebug.client_host=127.0.0.1 -d xdebug.client_port=9003 \
+    -S localhost:8000
+#    (deja esta terminal corriendo; es el "server" al que se conecta el adapter)
+
+# 3) EN OTRA terminal de nvim: abrí index.php, breakpoint y lanza
+nvim /tmp/testphp/index.php
+# <leader>db en una línea -> <leader>dc -> elige "Listen for Xdebug" (port 9003)
+
+# 4) DISPARAR una request HTTP: sin petición Xdebug NO conecta (aunque el server corra)
+curl http://localhost:8000/index.php   # o navegá la URL que ejecuta el script
+```
+- **Orden clave:** (1) adapter, (2) servidor Xdebug **antes** de `dc`, (3) "Listen for Xdebug",
+  (4) **request HTTP** (curl/abrir URL). El adapter espera la conexión de Xdebug; sin server
+  da "Debug adapter didn't respond"; con server pero SIN request HTTP, Xdebug no conecta y
+  el breakpoint no se dispara.
+- **`pathMappings`**: se quitaron (el `["/var/www"] = cwd` viejo era incorrecto). Con el
+  server built-in `php -S` corriendo desde el dir del archivo, PHP ve la ruta local real, así
+  que no hace falta mapear si nvim abre el mismo archivo.
+
+### 9.8 Python — `/tmp/testpython/main.py` (debugpy) ✅ configurado en Nix
+```bash
+# debugpy viene con el python de Nix (work.nix → python3.withPackages [.. debugpy]).
+# Requiere un rebuild de home-manager para aplicar:
+#   home-manager switch --flake ~/dotfiles-dizzi/nixconf
+
+# Lanzar en nvim (después del rebuild):
+nvim /tmp/testpython/main.py
+# <leader>db en un print -> <leader>dc -> "Launch file (debugpy)"
+```
+- YA NO hace falta `pip install debugpy` a mano: work.nix incluye `debugpy` en el
+  python env del PATH.
+- El adapter detecta `.venv/bin/python` del proyecto si existe, si no el de Nix.
+- Python SÍ tiene buen REPL de `dap>`: evaluá expresiones Python del frame directamente.
+
+### Resumen estado de builds de los tests
+
+| Test | Estado build | Requisito previo |
+|---|---|---|
+| `/tmp/testjs/index.js` | ✅ listo | ninguno |
+| `/tmp/testcpp/main.cpp` | ✅ `build/main` | ninguno |
+| `/tmp/testrust/main.rs` | ⚠️ compilar | `rustc -g -o build/main main.rs` |
+| `/tmp/testgo/main.go` | ✅ listo | ninguno (delve compila) |
+| `/tmp/testcs/Program.cs` | ⚠️ compilar | `dotnet build` |
+| `/tmp/testjava/Main.java` | ⚠️ compilar | `javac -g -d out Main.java` |
+| `/tmp/testphp/index.php` | ✅ (interpretado) | Xdebug activo en consola |
+| `/tmp/testpython/main.py` | ✅ (interpretado) | `pip install debugpy` |
 
 ## Huecos detectados / por confirmar
 
@@ -241,8 +531,15 @@ Fix: la config **"Launch file"** usa ruta absoluta y cwd en el directorio del ar
    configs; si tu dev server usa otro puerto, hay que ajustarlo.
 2. Confirmar si el Chromium se abre bien desde nvim (runtimeExecutable) o si conviene
    abrir el navegador aparte y usar **Attach to Chrome**.
-3. Revisar si necesitas la extra de LazyVim de `dap` para Backend (Go, Python) si algún
-   día debuggeas otro lenguaje.
+3. **Python:** ✅ RESUELTO — debugpy ahora viene en `work.nix` (`python3.withPackages [.. debugpy]`); requiere `home-manager switch` para activar.
+4. **Java:** ✅ MIGRADO — DAP vía extra LazyVim `lang.java` (jdtls). El bundle OSGi solo corre
+   dentro de jdtls (`jdtls.setup_dap()`). Falta `:MasonInstall jdtls` (JDK 21 ya está).
+5. **PHP:** ✅ config corregida — adapter `php-debug-adapter` + **paso de request HTTP** (curl/
+   abrir URL) para que Xdebug conecte tras "Listen for Xdebug".
+6. **JS/TS:** ✅ RESUELTO (2026-09-01) — el "comportamiento nulo" era el adapter `server` de
+   puerto fijo 53700 (single-session, se colgaba). Migrado a `nvim-dap-vscode-js` (puerto
+   dinámico por sesión). **Bonus:** arreglado el bug E5108 de `preflight_check` que impedía a
+   `<leader>dc`/`<F9>` lanzar cualquier sesión DAP.
 
 ---
 

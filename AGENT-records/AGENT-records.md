@@ -58,6 +58,7 @@ Cada registro de sesión lleva **fecha inicial** al frente, para alinear la evid
 - `vim-ui.md` — mapa de todas las UIs/paneles que se abren en Neovim (Space+u toggles, Space+x quickfix, LazyGit, DAP)
 - `vim-mason.md` — Mason: atajo `Space+cm`, por qué el `ensure_installed` de DAP no autoinstala al abrir nvim, adapters por lenguaje y paquetes LSP/DAP/linters recomendados según el roadmap
 - `vim-dap-debug.md` — cómo usar el debugger nvim-dap (flujo completo + errores comunes + configuración real)
+- `vim-dap-fix-plan.md` — PLAN pendiente: arreglar nvim-dap multi-lenguaje (C++/Rust/Go/C#/Java/PHP) tras restaurar el archivo. Incluye diagnóstico de cada fallo + fixes a aplicar gradualmente. La UI (layout con títulos por sección) YA quedó corregida.
 
 ### Referencias externas (fuera de AGENT-records/)
 

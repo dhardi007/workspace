@@ -50,22 +50,47 @@ un lenguaje. Si al abrir no tocaste nada de debug, el `ensure_installed` jamás 
 > sin `ensure_installed`. Los DAPs van por `mason-nvim-dap`, que ya viene como dependencia
 > de nvim-dap (está en `lazy-lock.json`).
 
-**Solución aplicada:** instalar manualmente con `:MasonInstall codelldb delve netcoredbg
-java-debug-adapter php-debug-adapter` en el neovim actual. Ya quedaron marcados como
-**Installed** (los 5 ✓).
+**Solución aplicada:** el `ensure_installed` de `mason-nvim-dap` ya se disparó (al cargar
+`nvim-dap` por demanda) y dejó los 5 adapters en **Installed** ✅. Confirmado en la lista Mason:
+
+```
+◍ codelldb
+◍ delve
+◍ java-debug-adapter
+◍ netcoredbg
+◍ php-debug-adapter
+```
+
+> ⚠️ Mason es **por-máquina**: los paquetes viven en `~/.local/share/nvim/mason/` y persisten
+> entre sesiones del mismo equipo, pero **NO se replican** a otras PCs. Cada máquina dispara
+> su propio install cuando cargas nvim-dap.
 
 ## 3. Paquetes DAP instalados (adapters por lenguaje)
 
-| Adapter            | Lenguaje(s)        | Binario en Mason      | Config en nvim-dap.lua |
-| ------------------ | ------------------ | --------------------- | ---------------------- |
-| `codelldb`         | Rust / C / C++     | `mason/bin/codelldb`  | adapter `server` puerto 13000 |
-| `delve`            | Go                 | `dlv`                 | adapter `go` con spawn `dlv dap` |
-| `netcoredbg`       | C# / VB / F#       | `mason/bin/netcoredbg`| executable con `--interpreter=vscode` |
-| `java-debug-adapter`| Java              | `mason/bin/java-debug-adapter` | executable con jar del paquete |
-| `php-debug-adapter`| PHP (Xdebug)       | `mason/bin/php-debug-adapter` | executable, puerto 9003 |
-| `pwa-node`         | JS/TS (Node)       | (viene de `vscode-js-debug`) | adapter `server` puerto 53700 |
+| Adapter             | Lenguaje(s)        | Binario en Mason      | Estado              | Config en nvim-dap.lua |
+| ------------------- | ------------------ | --------------------- | ------------------- | ---------------------- |
+| `codelldb`          | Rust / C / C++     | `mason/bin/codelldb`  | ✅ Funciona | adapter `server` puerto 13000 |
+| `delve`             | Go                 | `dlv`                 | ✅ Funciona | adapter `go` con spawn `dlv dap` |
+| `netcoredbg`        | C# / VB / F#       | `mason/bin/netcoredbg`| ✅ Funciona | executable con `--interpreter=vscode` |
+| `java-debug-adapter`| Java               | (bundle dentro de `jdtls`) | ✅ Funciona vía jdtls | extra LazyVim `lang.java` → `jdtls.setup_dap()` |
+| `php-debug-adapter` | PHP (Xdebug)       | `mason/bin/php-debug-adapter` | ✅ Instalado (requiere Xdebug) | executable, puerto 9003 |
+| `pwa-node`          | JS/TS (Node)       | (viene de `vscode-js-debug`) | ✅ Funciona | adapter `pwa-*` vía plugin `nvim-dap-vscode-js` |
 
-> PHP requiere **Xdebug activo en php.ini** para que el adapter responda (puerto 9003).
+### ✅ Java ahora vía jdtls (migrado)
+
+El jar de `java-debug-adapter` NO se ejecuta standalone: es un **bundle OSGi** que SOLO corre
+**DENTRO de jdtls** (runtime Eclipse/Equinox). Por eso el viejo `java -jar <bundle>` daba
+`command java exited 1`. La vía correcta (migrada) es el **extra LazyVim `lang.java`**:
+
+- Se activa en `lua/config/lazy.lua` con `{ import = "lazyvim.plugins.extras.lang.java" }`.
+- `nvim-jdtls` arranca `jdtls` (LSP de Java) que carga el bundle java-debug como bundle OSGi.
+- `require("jdtls").setup_dap()` registra el adapter `java` en nvim-dap.
+- **Requisitos runtime:** `:MasonInstall jdtls` + JDK instalado (Diego tiene OpenJDK 21, coincide
+  con el `Build-Jdk-Spec 21` del bundle). jdtls debe estar **corriendo** al debugear.
+
+> PHP: el config del adapter usa `mason/bin/php-debug-adapter` (corregido — antes lanzaba `php`
+> a secas y daba "Adapter didn't respond"). PHP además requiere **Xdebug activo** (puerto 9003)
+> y **disparar una request HTTP** (curl/abrir la URL) para que Xdebug conecte al listener.
 
 ## 4. Otros paquetes Mason recomendados (roadmap + stack)
 
@@ -105,7 +130,10 @@ DAP. Faltan los **LSPs** — sin LSP el autocompletado/diagnóstico no funciona.
 
 - **Mason = el gestor** de LSP/DAP/linters/formatters (no son plugins de nvim, son binarios).
 - `mason.nvim` instala LSPs; `mason-nvim-dap` instala DAPs; ambos con `ensure_installed`.
-- El `ensure_installed` de nvim-dap **solo corre al cargar nvim-dap** (lazy), no al abrir nvim.
+- El `ensure_installed` de nvim-dap **solo corre al cargar nvim-dap** (lazy), no al abrir nvim
+  → pero **ya se disparó**: los 5 DAPs están **Installed** (confirmado en lista Mason).
+- Mason es **por-máquina**: lo instalado persiste en esa PC, no se replica a otras.
+- **Java**: DAP via extra LazyVim `lang.java` (jdtls). Falta `:MasonInstall jdtls` (JDK 21 ya hay).
 - Atajo rápido: `Space + c + m` para abrir Mason y ver qué tienes instalado/available.
 
 ---
