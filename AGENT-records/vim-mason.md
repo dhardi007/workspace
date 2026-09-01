@@ -151,8 +151,15 @@ DAP. Faltan los **LSPs** — sin LSP el autocompletado/diagnóstico no funciona.
 
 - **Mason = el gestor** de LSP/DAP/linters/formatters (no son plugins de nvim, son binarios).
 - `mason.nvim` instala LSPs; `mason-nvim-dap` instala DAPs; ambos con `ensure_installed`.
+- **AUTOMATIZADO (2026-09-01):** se añadió **`mason-tool-installer.nvim`** en `mason.lua` con
+  `ensure_installed` de TODOS los tools (LSPs, DAPs, formatters) y `run_on_start = true`. Al abrir
+  nvim instala lo que falte solo, sin correr `:MasonInstall X` a mano.
+  - Para forzar el chequeo inmediato: `:MasonToolsInstall` (comando que crea el plugin).
+  - `auto_update = false` (mismo criterio que `checker=false` en lazy.lua: no auto-updates).
+- **`mason-nvim-dap.nvim`** (dependency de `nvim-dap`): puentea los binarios de Mason con
+  `dap.adapters`; con `handlers = {}` deja que los adapters manuales de `nvim-dap.lua` manden.
 - El `ensure_installed` de nvim-dap **solo corre al cargar nvim-dap** (lazy), no al abrir nvim
-  → pero **ya se disparó**: los 5 DAPs están **Installed** (confirmado en lista Mason).
+  → pero **ya se disparó**: los DAPs están **Installed** (confirmado en lista Mason).
 - Los **LSPs** (p. ej. `cpptools`) los auto-instala **`mason-lspconfig`** por un `ensure_installed`
   distinto: si ves "Installing cpptools / Downloading schema vscode-cpptools" es normal, es ese.
 - En Mason: `<C-f>` abre el **Language Filter** — escribís la extensión (ej. `cpp`) y `<Enter>`

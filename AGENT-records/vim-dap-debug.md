@@ -605,14 +605,13 @@ nvim /tmp/testpython/main.py
   (LazyVim/banjocode/jvt.me/tduyng) usa el paquete **empaquetado y versionado de Mason**, no un
   gulp-build casero.
 - **Fix aplicado:** migrar los adapters `pwa-*` al binario de **`:MasonInstall js-debug-adapter`**:
-  - Ruta: `~/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js`.
-  - En `nvim-dap.lua`: `dap.adapters[name] = { type="server", host="127.0.0.1", port="${port}",
-    executable={ command=node, args={ js_debug_server, "${port}" } } }` para `pwa-node`,
+  - Ruta resuelta **dinámicamente** con `mason-registry` (`pkg:get_install_path() .. "/js-debug/src/dapDebugServer.js"`), NO hardcodeada, para que no se rompa si cambia el layout del paquete entre versiones. Si no está instalado, `vim.notify` avisa.
+  - En `nvim-dap.lua`: `dap.adapters[name] = { type="server", host="127.0.0.1", port="${port}", executable={ command=node, args={ js_debug_server, "${port}" } } }` para `pwa-node`,
     `pwa-chrome`, `pwa-msedge`, `node-terminal`.
   - **`host="127.0.0.1"` explícito es clave:** nvim-dap tiene un bug documentado si falta
     host+port juntos en un adapter `type=server` (queda sin conectar en silencio).
-  - **Se BORRÓ el spec `microsoft/vscode-js-debug`** (líneas finales) con su `build =
-    npm install...gulp vsDebugServerBundle`: ya no se compila a mano, Mason lo provee.
+  - **Se BORRÓ el spec `microsoft/vscode-js-debug`** con su `build = gulp vsDebugServerBundle`: ya no se compila a mano, Mason lo provee.
+  - **NO usar `mason-nvim-dap.nvim`:** se probó como dependency y causó `ECONNREFUSED 127.0.0.1:${port}` (placeholder sin sustituir) porque auto-registra su propio adapter `pwa-node` que choca con el manual. Los adapters se definen a mano en `nvim-dap.lua`; la instalación la hace `mason-tool-installer.nvim`.
 - **TS sin tsx:** "Launch TS" ahora usa **node nativo** (Node ≥23.6 ejecuta `.ts` por type
   stripping, sin compilar). Solo sintaxis "erasable" (enum/decorators requieren tsx/ts-node).
   Respaldo si se necesita: `npm install -g tsx`.
