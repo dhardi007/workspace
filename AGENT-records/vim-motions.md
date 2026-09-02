@@ -311,3 +311,33 @@ para navegar un archivo largo sin distracciones. El cursor debe estar **dentro**
 - **a** = **a**lternate → `za`.
 - **M** = todas cerradas (`M` de "minimizado") / **R** = todas abiertas (`R` de "reducido/revelado").
 
+## Sesiones (persistence.nvim) — guardar / restaurar layout
+
+Plugin **`persistence.nvim`** (viene con LazyVim). Guarda/restaura el estado
+de ventanas + buffers de un proyecto (layout de splits, archivos abiertos).
+
+| Key            | Acción                                  | Comando                                  |
+| -------------- | --------------------------------------- | ---------------------------------------- |
+| `<leader>qg`   | **Guardar** sesión (manual) ⭐          | `require("persistence").save()`          |
+| `<leader>qs`   | Restore session (del cwd actual)        | `require("persistence").load()`          |
+| `<leader>qS`   | Select session (elegir una)             | `require("persistence").select()`        |
+| `<leader>ql`   | **Restore Last** session ⭐             | `require("persistence").load({last=true})` |
+| `<leader>qd`   | No guardar la sesión actual             | `require("persistence").stop()`          |
+| `<leader>qq`   | Salir de todo (quit all)                | `:qa`                                    |
+
+> **`<leader>qg` es el atajo NUEVO de Diego** (config en
+> `nvim/.config/nvim/lua/config/keymaps.lua`) — LazyVim no trae el "guardar manual",
+> así que se agregó. `g` de **g**uardar.
+>
+> Diferencia clave:
+>
+> - `<leader>qs` restaura la sesión del **proyecto actual** (`load()`).
+> - `<leader>ql` restaura la **última** sesión que hubo abierta,
+>   sin importar el directorio (`load({last=true})`).
+>
+> El botón **`s` del dashboard** ("Restore Last Session") ahora hace
+> `require("persistence").load({last=true})` (config en
+> `nvim/.config/nvim/lua/plugins/ui.lua:473`), igual que `<leader>ql`.
+> ⚠️ Debe ser una **función**, no un string `"lua …"`, o snacks lo
+> interpreta como un picker de `scratch` y rompe (error E5108 de lazy.nvim).
+
