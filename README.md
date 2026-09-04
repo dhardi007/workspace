@@ -40,6 +40,18 @@ chmod +x setup.sh
 
 > ⭐ Los proyectos `ptd-talento-back` y `ptd-talento-front` son **repos independientes** (no submódulos). Usan `origin` → CIC y `dizzi1222` → fork personal.
 
+## 📐 Breakpoints móviles (convención)
+
+Umbral móvil XS: **`≤ 480px`** (antes `450px`, luego `468px`) en todos los proyectos.
+
+> ⚠️ **Nunca usar valores knife-edge medidos de un dispositivo real.** El mismo hardware reporta anchos CSS distintos por motor: Firefox Android usa DSF 2.3077 → viewport ~468.x px; Chromium usa ~2.62 → ~412px. Además el ancho real es fraccional (Eruda lo redondea al mostrarlo), así que `(max-width: 468px)` no matcheaba aunque la consola dijera "468". Con 480 ambos motores caen en el bucket móvil.
+
+- `dhardi.dev` — sin breakpoints móviles propios (los únicos "450" son coordenadas SVG) → sin cambios.
+- `portfolio-terminal-dhardi` — `@media (max-width: 480px)` en CSS + `innerWidth > 480` en Svelte; toggle nav oculto con `@media (min-width: 481px)`.
+- `ptd-talento-front` — MUI con breakpoints custom (`src/themes/main.ts`): xs `0` · sm `768` · md `1024` · lg `1440` · xl `1920`; el sub-rango ≤ 480px va con `useMediaQuery("(max-width:480px)")` y `window.innerWidth <= 480`.
+
+> ⚠️ No tocar números "450"/"468" dentro de paths SVG — son geometría, no breakpoints.
+
 ## ▶️ Iniciar proyectos localmente
 
 ### Portfolio Terminal (HTML estático)
@@ -111,3 +123,16 @@ cd jscamp/01-javascript
 python3 -m http.server 8083
 # → http://localhost:8083/empleos.html
 ```
+
+## 🗄️ mongodb (shared dev database)
+
+Instancia de MongoDB compartida para los proyectos MERN del workspace.
+
+```bash
+docker compose up -d     # levanta (escucha en 127.0.0.1:27017, solo local)
+docker compose down      # bajar (los datos persisten en el volume mongodb-data)
+```
+
+- Imagen `mongo:7`, datos en el volume `mongodb-data`.
+- GUI: `mongodb-compass` (ver `nixconf/README.md`), conexión `mongodb://localhost:27017`.
+- Proyectos: apuntan via `.env` → `MONGO_URI=mongodb://127.0.0.1:27017/<su_db>`.

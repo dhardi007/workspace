@@ -1,0 +1,69 @@
+/* neonforge preset token override — generated from the Create page. */
+/* NOT a standalone theme: it only retunes custom properties. */
+/*
+ * To apply it:
+ *   keep your full neonforge theme.css (the file with @theme inline,
+ *   @utility, @layer base rules) and APPEND this block at the end so the
+ *   overrides win. Do NOT replace theme.css with just this block — the
+ *   glass-panel / neon-glow / text-glow / grid-bg utilities would vanish.
+ */
+:root {
+	/* genre · non-tweakable tokens */
+	--nf-genre: streetkid;
+/* streetkid — tuned up from nomad: crisper blur, slightly stronger glow */
+	--nf-blur: 12px;
+	--radius: 0rem;
+	--nf-round-radius: 0;
+	--background: color-mix(in srgb, var(--primary) 10%, oklch(var(--nf-bg-l) var(--nf-bg-c) var(--nf-hue)));
+	--nf-glass: color-mix(in srgb, var(--primary) 13%, oklch(1 0 0 / 0.04));
+	--nf-glass-strong: color-mix(in srgb, var(--primary) 18%, oklch(1 0 0 / 0.07));
+	--nf-glass-hover: color-mix(in srgb, var(--primary) 22%, oklch(1 0 0 / 0.1));
+	--nf-panel-shadow: 0 2px 8px oklch(0 0 0 / 0.15);
+	--nf-glass-highlight: oklch(1 0 0 / 0.1);
+	--nf-glass-border: color-mix(in srgb, var(--primary) 18%, oklch(1 0 0 / 0.12));
+	--border: color-mix(in srgb, var(--primary) 12%, oklch(var(--nf-bg-l) var(--nf-bg-c) var(--nf-hue) / 0.22));
+	--input: color-mix(in srgb, var(--primary) 15%, oklch(var(--nf-bg-l) var(--nf-bg-c) var(--nf-hue) / 0.28));
+	--card: color-mix(in srgb, var(--primary) 7%, oklch(calc(var(--nf-bg-l) + 0.032) var(--nf-bg-c) var(--nf-hue)));
+	--popover: color-mix(in srgb, var(--primary) 7%, oklch(calc(var(--nf-bg-l) + 0.022) var(--nf-bg-c) var(--nf-hue)));
+	--secondary: color-mix(in srgb, var(--primary) 9%, oklch(calc(var(--nf-bg-l) + 0.09) var(--nf-bg-c) var(--nf-hue)));
+	--muted: color-mix(in srgb, var(--primary) 7%, oklch(calc(var(--nf-bg-l) + 0.07) var(--nf-bg-c) var(--nf-hue)));
+	--accent: color-mix(in srgb, var(--primary) 9%, oklch(calc(var(--nf-bg-l) + 0.1) var(--nf-bg-c) var(--nf-hue)));
+	--nf-glow-primary: 0 0 12px oklch(var(--nf-accent-l) var(--nf-accent-c) var(--nf-accent-h) / 0.26);
+	--nf-glow-destructive: 0 0 12px oklch(0.62 0.26 25 / 0.3);
+	--nf-glow-success: 0 0 12px oklch(0.95 0.21 118 / 0.26);
+	--nf-glow-warning: 0 0 12px oklch(0.82 0.15 70 / 0.26);
+	--nf-glow-info: 0 0 12px oklch(0.87 0.14 230 / 0.3);
+	--nf-chamfer-sm: 0.35rem;
+	--nf-chamfer-md: 0.6rem;
+	--nf-chamfer-lg: 0.9rem;
+	--nf-round-radius: 0.5rem;
+	--nf-font-mono: "Share Tech Mono", ui-monospace, "SFMono-Regular", monospace;
+
+	/* base surface — carbon */
+	--nf-hue: 0;
+	--nf-bg-l: 0.11;
+	--nf-bg-c: 0.004;
+
+	/* accent */
+	--nf-accent-l: 0.7;
+	--nf-accent-c: 0.2;
+	--nf-accent-h: 300;
+	--nf-accent-fg-l: 0.16;
+
+	/* chart palette */
+	--chart-1: oklch(0.72 0.19 40);
+	--chart-2: oklch(0.8 0.15 80);
+	--chart-3: oklch(0.62 0.26 25);
+	--chart-4: oklch(0.75 0.2 65);
+	--chart-5: oklch(0.5 0.18 20);
+
+	/* fonts */
+	--nf-font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+	--nf-font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+	/* corner shape */
+	--nf-corner-tr: 0;
+	--nf-corner-bl: 0;
+	--nf-radius-tr: 0;
+	--nf-radius-bl: 0;
+}
