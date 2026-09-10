@@ -1,0 +1,14 @@
+/tmp/testcs/bin/Debug/net8.0/testcs
+/tmp/testcs/bin/Debug/net8.0/testcs.deps.json
+/tmp/testcs/bin/Debug/net8.0/testcs.runtimeconfig.json
+/tmp/testcs/bin/Debug/net8.0/testcs.dll
+/tmp/testcs/bin/Debug/net8.0/testcs.pdb
+/tmp/testcs/obj/Debug/net8.0/testcs.GeneratedMSBuildEditorConfig.editorconfig
+/tmp/testcs/obj/Debug/net8.0/testcs.AssemblyInfoInputs.cache
+/tmp/testcs/obj/Debug/net8.0/testcs.AssemblyInfo.cs
+/tmp/testcs/obj/Debug/net8.0/testcs.csproj.CoreCompileInputs.cache
+/tmp/testcs/obj/Debug/net8.0/testcs.dll
+/tmp/testcs/obj/Debug/net8.0/refint/testcs.dll
+/tmp/testcs/obj/Debug/net8.0/testcs.pdb
+/tmp/testcs/obj/Debug/net8.0/testcs.genruntimeconfig.cache
+/tmp/testcs/obj/Debug/net8.0/ref/testcs.dll
