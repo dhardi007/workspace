@@ -7,6 +7,8 @@ Solo documentación: **no se tocó código** (las correcciones quedan para el eq
 
 ## Hallazgos QA
 
+Ticket de seguimiento: [#190 [INV] QA/PROD: 401 en login-reclutador y auditoría; 500 en solicitudes y reset-password](https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back/issues/190) ✅
+
 ### 1. Login de reclutador devuelve 401
 
 - **Comportamiento:** al iniciar sesión con un reclutador existente en QA, el backend responde `401`.
