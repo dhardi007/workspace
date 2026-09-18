@@ -4,6 +4,73 @@
 
 This roadmap documents Diego's structured learning path towards becoming a full-stack developer with expertise in both modern web technologies and backend development. The focus is on practical, hands-on learning through completing exercises and building real-world projects.
 
+# Plan de Estudio - JSCamp InfoJobs
+
+## Estrategia
+
+Seguir el bootcamp de midudev (JSCamp) recreando cada ejercicio con mis propias manos para afianzar conceptos. No persigo el certificado de pago (490€), sino el conocimiento real.
+
+## Metodología
+
+- **Fork propio** — `dizzi1222/jscamp` como submodule en el workspace
+- **Ramas por lección** — Cada bloque de ejercicios en su propia rama, partiendo del punto exacto donde el instructor deja el ejercicio
+- **Commits progresivos** — Reflejar mi proceso, no solo el resultado final
+- **main** en el fork — copia fiel del `main` de midudev/jscamp (resultado final del bootcamp)
+
+## Ramas planificadas
+
+| Rama                        | Punto de partida            | Descripción                            |
+| --------------------------- | --------------------------- | -------------------------------------- |
+| `ejercicio-filtrando`       | `9646b6b`                   | Base HTML/CSS estática + script mínimo |
+| `leccion-change-event`      | (desde ejercicio-filtrando) | Manejar evento change en JavaScript    |
+| `leccion-input-blur-submit` | (desde la anterior)         | Más eventos y preventDefault           |
+| `leccion-fetch-json`        | ...                         | Fetch y datos dinámicos                |
+| `leccion-web-components`    | ...                         | Web Components                         |
+| ...                         | ...                         | ...                                    |
+
+## Estructura del proyecto
+
+```
+workspace/
+├── jscamp/                          # submodule → dizzi1222/jscamp
+│   ├── 00-html-css/                 # Fundamentos HTML/CSS
+│   ├── 01-javascript/               # JavaScript (estoy aquí)
+│   ├── 02-react/                    # React
+│   ├── 02-react-cdn-version/        # React via CDN
+│   ├── 03-router-and-zustand/       # React Router + Estado global
+│   ├── 04-express/                  # Backend con Express
+│   ├── 04-node/                     # Node.js
+│   ├── ...
+│   └── 10-docker/                   # Docker
+└── plan-de-estudio-Dhardi-dizzi1222.md
+```
+
+## Ecosistema de Aprendizaje (Multi-plataforma)
+
+| Plataforma    | Rol               | Estado / Foco                                                           |
+| ------------- | ----------------- | ----------------------------------------------------------------------- |
+| **JSCamp**    | Principal         | Bootcamp fullstack industrial (Docker, gcloud, CI/CD, backend/frontend) |
+| **Mimo**      | Refuerzo diario   | Duolingo-style: JS, Python, MERN, certificados                          |
+| **Exercism**  | Katas progresivas | Roadmap: PHP → Python → JS/TS → C/C++/C# → Rust                         |
+| **TryHackMe** | Hobby cybersec    | Reconocimiento (dirb, etc.), vuln scanning básico                       |
+
+## Roadmap Exercism (orden de prioridad)
+
+1. **PHP** — 111 ejercicios, 11 conceptos
+2. **Python** — 146 ejercicios, 17 conceptos
+3. **JavaScript** — 159 ejercicios, 37 conceptos
+4. **TypeScript** — 106 ejercicios
+5. **Java** — 158 ejercicios, 26 conceptos
+6. **C / C++ / C#** — bases de sistemas
+7. **Rust** — 99 ejercicios (objetivo final)
+
+## Notas
+
+- El bootcamp JSCamp es 100% gratuito en [jscamp.dev](https://jscamp.dev)
+- No hay dependencias externas de backend que requieran el repo original de midu
+- Las ramas en el fork permiten mostrar mi progreso y recibir feedback
+- Fork activo: `dizzi1222/jscamp` como submodule en workspace
+
 ## Current Status
 
 ### ✅ Completed Exercises
@@ -40,16 +107,16 @@ This roadmap documents Diego's structured learning path towards becoming a full-
 
 #### Object-Oriented Programming Across Languages
 
-| Language | Key Syntax/Concepts                               | Typical Use Cases                          |
-| -------- | ------------------------------------------------- | ------------------------------------------ |
-| **Rust** | Ownership, borrowing, type inference              | Sistemas, WebAssembly, concurrencia segura |
-| **PHP**  | Herencia, interfaces, composición                 | Web, CMS, scripts del lado del servidor    |
-| GO       | Pointers, channels, goroutines                    | Web, CLIs, microservicios                  |
-| **C**    | Estructuras, punteros, programación de bajo nivel | Sistemas, embebidos                        |
-| **C++**  | STL, RAII, templates                              | Aplicaciones de alto rendimiento, juegos   |
-| **C#**   | CLIs, .NET, Web ASP.NET                           | Windows apps, servicios web                |
-| **Java** | Collections, streams, concurrencia                | Aplicaciones empresariales, Android        |
-| **Python**| Duck typing, decoradores, list/dict comprehensions, virtualenv | **ML/IA**, ciencia de datos, scripting, backend (Django/FastAPI) |
+| Language   | Key Syntax/Concepts                                            | Typical Use Cases                                                |
+| ---------- | -------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Rust**   | Ownership, borrowing, type inference                           | Sistemas, WebAssembly, concurrencia segura                       |
+| **PHP**    | Herencia, interfaces, composición                              | Web, CMS, scripts del lado del servidor                          |
+| GO         | Pointers, channels, goroutines                                 | Web, CLIs, microservicios                                        |
+| **C**      | Estructuras, punteros, programación de bajo nivel              | Sistemas, embebidos                                              |
+| **C++**    | STL, RAII, templates                                           | Aplicaciones de alto rendimiento, juegos                         |
+| **C#**     | CLIs, .NET, Web ASP.NET                                        | Windows apps, servicios web                                      |
+| **Java**   | Collections, streams, concurrencia                             | Aplicaciones empresariales, Android                              |
+| **Python** | Duck typing, decoradores, list/dict comprehensions, virtualenv | **ML/IA**, ciencia de datos, scripting, backend (Django/FastAPI) |
 
 ### 3. Modern Development Practices
 
@@ -295,27 +362,32 @@ jobs:
 ## PTD-Talento Specialized Training
 
 ### Official Resources
-- **Mapa para el PTD (Roadmap)**: https://sites.google.com/cincinnatus.edu.do/mapa-para-el-ptd/%C3%ADndice?pli=1&authuser=2
-- **Guía de entorno Local PTD-Talento**: https://docs.google.com/document/d/1wlv5RKBafG5zvfx83KDhmtIh8qUWSw4L/edit
-- **Tech stack**: https://docs.google.com/spreadsheets/d/1Y7cvkfP1SjJdA-rkFGlMnbvFQhWMyG7-/edit?gid=1608685851#gid=1608685851
+
+- **Mapa para el PTD (Roadmap)**: <https://sites.google.com/cincinnatus.edu.do/mapa-para-el-ptd/%C3%ADndice?pli=1&authuser=2>
+- **Guía de entorno Local PTD-Talento**: <https://docs.google.com/document/d/1wlv5RKBafG5zvfx83KDhmtIh8qUWSw4L/edit>
+- **Tech stack**: <https://docs.google.com/spreadsheets/d/1Y7cvkfP1SjJdA-rkFGlMnbvFQhWMyG7-/edit?gid=1608685851#gid=1608685851>
 
 ### Resource Folders
-- **Carpeta PTD (main project)**: https://drive.google.com/drive/u/2/folders/0AIStrS-iHtWVUk9PVA
-- **Carpeta Recursos (DevOPS, Dev, QA, PM, DB, etc.)**: https://drive.google.com/drive/u/2/folders/1OmNHh8curwmsJaSWJIRbECMzLzQ4zRpfe
+
+- **Carpeta PTD (main project)**: <https://drive.google.com/drive/u/2/folders/0AIStrS-iHtWVUk9PVA>
+- **Carpeta Recursos (DevOPS, Dev, QA, PM, DB, etc.)**: <https://drive.google.com/drive/u/2/folders/1OmNHh8curwmsJaSWJIRbECMzLzQ4zRpfe>
 
 ### Specialized Guides Available
+
 - Docker
 - React hooks
 - Redux
 - And other development resources
 
 ### Suggested Integration
+
 1. **Environment Setup**: Follow the local environment guide to configure your PTD-Talento development setup
 2. **Core Technologies**: Study Docker, React hooks, and Redux guides as focused learning modules
 3. **Project Exploration**: Use the main PTD folder to understand the codebase structure
 4. **Role-Specific Training**: Explore the Recursos folder for DevOps, QA, PM, and DB materials
 
 ### Learning Approach
+
 - Integrate PTD-Talento resources with your full-stack development journey
 - Apply Docker knowledge to containerize your Express/MongoDB projects
 - Implement React hooks in your frontend applications

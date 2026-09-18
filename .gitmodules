@@ -58,3 +58,7 @@
 	path = opencode-discord-rpc
 	url = https://github.com/dizzi1222/opencode-discord-rpc.git
 	branch = main
+[submodule "dataimpulse-mcp"]
+	path = dataimpulse-mcp
+	url = https://github.com/dizzi1222/dataimpulse-mcp.git
+	branch = main

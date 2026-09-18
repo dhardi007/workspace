@@ -4,25 +4,26 @@ Workspace con proyectos como submódulos y repos independientes.
 
 ## 📦 Proyectos
 
-| #   | Proyecto                                  | Descripción                                          |
-| --- | ----------------------------------------- | ---------------------------------------------------- |
-| 1   | `dizzi1222`                               | — Perfil de GitHub                                   |
-| 2   | `Librezam`                                | — Rework de UI/UX de extension de Firefox de Shazam  |
-| 3   | `retro-portfolio`                         | — Portfolio retro                                    |
-| 4   | `kimu-underground`                        | — Portfolio retro de kimu v2 (inspiracion)           |
-| 5   | `portfolio-terminal-dhardi`               | — Portfolio estilo terminal                          |
-| 6   | `GLAZE-WM-make-windows-pretty-main-dizzi` | — Windows customización                              |
-| 7   | `FCTicService.github.6c-Diego-05`         | — Pagina trucha para Papaleria de Jarabacoa          |
-| 8   | `REACT-Diego-Dizzi-Dashboard`             | — Dashboard en React                                 |
-| 9   | `Proyecto-App-MCSD`                       | — App MCSD v2.0                                      |
-| 10  | `dhardi.dev`                              | — Portfolio Landing page comercial                   |
-| 11  | `PCE-Agencia`                             | — App de finanzas y viajes                           |
-| 12  | `Just-coding`                             | — Proyectos de práctica y algoritmos                 |
-| 13  | `proyeccion-astral`                       | — Carta Apologys, para mi querida amiga-crush Marian |
-| 14  | `ptd-talento-back` ⭐                       | — El detras de camara de PTD-Talento (repo independiente) |
-| 15  | `ptd-talento-front` ⭐                      | — La cara de Martketplace de Talento (repo independiente) |
-| 16  | `portafolio-eric-godtier`                 | — Portfolio de un buen amigo, fuente de inspiracion  |
-| 17  | `jscamp`                                  | — Bootcamp Fullstack midudev (JS, React, Node, Docker, CI/CD) |
+| #   | Proyecto                                  | Descripción                                                               |
+| --- | ----------------------------------------- | ------------------------------------------------------------------------- |
+| 1   | `dizzi1222`                               | — Perfil de GitHub                                                        |
+| 2   | `Librezam`                                | — Rework de UI/UX de extension de Firefox de Shazam                       |
+| 3   | `retro-portfolio`                         | — Portfolio retro                                                         |
+| 4   | `kimu-underground`                        | — Portfolio retro de kimu v2 (inspiracion)                                |
+| 5   | `portfolio-terminal-dhardi`               | — Portfolio estilo terminal                                               |
+| 6   | `GLAZE-WM-make-windows-pretty-main-dizzi` | — Windows customización                                                   |
+| 7   | `FCTicService.github.6c-Diego-05`         | — Pagina trucha para Papaleria de Jarabacoa                               |
+| 8   | `REACT-Diego-Dizzi-Dashboard`             | — Dashboard en React                                                      |
+| 9   | `Proyecto-App-MCSD`                       | — App MCSD v2.0                                                           |
+| 10  | `dhardi.dev`                              | — Portfolio Landing page comercial                                        |
+| 11  | `PCE-Agencia`                             | — App de finanzas y viajes                                                |
+| 12  | `Just-coding`                             | — Proyectos de práctica y algoritmos                                      |
+| 13  | `proyeccion-astral`                       | — Carta Apologys, para mi querida amiga-crush Marian                      |
+| 14  | `ptd-talento-back` ⭐                     | — El detras de camara de PTD-Talento (repo independiente)                 |
+| 15  | `ptd-talento-front` ⭐                    | — La cara de Martketplace de Talento (repo independiente)                 |
+| 16  | `portafolio-eric-godtier`                 | — Portfolio de un buen amigo, fuente de inspiracion                       |
+| 17  | `jscamp`                                  | — Bootcamp Fullstack midudev (JS, React, Node, Docker, CI/CD)             |
+| 18  | `dataimpulse-mcp`                         | — MCP de proxy multi-proveedor (DataI+Webshare) para Opencode (Scrapping) |
 
 ## 🔧 Restaurar todos los proyectos
 
@@ -39,6 +40,8 @@ chmod +x setup.sh
 ```
 
 > ⭐ Los proyectos `ptd-talento-back` y `ptd-talento-front` son **repos independientes** (no submódulos). Usan `origin` → CIC y `dizzi1222` → fork personal.
+
+> ⭐ `dataimpulse-mcp` es el **fork** `dizzi1222/dataimpulse-mcp` con host/puerto parametrizable por env (`DI_PROXY_HOST`/`DI_PROXY_PORT`) para soportar Webshare además de DataImpulse. Los MCP de OpenCode apuntan a este path (`opencode.json` → `mcp.dataimpulse`, `webshare-uk`, `webshare-us`). Seteala en `main` con sus deps instaladas.
 
 ## 📐 Breakpoints móviles (convención)
 
