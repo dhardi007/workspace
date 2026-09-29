@@ -139,4 +139,18 @@ else
 fi
 
 echo ""
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo "${AZUL}Paso 6: Pusheo simultáneo (origin → dizzi1222 + dhardi007)...${RESET}"
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo ""
+
+# Un solo `git push` va a AMBOS repos a la vez (origin con 2 pushurls).
+# Fetch sigue usando la primera URL (dizzi1222).
+git config remote.origin.pushurl https://github.com/dizzi1222/workspace.git
+git config --add remote.origin.pushurl https://github.com/dhardi007/workspace.git
+
+echo "${CYAN}→ git push irá a:${RESET}"
+git config --get-all remote.origin.pushurl
+
+echo ""
 echo "${VERDE}✅ Workspace listo!${RESET}"

@@ -41,6 +41,8 @@ chmod +x setup.sh
 
 > ⭐ Los proyectos `ptd-talento-back` y `ptd-talento-front` son **repos independientes** (no submódulos). Usan `origin` → CIC y `dizzi1222` → fork personal.
 
+> 🔁 **Pusheo simultáneo en `workspace`:** `remote.origin` tiene **dos pushurls** (`dizzi1222/workspace` + `dhardi007/workspace`). Un simple `git push` sube a ambos a la vez; `git fetch` sigue viniendo de `dizzi1222`. El `setup.sh` lo re-configura (Paso 6) por si se pierde al recrear el repo.
+
 > ⭐ `dataimpulse-mcp` es el **fork** `dizzi1222/dataimpulse-mcp` con host/puerto parametrizable por env (`DI_PROXY_HOST`/`DI_PROXY_PORT`) para soportar Webshare además de DataImpulse. Los MCP de OpenCode apuntan a este path (`opencode.json` → `mcp.dataimpulse`, `webshare-uk`, `webshare-us`). Seteala en `main` con sus deps instaladas.
 
 ## 📐 Breakpoints móviles (convención)
