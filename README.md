@@ -24,6 +24,13 @@ Workspace con proyectos como submódulos y repos independientes.
 | 16  | `portafolio-eric-godtier`                 | — Portfolio de un buen amigo, fuente de inspiracion                       |
 | 17  | `jscamp`                                  | — Bootcamp Fullstack midudev (JS, React, Node, Docker, CI/CD)             |
 | 18  | `dataimpulse-mcp`                         | — MCP de proxy multi-proveedor (DataI+Webshare) para Opencode (Scrapping) |
+| 19  | `dhardi-laravel` ⭐                        | — Portfolio Laravel 13 + Inertia 3 + React 19 trilingüe (DE/ES/EN)         |
+
+> ⭐ `dhardi-laravel` es **repo independiente** (no submódulo). Es el portfolio
+> en Laravel 13/Inertia 3/React 19 con i18n en DE/ES/EN, un gateway LLM con
+> retry, circuit breaker, fallback, caché, guardrails y golden dataset, y
+> multi-tenancy por instancia. Desplegado en Vercel como contenedor
+> (FrankenPHP). `origin` → `dizzi1222`.
 
 ## 🔧 Restaurar todos los proyectos
 
@@ -101,12 +108,12 @@ python3 -m http.server 8082
 # → http://localhost:8082
 ```
 
-### PTD-Talento Back (NestJS + PostgreSQL)
+### PTD-Talento Back (Express + TypeORM + PostgreSQL)
 
 ```bash
 cd ptd-talento-back
 npm install
-npm run start:dev
+npm run dev
 # → http://localhost:3000/api
 ```
 
@@ -128,6 +135,34 @@ cd jscamp/01-javascript
 python3 -m http.server 8083
 # → http://localhost:8083/empleos.html
 ```
+
+### dhardi-laravel (Laravel 13 + Inertia 3 + React 19)
+
+```bash
+cd dhardi-laravel
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate --seed
+composer run dev
+# → http://localhost:8000 (alemán por defecto; ?lang=es / ?lang=en)
+```
+
+Tests y evals:
+
+```bash
+php artisan test        # 79 tests
+php artisan evals:run   # golden dataset del asistente (12 casos)
+vendor/bin/pint         # formatear PHP
+npx tsc --noEmit        # typecheck TypeScript
+```
+
+Sin credenciales de IA el asistente responde igual por la cadena determinista,
+así que la demo funciona sin configurar nada.
+
+### PTD-Talento Back (Express + TypeORM + PostgreSQL)
 
 ## 🗄️ mongodb (shared dev database)
 

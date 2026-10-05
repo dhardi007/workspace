@@ -99,7 +99,7 @@ fi
 
 echo ""
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo "${AZUL}Paso 5: Configurando repos independientes (ptd-talento)...${RESET}"
+echo "${AZUL}Paso 5: Configurando repos independientes (ptd-talento, dhardi-laravel)...${RESET}"
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo ""
 
@@ -135,6 +135,41 @@ else
   git clone https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front.git
   cd ptd-talento-front && git checkout dev
   git remote add dizzi1222 https://github.com/dizzi1222/ptd-talento-front.git
+  cd ..
+fi
+
+echo ""
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo "${AZUL}Paso 5b: dhardi-laravel (portfolio Laravel 13)...${RESET}"
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo ""
+
+# dhardi-laravel
+if [ -d "dhardi-laravel/.git" ]; then
+  cd dhardi-laravel
+  git checkout main
+  git remote set-url origin https://github.com/dizzi1222/dhardi-laravel.git
+  cd "$OLDPWD"
+else
+  echo "${ROJO}⚠ dhardi-laravel no existe, clonando...${RESET}"
+  git clone https://github.com/dizzi1222/dhardi-laravel.git
+  cd dhardi-laravel && git checkout main
+  cd ..
+fi
+
+# Dependencias del proyecto Laravel: sin ellas `php artisan serve` no arranca.
+if [ -d "dhardi-laravel" ]; then
+  cd dhardi-laravel
+  composer install --no-interaction --quiet
+  npm install --silent
+  if [ ! -f .env ]; then
+    cp .env.example .env
+    php artisan key:generate
+  fi
+  if [ ! -f database/database.sqlite ]; then
+    touch database/database.sqlite
+  fi
+  php artisan migrate --seed --force --quiet
   cd ..
 fi
 
