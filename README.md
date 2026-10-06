@@ -24,13 +24,12 @@ Workspace con proyectos como submódulos y repos independientes.
 | 16  | `portafolio-eric-godtier`                 | — Portfolio de un buen amigo, fuente de inspiracion                       |
 | 17  | `jscamp`                                  | — Bootcamp Fullstack midudev (JS, React, Node, Docker, CI/CD)             |
 | 18  | `dataimpulse-mcp`                         | — MCP de proxy multi-proveedor (DataI+Webshare) para Opencode (Scrapping) |
-| 19  | `dhardi-laravel` ⭐                        | — Portfolio Laravel 13 + Inertia 3 + React 19 trilingüe (DE/ES/EN)         |
+| 19  | `dhardi-laravel`                          | — Portfolio Laravel 13 + Inertia 3 + React 19 trilingüe (DE/ES/EN)         |
 
-> ⭐ `dhardi-laravel` es **repo independiente** (no submódulo). Es el portfolio
-> en Laravel 13/Inertia 3/React 19 con i18n en DE/ES/EN, un gateway LLM con
-> retry, circuit breaker, fallback, caché, guardrails y golden dataset, y
-> multi-tenancy por instancia. Desplegado en Vercel como contenedor
-> (FrankenPHP). `origin` → `dizzi1222`.
+> ⭐ `dhardi-laravel` es un **submódulo** de `dizzi1222/dhardi-laravel` (repo público propio).
+> Es el portfolio en Laravel 13/Inertia 3/React 19 con i18n en DE/ES/EN, un gateway LLM con
+> retry, circuit breaker, fallback, caché, guardrails y golden dataset, y multi-tenancy por
+> instancia. Desplegado en Vercel como contenedor (FrankenPHP): `dhardi-laravel.vercel.app`.
 
 ## 🔧 Restaurar todos los proyectos
 

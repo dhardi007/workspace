@@ -30,6 +30,7 @@ git submodule update --init --recursive jscamp
 git submodule update --init --recursive dhardi.dev
 git submodule update --init --recursive opencode-discord-rpc
 git submodule update --init --recursive dataimpulse-mcp
+git submodule update --init --recursive dhardi-laravel
 
 echo ""
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
@@ -88,6 +89,32 @@ if [ -d "opencode-discord-rpc" ]; then
 fi
 
 echo ""
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo "${CYAN}Instalando dependencias de dhardi-laravel (portfolio Laravel)...${RESET}"
+echo ""
+
+# Submódulo: ya viene clonado por el paso 1. Solo se preparan sus dependencias,
+# porque `php artisan serve` y `npm run dev` no funcionan sin ellas.
+if [ -d "dhardi-laravel" ]; then
+  cd dhardi-laravel
+  composer install --no-interaction --quiet
+  npm install --silent
+
+  if [ ! -f .env ]; then
+    cp .env.example .env
+    php artisan key:generate
+  fi
+
+  if [ ! -f database/database.sqlite ]; then
+    touch database/database.sqlite
+  fi
+
+  php artisan migrate --seed --force --quiet
+  cd ..
+fi
+
+echo ""
+echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo "${CYAN}Instalando dependencias de dataimpulse-mcp (MCP proxy)...${RESET}"
 echo ""
 
@@ -99,7 +126,7 @@ fi
 
 echo ""
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo "${AZUL}Paso 5: Configurando repos independientes (ptd-talento, dhardi-laravel)...${RESET}"
+echo "${AZUL}Paso 5: Configurando repos independientes (ptd-talento)...${RESET}"
 echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo ""
 
@@ -138,54 +165,4 @@ else
   cd ..
 fi
 
-echo ""
-echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo "${AZUL}Paso 5b: dhardi-laravel (portfolio Laravel 13)...${RESET}"
-echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo ""
 
-# dhardi-laravel
-if [ -d "dhardi-laravel/.git" ]; then
-  cd dhardi-laravel
-  git checkout main
-  git remote set-url origin https://github.com/dizzi1222/dhardi-laravel.git
-  cd "$OLDPWD"
-else
-  echo "${ROJO}⚠ dhardi-laravel no existe, clonando...${RESET}"
-  git clone https://github.com/dizzi1222/dhardi-laravel.git
-  cd dhardi-laravel && git checkout main
-  cd ..
-fi
-
-# Dependencias del proyecto Laravel: sin ellas `php artisan serve` no arranca.
-if [ -d "dhardi-laravel" ]; then
-  cd dhardi-laravel
-  composer install --no-interaction --quiet
-  npm install --silent
-  if [ ! -f .env ]; then
-    cp .env.example .env
-    php artisan key:generate
-  fi
-  if [ ! -f database/database.sqlite ]; then
-    touch database/database.sqlite
-  fi
-  php artisan migrate --seed --force --quiet
-  cd ..
-fi
-
-echo ""
-echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo "${AZUL}Paso 6: Pusheo simultáneo (origin → dizzi1222 + dhardi007)...${RESET}"
-echo "${AMARILLO}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo ""
-
-# Un solo `git push` va a AMBOS repos a la vez (origin con 2 pushurls).
-# Fetch sigue usando la primera URL (dizzi1222).
-git config remote.origin.pushurl https://github.com/dizzi1222/workspace.git
-git config --add remote.origin.pushurl https://github.com/dhardi007/workspace.git
-
-echo "${CYAN}→ git push irá a:${RESET}"
-git config --get-all remote.origin.pushurl
-
-echo ""
-echo "${VERDE}✅ Workspace listo!${RESET}"

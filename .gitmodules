@@ -62,3 +62,6 @@
 	path = dataimpulse-mcp
 	url = https://github.com/dizzi1222/dataimpulse-mcp.git
 	branch = main
+[submodule "dhardi-laravel"]
+	path = dhardi-laravel
+	url = https://github.com/dizzi1222/dhardi-laravel.git

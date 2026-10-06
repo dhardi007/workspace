@@ -1,0 +1,15 @@
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/RSVTravelersMapForce.csproj.AssemblyReference.cache
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/RSVTravelersMapForce.GeneratedMSBuildEditorConfig.editorconfig
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/RSVTravelersMapForce.AssemblyInfoInputs.cache
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/RSVTravelersMapForce.AssemblyInfo.cs
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/RSVTravelersMapForce.csproj.CoreCompileInputs.cache
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/RSVTravelersMapForce.sourcelink.json
+/home/diego/workspace/rsv-travelermap-force/bin/Release/net6.0/RSVTravelersMapForce.deps.json
+/home/diego/workspace/rsv-travelermap-force/bin/Release/net6.0/RSVTravelersMapForce.runtimeconfig.json
+/home/diego/workspace/rsv-travelermap-force/bin/Release/net6.0/RSVTravelersMapForce.dll
+/home/diego/workspace/rsv-travelermap-force/bin/Release/net6.0/RSVTravelersMapForce.pdb
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/RSVTravelersMapForce.dll
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/refint/RSVTravelersMapForce.dll
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/RSVTravelersMapForce.pdb
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/RSVTravelersMapForce.genruntimeconfig.cache
+/home/diego/workspace/rsv-travelermap-force/obj/Release/net6.0/ref/RSVTravelersMapForce.dll
