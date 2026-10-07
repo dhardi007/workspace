@@ -111,7 +111,8 @@ public sealed class ModEntry : Mod
 		Instance = this;
 		Config = ReadConfig();
 
-		new Harmony($"RSVTravelersMapForce.{ModFolder.GetHashCode()}").PatchAll();
+		Harmony.PatchAll();
+		PatchTravelersMapHotkey();
 
 		helper.Events.Input.ButtonPressed += OnButtonPressed;
 
@@ -121,6 +122,90 @@ public sealed class ModEntry : Mod
 		Monitor.Log(
 			$"loaded. price={Config.Price}, areas={Areas.Count}, map={RsvMapTexture is not null}, hotkey='{Config.OpenMapKey}'",
 			LogLevel.Info);
+	}
+
+	/// <summary>Stores the Harmony instance so we can add patches after <c>PatchAll</c>.</summary>
+	private Harmony Harmony { get; } = new($"RSVTravelersMapForce.{ModFolder.GetHashCode()}");
+
+	/// <summary>
+	/// Lets extra keys open Traveler's Map even though Dipendor only accepts a single
+	/// <c>SButton</c>. We borrow its <c>OpenMapKey</c> for the duration of the button
+	/// press and restore it afterwards, so Dipendor still opens its own menu (keeping
+	/// the winter map and hover overlays working) and GMCM can still rebind it.
+	/// </summary>
+	private void PatchTravelersMapHotkey()
+	{
+		Type? entryType = AccessTools.TypeByName("Dipendor.TravelersMap.ModEntry");
+		MethodBase? onButtonPressed = entryType is null
+			? null
+			: AccessTools.Method(entryType, "OnButtonPressed");
+
+		if (entryType is null || onButtonPressed is null)
+		{
+			Monitor.Log("could not patch Traveler's Map hotkey; extra map keys disabled.", LogLevel.Warn);
+			return;
+		}
+
+		TravelersConfigField = AccessTools.Field(entryType, "Config");
+		TravelersKeyProperty = TravelersConfigField?.FieldType.GetProperty(
+			"OpenMapKey", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+		if (TravelersConfigField is null || TravelersKeyProperty is null)
+		{
+			Monitor.Log("could not find Traveler's Map Config/OpenMapKey; extra map keys disabled.", LogLevel.Warn);
+			TravelersConfigField = null;
+			return;
+		}
+
+		Harmony.Patch(
+			onButtonPressed,
+			prefix: new HarmonyMethod(
+				typeof(ModEntry).GetMethod(nameof(LendTravelersMapKey), BindingFlags.NonPublic | BindingFlags.Static)),
+			postfix: new HarmonyMethod(
+				typeof(ModEntry).GetMethod(nameof(RestoreTravelersMapKey), BindingFlags.NonPublic | BindingFlags.Static)));
+
+		Monitor.Log($"extra Traveler's Map keys enabled: '{Config.TravelersMapKeys}'", LogLevel.Debug);
+	}
+
+	private static FieldInfo? TravelersConfigField { get; set; }
+
+	private static PropertyInfo? TravelersKeyProperty { get; set; }
+
+	private static SButton? LentKey { get; set; }
+
+	/// <summary>Lends Dipendor's hotkey for this press, if the button is one of ours.</summary>
+	private static void LendTravelersMapKey(object __instance, ButtonPressedEventArgs e)
+	{
+		LentKey = null;
+
+		// Only when nothing is open, so we never fight another menu.
+		if (Game1.activeClickableMenu is not null)
+			return;
+
+		ModEntry? mod = Instance;
+		if (mod is null || !MatchesAnyHotkey(e.Button, mod.Config.TravelersMapKeys))
+			return;
+
+		if (TravelersConfigField?.GetValue(__instance) is not object config)
+			return;
+
+		if (TravelersKeyProperty?.GetValue(config) is not SButton current || current == e.Button)
+			return;
+
+		LentKey = current;
+		TravelersKeyProperty.SetValue(config, e.Button);
+	}
+
+	/// <summary>Gives Dipendor its hotkey back.</summary>
+	private static void RestoreTravelersMapKey(object __instance)
+	{
+		if (LentKey is not SButton original)
+			return;
+
+		if (TravelersConfigField?.GetValue(__instance) is object config)
+			TravelersKeyProperty?.SetValue(config, original);
+
+		LentKey = null;
 	}
 
 	/// <summary>The folder this mod's DLL lives in.</summary>
@@ -135,7 +220,7 @@ public sealed class ModEntry : Mod
 
 		// OpenMapKey admite varias teclas separadas por coma ("R, DPadLeft"):
 		// basta con que el boton pulsado coincida con alguna de ellas.
-		if (!MatchesAnyHotkey(e.Button))
+		if (!MatchesAnyHotkey(e.Button, Config.OpenMapKey))
 			return;
 
 		if (!Context.IsWorldReady)
@@ -156,12 +241,13 @@ public sealed class ModEntry : Mod
 	}
 
 	/// <summary>
-	/// Whether the given button matches any configured hotkey. Uses SMAPI keybind
-	/// syntax, so alternatives are separated by commas (e.g. "R, DPadLeft").
+	/// Whether the given button matches any hotkey in a comma-separated list.
+	/// Uses SMAPI keybind syntax, so alternatives are separated by commas
+	/// (e.g. "R, DPadLeft").
 	/// </summary>
-	private bool MatchesAnyHotkey(SButton button)
+	private static bool MatchesAnyHotkey(SButton button, string keys)
 	{
-		string[] parts = (Config.OpenMapKey ?? "")
+		string[] parts = (keys ?? "")
 			.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 		return parts.Any(p => SButton.TryParse(p, out SButton parsed) && parsed == button);

@@ -14,4 +14,12 @@ public sealed class ModConfig
 	/// alternatives can be listed separated by commas (e.g. "R, DPadLeft").
 	/// </summary>
 	public string OpenMapKey { get; set; } = "R";
+
+	/// <summary>
+	/// Extra buttons that open Traveler's Map. Dipendor's own option is a single
+	/// <c>SButton</c>, so this list is served by borrowing that key for the duration
+	/// of the button press. Same comma-separated keybind syntax as
+	/// <see cref="OpenMapKey"/>.
+	/// </summary>
+	public string TravelersMapKeys { get; set; } = "N, DPadRight";
 }
