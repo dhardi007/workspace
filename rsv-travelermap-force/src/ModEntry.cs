@@ -130,12 +130,12 @@ public sealed class ModEntry : Mod
 	/// <summary>Opens the Ridgeside map with a key. Does not rely on Harmony.</summary>
 	private void OnButtonPressed(object? sender, ButtonPressedEventArgs e)
 	{
-		string name = e.Button.ToString() ?? "";
-
 		if (!Config.Enabled)
 			return;
 
-		if (!string.Equals(name, Config.OpenMapKey, StringComparison.OrdinalIgnoreCase))
+		// OpenMapKey admite varias teclas separadas por coma ("R, DPadLeft"):
+		// basta con que el boton pulsado coincida con alguna de ellas.
+		if (!MatchesAnyHotkey(e.Button))
 			return;
 
 		if (!Context.IsWorldReady)
@@ -153,6 +153,18 @@ public sealed class ModEntry : Mod
 		}
 
 		Game1.activeClickableMenu = new RsvMapMenu(this, Game1.MasterPlayer);
+	}
+
+	/// <summary>
+	/// Whether the given button matches any configured hotkey. Uses SMAPI keybind
+	/// syntax, so alternatives are separated by commas (e.g. "R, DPadLeft").
+	/// </summary>
+	private bool MatchesAnyHotkey(SButton button)
+	{
+		string[] parts = (Config.OpenMapKey ?? "")
+			.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+		return parts.Any(p => SButton.TryParse(p, out SButton parsed) && parsed == button);
 	}
 
 	private static ModConfig ReadConfig()

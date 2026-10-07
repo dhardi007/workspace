@@ -9,6 +9,9 @@ public sealed class ModConfig
 	/// <summary>Gold cost per teleport to a Ridgeside area.</summary>
 	public int Price { get; set; } = 1750;
 
-	/// <summary>Key that opens the Ridgeside map.</summary>
+	/// <summary>
+	/// Buttons that open the Ridgeside map. Uses SMAPI keybind syntax, so several
+	/// alternatives can be listed separated by commas (e.g. "R, DPadLeft").
+	/// </summary>
 	public string OpenMapKey { get; set; } = "R";
 }
