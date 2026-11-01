@@ -65,3 +65,23 @@
 [submodule "dhardi-laravel"]
 	path = dhardi-laravel
 	url = https://github.com/dizzi1222/dhardi-laravel.git
+[submodule "codex-discord-presence"]
+	path = codex-discord-presence
+	url = https://github.com/dizzi1222/codex-discord-presence.git
+	branch = main
+[submodule "MultiPresence"]
+	path = MultiPresence
+	url = https://github.com/dizzi1222/MultiPresence.git
+	branch = main
+[submodule "dbtui.nvim"]
+	path = dbtui.nvim
+	url = https://github.com/dizzi1222/dbtui.nvim.git
+	branch = main
+[submodule "neocursor.nvim"]
+	path = neocursor.nvim
+	url = https://github.com/dizzi1222/neocursor.nvim.git
+	branch = main
+[submodule "opencode.nvim"]
+	path = opencode.nvim
+	url = https://github.com/dizzi1222/opencode.nvim.git
+	branch = main

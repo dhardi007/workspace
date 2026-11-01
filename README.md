@@ -25,6 +25,11 @@ Workspace con proyectos como submódulos y repos independientes.
 | 17  | `jscamp`                                  | — Bootcamp Fullstack midudev (JS, React, Node, Docker, CI/CD)             |
 | 18  | `dataimpulse-mcp`                         | — MCP de proxy multi-proveedor (DataI+Webshare) para Opencode (Scrapping) |
 | 19  | `dhardi-laravel`                          | — Portfolio Laravel 13 + Inertia 3 + React 19 trilingüe (DE/ES/EN)         |
+| 20  | `codex-discord-presence`                  | — Discord Rich Presence para Codex vía hooks locales (plugin)             |
+| 21  | `MultiPresence`                           | — Discord Rich Presence para juegos sin soporte nativo (fork, Windows)    |
+| 22  | `dbtui.nvim`                              | — Launcher TUI de PostgreSQL/MongoDB para Neovim (LazySQL + mongosh)      |
+| 23  | `neocursor.nvim`                          | — Predicciones next-edit estilo Cursor para Neovim (ghost text)           |
+| 24  | `opencode.nvim`                           | — Integración de OpenCode dentro de Neovim                                |
 
 > ⭐ `dhardi-laravel` es un **submódulo** de `dizzi1222/dhardi-laravel` (repo público propio).
 > Es el portfolio en Laravel 13/Inertia 3/React 19 con i18n en DE/ES/EN, un gateway LLM con
@@ -50,6 +55,14 @@ chmod +x setup.sh
 > 🔁 **Pusheo simultáneo en `workspace`:** `remote.origin` tiene **dos pushurls** (`dizzi1222/workspace` + `dhardi007/workspace`). Un simple `git push` sube a ambos a la vez; `git fetch` sigue viniendo de `dizzi1222`. El `setup.sh` lo re-configura (Paso 6) por si se pierde al recrear el repo.
 
 > ⭐ `dataimpulse-mcp` es el **fork** `dizzi1222/dataimpulse-mcp` con host/puerto parametrizable por env (`DI_PROXY_HOST`/`DI_PROXY_PORT`) para soportar Webshare además de DataImpulse. Los MCP de OpenCode apuntan a este path (`opencode.json` → `mcp.dataimpulse`, `webshare-uk`, `webshare-us`). Seteala en `main` con sus deps instaladas.
+
+> 🎮 `codex-discord-presence` es el plugin de **Discord Rich Presence para Codex** (el equivalente Codex de `opencode-discord-rpc`). Node.js 20+, **sin dependencias ni build**: el `setup.sh` solo lo clona y lo deja en `main`. Se registra a mano con `codex plugin marketplace add .` + `codex plugin add codex-discord-presence@codex-presence` desde su carpeta.
+
+> 🪟 `MultiPresence` es un **fork** de MultiPresence (Discord Rich Presence para juegos sin soporte nativo) con Sekiro/Bloodborne y updater propio apuntando a `dizzi1222/MultiPresence`. Es **.NET 9 / Windows x64**: no se compila en Linux, el `setup.sh` solo lo clona y lo deja en `main`.
+
+> 🗄️ `dbtui.nvim` es el plugin de **Neovim** que detecta conexiones PostgreSQL/MongoDB por proyecto y las abre en un terminal flotante (LazySQL / `mongosh`). Neovim 0.10+, sin build.
+
+> 🧩 `neocursor.nvim` y `opencode.nvim` son plugins de **Neovim** (sin build): predicciones next-edit tipo Cursor (ghost text) e integración de OpenCode en el editor.
 
 ## 📐 Breakpoints móviles (convención)
 
@@ -160,6 +173,56 @@ npx tsc --noEmit        # typecheck TypeScript
 
 Sin credenciales de IA el asistente responde igual por la cadena determinista,
 así que la demo funciona sin configurar nada.
+
+### codex-discord-presence (plugin de Codex, sin build)
+
+```bash
+cd codex-discord-presence
+codex plugin marketplace add .
+codex plugin add codex-discord-presence@codex-presence
+node src/cli.mjs doctor   # verificar Discord + hooks
+```
+
+⚙️ **La config real NO vive en el repo ni en el workspace**, sino en el home:
+
+```bash
+nvim /home/diego/.config/codex-discord-presence/config.json
+```
+
+Requiere Discord de escritorio abierto y Node.js 20+. No tiene dependencias ni
+paso de compilación.
+
+### MultiPresence (Discord RPC para juegos, .NET 9 / Windows)
+
+```bash
+cd MultiPresence
+dotnet publish MultiPresence/MultiPresence.csproj -c Release -r win-x64 --self-contained false
+./build-and-deploy.ps1 -Target "<carpeta de instalación>"
+```
+
+Requiere .NET 9 SDK y **Windows 10/11 x64**; en Linux/NixOS solo se versiona el
+código (el `setup.sh` no lo compila).
+
+### dbtui.nvim (plugin de Neovim)
+
+```lua
+-- lazy.nvim
+{ "dizzi1222/dbtui.nvim", opts = { keymap = "<leader>gz" } }
+```
+
+Requiere Neovim 0.10+, `lazysql` (PostgreSQL) y/o `mongosh` (MongoDB); solo el
+binario de la conexión que uses. Para desarrollo local se carga por `dir`
+(p. ej. `dir = "~/workspace/dbtui.nvim"`) en el spec de lazy.nvim.
+
+### neocursor.nvim / opencode.nvim (plugins de Neovim)
+
+```lua
+{ "dizzi1222/neocursor.nvim" }
+{ "dizzi1222/opencode.nvim" }
+```
+
+Sin build ni dependencias de sistema; se cargan con lazy.nvim (o por `dir` para
+desarrollo local).
 
 ### PTD-Talento Back (Express + TypeORM + PostgreSQL)
 
